@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--jj-paper);
+    font-family: "Helvetica Neue", "Inter", "Arial", sans-serif;
+    color: var(--jj-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body { width: 700px; min-height: 220px; padding: 22px 26px; display: flex; flex-direction: column; }
+  .star { font-size: 1.05em; line-height: 1; display: inline-block; }
+  .eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--jj-muted); }
+  .label  { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--jj-muted); }
+  .mono   { font-family: ui-monospace, "SF Mono", monospace; font-size: 10px; color: var(--jj-muted); }
+  
+</style></head><body>
+    <div class="eyebrow" style="margin-bottom:14px">The asterisk mark · ✱ U+2731</div>
+    <div style="display:flex;align-items:center;gap:32px;flex:1">
+      <div style="font-size:120px;line-height:1;font-weight:400">✱</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;margin-bottom:14px">
+          <span style="font-size:18px">✱</span><span>Joni Juuri</span>
+        </div>
+        <div style="font-size:10.5px;line-height:1.5;color:var(--jj-ink-2);max-width:42ch">
+          The only ornament in the entire identity. Sits beside the name in the topbar and in footers. Never used decoratively, never as a bullet, never colored.
+        </div>
+        <div class="mono" style="margin-top:14px">U+2731 · HEAVY ASTERISK</div>
+      </div>
+    </div>
+  </body></html>

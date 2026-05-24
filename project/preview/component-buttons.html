@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--jj-paper);
+    font-family: "Helvetica Neue", "Inter", "Arial", sans-serif;
+    color: var(--jj-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body { width: 700px; min-height: 240px; padding: 22px 26px; display: flex; flex-direction: column; }
+  .star { font-size: 1.05em; line-height: 1; display: inline-block; }
+  .eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--jj-muted); }
+  .label  { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--jj-muted); }
+  .mono   { font-family: ui-monospace, "SF Mono", monospace; font-size: 10px; color: var(--jj-muted); }
+  
+</style></head><body>
+    <div class="eyebrow" style="margin-bottom:18px">Buttons</div>
+    <div style="display:flex;flex-direction:column;gap:18px;flex:1">
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <button style="background:#0A0A0A;color:#fff;border:1px solid #0A0A0A;padding:12px 20px;border-radius:999px;font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:10px">
+          Sign in
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6H10M10 6L6 2M10 6L6 10" stroke="#fff" stroke-width="1.4"/></svg>
+        </button>
+        <button style="background:transparent;color:#0A0A0A;border:1px solid #0A0A0A;padding:12px 20px;border-radius:999px;font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;font-family:inherit;cursor:pointer">
+          Read the story
+        </button>
+        <span class="mono" style="margin-left:auto">Pad 12/20 · Font 11/500</span>
+      </div>
+      <div style="background:#0A0A0A;border-radius:12px;padding:16px 18px;display:flex;gap:12px;align-items:center">
+        <button style="background:#fff;color:#0A0A0A;border:1px solid #fff;padding:12px 20px;border-radius:999px;font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;font-family:inherit;cursor:pointer">
+          On dark surface
+        </button>
+        <span style="font-family:ui-monospace,'SF Mono',monospace;font-size:10px;color:rgba(255,255,255,0.55);margin-left:auto">Inverted</span>
+      </div>
+    </div>
+  </body></html>

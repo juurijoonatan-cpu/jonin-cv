@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--jj-paper);
+    font-family: "Helvetica Neue", "Inter", "Arial", sans-serif;
+    color: var(--jj-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body { width: 700px; min-height: 200px; padding: 22px 26px; display: flex; flex-direction: column; }
+  .star { font-size: 1.05em; line-height: 1; display: inline-block; }
+  .eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--jj-muted); }
+  .label  { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--jj-muted); }
+  .mono   { font-family: ui-monospace, "SF Mono", monospace; font-size: 10px; color: var(--jj-muted); }
+  
+</style></head><body>
+    <div class="eyebrow" style="margin-bottom:14px">Pill badges</div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px">
+      <span style="border:1px solid #0A0A0A;padding:6px 14px;border-radius:999px;font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase">CV</span>
+      <span style="border:1px solid #0A0A0A;padding:6px 14px;border-radius:999px;font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase">2026</span>
+      <span style="border:1px solid #0A0A0A;padding:4px 11px;border-radius:999px;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500">Section · 03</span>
+      <span style="background:#0A0A0A;color:#fff;padding:6px 14px;border-radius:999px;font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase">The CV →</span>
+      <span style="border:1px solid #6EE7B7;color:#1F8A5B;padding:5px 12px;border-radius:999px;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500">Signed in</span>
+    </div>
+    <div style="font-size:10px;color:var(--jj-muted);line-height:1.5">
+      Three variants: <strong>outline ink</strong> (default), <strong>filled ink</strong> (call-to-action), <strong>status</strong> (mint outline, only for signed-in state). Padding <span class="mono">6 / 14</span>, radius <span class="mono">999</span>, font 10/500.
+    </div>
+  </body></html>

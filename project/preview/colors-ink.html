@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--jj-paper);
+    font-family: "Helvetica Neue", "Inter", "Arial", sans-serif;
+    color: var(--jj-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body { width: 700px; min-height: 260px; padding: 22px 26px; display: flex; flex-direction: column; }
+  .star { font-size: 1.05em; line-height: 1; display: inline-block; }
+  .eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--jj-muted); }
+  .label  { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--jj-muted); }
+  .mono   { font-family: ui-monospace, "SF Mono", monospace; font-size: 10px; color: var(--jj-muted); }
+  
+</style></head><body>
+    <div class="eyebrow" style="margin-bottom:14px">Ink &amp; type colors</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;flex:1">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="aspect-ratio:1.4/1;background:#0A0A0A;border-radius:10px"></div>
+        <div style="display:flex;justify-content:space-between"><span style="font-size:10.5px;font-weight:600">Ink</span><span class="mono">#0A0A0A</span></div>
+        <div style="font-size:9.5px;color:var(--jj-muted);line-height:1.4">Primary type · dark cards.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="aspect-ratio:1.4/1;background:#1A1A1A;border-radius:10px"></div>
+        <div style="display:flex;justify-content:space-between"><span style="font-size:10.5px;font-weight:600">Ink 2</span><span class="mono">#1A1A1A</span></div>
+        <div style="font-size:9.5px;color:var(--jj-muted);line-height:1.4">Secondary body type.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="aspect-ratio:1.4/1;background:#8A8A8A;border-radius:10px"></div>
+        <div style="display:flex;justify-content:space-between"><span style="font-size:10.5px;font-weight:600">Muted</span><span class="mono">#8A8A8A</span></div>
+        <div style="font-size:9.5px;color:var(--jj-muted);line-height:1.4">Meta · eyebrow labels.</div>
+      </div>
+    </div>
+  </body></html>

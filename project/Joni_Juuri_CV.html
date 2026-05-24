@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Joni Juuri — Chief Financial Officer</title>
+<style>
+  /* ---------- Tokens ---------- */
+  :root {
+    --ink:    #0A0A0A;
+    --ink-2:  #1A1A1A;
+    --paper:  #F4F2EE;
+    --paper-2:#FFFFFF;
+    --rule:   #1A1A1A;
+    --muted:  #8A8A8A;
+    --accent: #0A0A0A;
+    --max:    1180px;
+    --pad:    40px;
+    --pad-sm: 18px;
+    /* tight, modern display setting */
+    --display: "Helvetica Neue", "Inter", "Arial", sans-serif;
+    --body:    "Helvetica Neue", "Inter", "Arial", sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-weight: 400;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    padding: 0 var(--pad-sm) 24px;
+  }
+
+  /* ---------- Containers ---------- */
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0 10px;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .topbar .logo { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+  .topbar .logo .star { font-size: 18px; }
+  .topbar .pill {
+    border: 1px solid var(--ink);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-weight: 500;
+  }
+
+  /* ---------- Hero card ---------- */
+  .hero {
+    background: var(--paper-2);
+    border-radius: 18px;
+    padding: 16px var(--pad) 18px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .hero .meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .hero .meta-row .left { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+  .hero .meta-row .right {
+    border: 1px solid var(--ink);
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(30px, 4.6vw, 44px);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .hero .subline {
+    font-size: 11.5px;
+    color: var(--ink-2);
+    margin-bottom: 1px;
+    letter-spacing: -0.005em;
+  }
+  .hero .presented {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--ink);
+    letter-spacing: 0.04em;
+  }
+  .hero .presented strong { font-weight: 600; }
+
+  .hero .seeking {
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--ink);
+    color: var(--paper-2);
+    border-radius: 999px;
+    padding: 7px 18px 7px 14px;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+  .hero .seeking .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #6EE7B7;
+    box-shadow: 0 0 0 0 rgba(110, 231, 183, 0.7);
+    animation: pulse 2s infinite;
+    flex-shrink: 0;
+  }
+  .hero .seeking .label {
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.6);
+  }
+  .hero .seeking .text { color: white; }
+  .hero .seeking .text strong { font-weight: 600; }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(110, 231, 183, 0.7); }
+    70%  { box-shadow: 0 0 0 10px rgba(110, 231, 183, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(110, 231, 183, 0); }
+  }
+
+  .hero .year {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(60px, 9vw, 100px);
+    line-height: 0.82;
+    letter-spacing: -0.06em;
+    color: var(--ink);
+    margin-top: 20px;
+    margin-bottom: -8px;
+  }
+
+  /* corner arrow */
+  .corner {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 11px;
+    transform: rotate(135deg);
+  }
+
+  /* ---------- Sections ---------- */
+  section.card {
+    background: var(--paper-2);
+    border-radius: 18px;
+    padding: 10px var(--pad) 12px;
+    margin-bottom: 5px;
+    position: relative;
+  }
+  section.card.dark {
+    background: var(--ink);
+    color: var(--paper-2);
+  }
+  section.card.dark .badge {
+    border-color: var(--paper-2);
+    color: var(--paper-2);
+  }
+  section.card.dark .section-rule { background: rgba(255,255,255,0.18); }
+  section.card.dark p,
+  section.card.dark li,
+  section.card.dark .role-title,
+  section.card.dark .label { color: var(--paper-2); }
+  section.card.dark .role-meta,
+  section.card.dark .muted,
+  section.card.dark .role-co { color: rgba(255,255,255,0.6); }
+
+  .section-head {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin-bottom: 6px;
+  }
+  .section-head .left { display: flex; align-items: center; gap: 14px; }
+  .badge {
+    display: inline-block;
+    border: 1px solid var(--ink);
+    padding: 4px 11px;
+    border-radius: 999px;
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .arrow-pill {
+    width: 22px; height: 22px;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 10px;
+  }
+  section.card.dark .arrow-pill { border-color: var(--paper-2); color: var(--paper-2); }
+  .section-num {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(22px, 2.8vw, 32px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(17px, 2.2vw, 22px);
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin-bottom: 3px;
+  }
+  h2 .soft {
+    color: var(--muted);
+    font-weight: 700;
+  }
+  section.card.dark h2 .soft { color: rgba(255,255,255,0.45); }
+
+  .lede {
+    font-size: 11px;
+    line-height: 1.4;
+    color: var(--ink-2);
+    max-width: 72ch;
+  }
+
+  /* ---------- Hero contact strip ---------- */
+  .contact-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--ink);
+    margin-top: 10px;
+  }
+  .contact-strip .item .label {
+    font-size: 8.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 3px;
+    display: block;
+  }
+  .contact-strip .item .val {
+    font-size: 11.5px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ---------- Two-column blocks ---------- */
+  .two-col {
+    display: grid;
+    grid-template-columns: 0.32fr 0.68fr;
+    gap: 16px;
+    align-items: start;
+  }
+  .stacked-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+  .stacked-cards .item {
+    background: var(--paper);
+    border-radius: 24px;
+    padding: 28px 24px 32px;
+    aspect-ratio: 0.62 / 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .stacked-cards .item.middle { background: #DCD9D3; }
+  .stacked-cards .item .num {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 64px;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .stacked-cards .item .check {
+    position: absolute;
+    top: 24px; right: 24px;
+    width: 22px; height: 22px;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 10px;
+  }
+  .stacked-cards .item .ttl {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .stacked-cards .item .copy {
+    font-size: 11px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    text-align: center;
+  }
+
+  /* ---------- Experience ---------- */
+  .role {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 14px;
+    padding: 7px 0;
+    border-top: 1px solid rgba(0,0,0,0.12);
+  }
+  section.card.dark .role { border-color: rgba(255,255,255,0.15); }
+  .role:first-of-type { border-top: 0; padding-top: 0; }
+  .role-meta {
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .role-meta .dates { font-weight: 600; color: var(--ink); display: block; margin-bottom: 2px; font-size: 11px; }
+  .role-title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13.5px;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin-bottom: 1px;
+  }
+  .role-co {
+    font-size: 10.5px;
+    color: var(--muted);
+    margin-bottom: 5px;
+    letter-spacing: 0.01em;
+  }
+  .role ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .role ul li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 10px;
+    line-height: 1.38;
+    color: var(--ink-2);
+  }
+  .role ul li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.6em;
+    width: 8px;
+    height: 1px;
+    background: var(--ink);
+  }
+  section.card.dark .role ul li::before { background: var(--paper-2); }
+
+  .marquee-stat {
+    background: var(--ink);
+    color: var(--paper-2);
+    border-radius: 8px;
+    padding: 6px 12px 7px;
+    margin: 3px 0 4px;
+  }
+  .marquee-stat .big {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(22px, 2.8vw, 28px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 3px;
+  }
+  .marquee-stat .lab {
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 2px;
+  }
+  .marquee-stat .desc {
+    font-size: 10px;
+    color: rgba(255,255,255,0.85);
+    max-width: 75ch;
+    line-height: 1.38;
+  }
+
+  /* ---------- Competency / split bars ---------- */
+  .funds {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .bars { display: flex; flex-direction: column; gap: 14px; }
+  .bar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: center;
+  }
+  .bar .track {
+    height: 28px;
+    background: var(--paper);
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+  .bar .fill {
+    height: 100%;
+    background: var(--ink);
+    border-radius: 6px;
+  }
+  .bar .lab {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* ---------- Competencies grid ---------- */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+  .comp-grid .item {
+    padding: 4px 0;
+    border-top: 1px solid rgba(0,0,0,0.12);
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .comp-grid .item:nth-child(1),
+  .comp-grid .item:nth-child(2) { border-top: 0; padding-top: 0; }
+  .comp-grid .item .num {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    min-width: 22px;
+  }
+  .comp-grid .item .lab {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+
+  /* ---------- Education / Programs list ---------- */
+  .edu-list, .program-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .edu-list .row, .program-list .row {
+    display: grid;
+    grid-template-columns: 42px 1fr auto;
+    gap: 12px;
+    align-items: baseline;
+    padding: 4px 0;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+  .program-list .row:first-child,
+  .edu-list .row:first-child { border-top: 0; padding-top: 0; }
+  .edu-list .row .yr, .program-list .row .yr {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.55);
+  }
+  .edu-list .row .ttl, .program-list .row .ttl {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+  }
+  .edu-list .row .meta, .program-list .row .meta {
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.55);
+    text-align: right;
+  }
+
+  /* light variants */
+  section.card:not(.dark) .edu-list .row,
+  section.card:not(.dark) .program-list .row {
+    border-top-color: rgba(0,0,0,0.12);
+  }
+  section.card:not(.dark) .edu-list .row .yr,
+  section.card:not(.dark) .program-list .row .yr,
+  section.card:not(.dark) .edu-list .row .meta,
+  section.card:not(.dark) .program-list .row .meta {
+    color: var(--muted);
+  }
+
+  /* ---------- Footer ---------- */
+  .footer-row {
+    display: none;
+    padding-top: 24px;
+    margin-top: 48px;
+    border-top: 1px solid rgba(0,0,0,0.12);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  section.card.dark .footer-row {
+    border-top-color: rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.7);
+  }
+  .footer-row .star { font-size: 14px; }
+
+  /* ---------- Page footer ---------- */
+  .doc-footer {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ---------- Photo ---------- */
+  .photo-spot {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid var(--ink);
+    background: #E9E5DD;
+  }
+  .photo-spot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ---------- Print ---------- */
+  @page {
+    size: A4;
+    margin: 8mm;
+  }
+  @media print {
+    html, body {
+      background: white;
+      padding: 0;
+      margin: 0;
+    }
+    body { orphans: 1; widows: 1; }
+    *, *::before, *::after {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .wrap { max-width: none; padding: 0; }
+    .topbar { display: none; }
+    section.card, .hero {
+      box-shadow: none;
+      page-break-inside: auto;
+      break-inside: auto;
+    }
+    .role { page-break-inside: auto; break-inside: auto; }
+    .marquee-stat, .comp-grid .item,
+    .edu-list .row, .program-list .row {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    /* Keep the role title with at least the first bullet */
+    .role-title, .role-co { page-break-after: avoid; break-after: avoid; }
+    /* Forced page breaks: Experience starts page 2, Education+ starts page 3 */
+    section.card.experience-page,
+    section.card.education-page {
+      page-break-before: always;
+      break-before: page;
+    }
+    /* Closing card must never split */
+    section.card.closing-card {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .section-head, h2 { page-break-after: avoid; break-after: avoid; }
+    section.card.dark {
+      background-color: #0A0A0A !important;
+      color: #FFFFFF !important;
+    }
+    /* Hide bottom doc-footer in print; the closing card already carries this info */
+    .doc-footer { display: none; }
+  }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 768px) {
+    :root { --pad: 32px; }
+    body { padding: 0 16px 64px; }
+    .hero { padding: 56px 32px 64px; border-radius: 28px; }
+    .hero .meta-row { margin-bottom: 56px; }
+    .hero .corner { top: 24px; right: 24px; }
+    .hero .year { font-size: 96px; margin-top: 40px; }
+    section.card { padding: 56px 32px; border-radius: 28px; }
+    .section-head { margin-bottom: 32px; flex-direction: column; gap: 16px; }
+    .section-num { font-size: 84px; }
+    h2 { font-size: 36px; }
+    .role { grid-template-columns: 1fr; gap: 16px; padding: 32px 0; }
+    .role-title { font-size: 22px; }
+    .funds { grid-template-columns: 1fr; gap: 32px; }
+    .two-col { grid-template-columns: 1fr; gap: 32px; }
+    .stacked-cards { grid-template-columns: 1fr; }
+    .stacked-cards .item { aspect-ratio: auto; padding: 24px; }
+    .contact-strip { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .edu-list .row, .program-list .row { grid-template-columns: 1fr; gap: 4px; }
+    .edu-list .row .meta, .program-list .row .meta { text-align: left; }
+    .comp-grid { grid-template-columns: 1fr; }
+    .comp-grid .item:nth-child(2) { border-top: 1px solid rgba(0,0,0,0.12); padding-top: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ============================================================
+       TOP BAR (presentation chrome)
+       ============================================================ -->
+  <div class="topbar">
+    <div class="logo"><span class="star">✱</span><span>Joni Juuri</span></div>
+    <div class="pill">CV</div>
+  </div>
+
+  <!-- ============================================================
+       HERO — title slide
+       ============================================================ -->
+  <section class="hero">
+    <div class="corner">↗</div>
+
+    <div class="meta-row">
+      <div class="left"><span>✱</span><span>Joni Juuri</span></div>
+      <div class="right">2026</div>
+    </div>
+
+    <h1>Chief<br>Financial<br>Officer.</h1>
+
+    <p class="subline">Energy &amp; Critical Infrastructure.</p>
+    <p class="subline">Transformation &amp; Sustainable Business Cases.</p>
+
+    <div class="seeking">
+      <span class="dot"></span>
+      <span class="text"><strong>Open to senior international roles.</strong> &nbsp;·&nbsp; Three months’ notice.</span>
+    </div>
+
+    <div class="contact-strip">
+      <div class="item">
+        <span class="label">Location</span>
+        <span class="val">Espoo, Finland</span>
+      </div>
+      <div class="item">
+        <span class="label">Phone</span>
+        <span class="val">+358 40 338 0559</span>
+      </div>
+      <div class="item">
+        <span class="label">Email</span>
+        <span class="val">joni@juuri.me</span>
+      </div>
+      <div class="item">
+        <span class="label">LinkedIn</span>
+        <span class="val">/in/joni-juuri-4431334</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 01 — Executive Summary (with photo + lede)
+       ============================================================ -->
+  <section class="card">
+    <div class="section-head">
+      <div class="section-num">01</div>
+    </div>
+
+    <div class="two-col" style="align-items: start; gap: 18px;">
+      <div>
+        <div class="photo-spot">
+          <!-- To use a local image instead, replace the src below with your file path, e.g. src="joni.jpg" -->
+          <img src="data:image/png;base64,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" alt="Joni Juuri">
+        </div>
+        <p style="margin-top: 14px; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);">Availability</p>
+        <p style="font-size: 12px; font-weight: 500; margin-top: 4px;">Three months’ notice.</p>
+        <p style="font-size: 12px; font-weight: 500;">Open to international relocation.</p>
+      </div>
+
+      <div>
+        <h2>Executive <span class="soft">summary.</span></h2>
+        <p class="lede" style="margin-top: 6px;">
+          Strategic CFO with 15+ years of senior finance leadership across the global energy sector.
+          Currently steering finance, strategy, and transformation for one of Finland’s largest power
+          producers, generating approximately 30% of national electricity.
+        </p>
+        <p class="lede" style="margin-top: 4px;">
+          Combines deep energy infrastructure and large-scale capital-asset knowledge with a proven record of leading
+          multi-jurisdictional finance transformations and constructing sustainable, decision-ready
+          business cases for multi-billion-euro capital programs. Trusted board, owner, and investor
+          partner experienced in IFRS, public-company readiness, project finance, and long-horizon
+          capital planning.
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-row">
+      <span class="star">✱</span><span>The CV · All Rights Reserved</span><span>P.01</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 02 — Core Competencies
+       ============================================================ -->
+  <section class="card">
+    <div class="section-head">
+      <div class="section-num">02</div>
+    </div>
+
+    <h2>Areas of <span class="soft">expertise.</span></h2>
+    <p class="lede" style="margin-top: 3px; margin-bottom: 8px;">
+      Ten focus areas where I create durable value for shareholders, boards, and operators.
+    </p>
+
+    <div class="comp-grid">
+      <div class="item"><span class="num">01</span><span class="lab">Energy &amp; Infrastructure Finance</span></div>
+      <div class="item"><span class="num">02</span><span class="lab">Sustainable Business Case Development</span></div>
+      <div class="item"><span class="num">03</span><span class="lab">Capital Planning &amp; Project Finance</span></div>
+      <div class="item"><span class="num">04</span><span class="lab">Finance &amp; Digital Transformation</span></div>
+      <div class="item"><span class="num">05</span><span class="lab">Strategic Finance &amp; Corporate Growth</span></div>
+      <div class="item"><span class="num">06</span><span class="lab">P&amp;L Management &amp; Forecasting</span></div>
+      <div class="item"><span class="num">07</span><span class="lab">Board, Investor &amp; Stakeholder Relations</span></div>
+      <div class="item"><span class="num">08</span><span class="lab">IFRS, Compliance &amp; Public-Company Readiness</span></div>
+      <div class="item"><span class="num">09</span><span class="lab">Risk Management &amp; Due Diligence</span></div>
+      <div class="item"><span class="num">10</span><span class="lab">International &amp; Cross-Functional Leadership</span></div>
+    </div>
+
+    <div class="footer-row">
+      <span class="star">✱</span><span>The CV · All Rights Reserved</span><span>P.02</span>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 03 — Professional Experience
+       ============================================================ -->
+  <section class="card experience-page">
+    <div class="section-head">
+      <div class="section-num">03</div>
+    </div>
+
+    <h2>Professional <span class="soft">experience.</span></h2>
+    <p class="lede" style="margin-top: 16px; margin-bottom: 56px;">
+      Fifteen years of senior finance leadership across power generation, renewables, wind, and clean technology.
+    </p>
+
+    <!-- TVO -->
+    <div class="role">
+      <div class="role-meta">
+        <span class="dates">2025 — Present</span>
+        Current
+      </div>
+      <div>
+        <h3 class="role-title">Chief Financial Officer</h3>
+        <p class="role-co">TVO, Teollisuuden Voima Oyj. Finland.</p>
+
+        <div class="marquee-stat">
+          <div class="lab">Signature accountability</div>
+          <div class="big">€130M+</div>
+          <div class="desc">
+            Created and now hold full accountability for an enterprise transformation programme delivering €130M+ in recurring annual value across operations, finance, and IT.
+          </div>
+        </div>
+
+        <ul>
+          <li>Lead financial strategy, operations, finance transformation, and IT for one of Finland’s largest power producers, generating ~30% of national electricity. Full P&amp;L responsibility, anchored in long-horizon energy-asset economics.</li>
+          <li>Drive capital planning and infrastructure project-finance for multi-billion-euro programmes, building sustainable business cases that align operational, regulatory, and corporate-growth horizons.</li>
+          <li>Hold CFO accountability for TVO’s Green Finance programme: in 2025, TVO became the sector’s first issuer of a European Green Bond Standard-aligned bond (€500M), with 99.8% of group turnover and 100% of taxonomy-relevant CapEx and OpEx aligned. The 2026 framework update extended sustainable financing to green bank loans. Serve as primary financial liaison to Board, owners, and key stakeholders.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Neste -->
+    <div class="role">
+      <div class="role-meta">
+        <span class="dates">2016 — 2025</span>
+        Nine years
+      </div>
+      <div>
+        <h3 class="role-title">Vice President, Business Finance / General Manager</h3>
+        <p class="role-co">Neste. Switzerland, Netherlands and Finland.</p>
+
+        <div class="marquee-stat">
+          <div class="lab">Signature accountability</div>
+          <div class="big">Neste NEXT</div>
+          <div class="desc">
+            Senior finance leadership role in the group-wide Neste NEXT transformation, reshaping operating model, capital allocation discipline, and performance frameworks across business units.
+          </div>
+        </div>
+
+        <ul>
+          <li>Led financial operations and strategic planning for a global leader in renewable fuels and circular solutions through nine years of accelerated international growth.</li>
+          <li>Built and led a finance organisation of approximately 80 Business Controllers and Finance Directors across multiple countries, partnering with the business to construct sustainable business cases for renewable-fuel growth investments.</li>
+          <li>Led finance transformation across business units (advanced FP&amp;A platform, redesigned management reporting, performance frameworks, decision-support tooling) and ensured statutory and IFRS compliance through significant international expansion. Owned Board and Executive Committee communications.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Siemens -->
+    <div class="role">
+      <div class="role-meta">
+        <span class="dates">2015 — 2016</span>
+        Offshore wind
+      </div>
+      <div>
+        <h3 class="role-title">Head of Performance Control &amp; Business Partner</h3>
+        <p class="role-co">Siemens Wind Power A/S. Denmark.</p>
+
+        <div class="marquee-stat">
+          <div class="lab">Signature accountability</div>
+          <div class="big">Profit recovery</div>
+          <div class="desc">
+            Senior finance leader in the Siemens Wind Power profit recovery programme, restoring margins across offshore project portfolios valued at €500M to €1.3B.
+          </div>
+        </div>
+
+        <ul>
+          <li>Directed cross-regional teams in performance control, cost management, and business-case validation for large-scale offshore wind projects valued at €500M to €1.3B.</li>
+          <li>Strengthened project profitability, financial modelling, and capital-allocation discipline through stricter business-case stress-testing. Provided senior counsel on resource planning, internal valuation, and project-controlling systems.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Fortum -->
+    <div class="role">
+      <div class="role-meta">
+        <span class="dates">2010 — 2015</span>
+        Clean energy
+      </div>
+      <div>
+        <h3 class="role-title">Head of Planning &amp; Reporting</h3>
+        <p class="role-co">Fortum Power and Heat Oy. Finland.</p>
+        <ul>
+          <li>Led the integration of advanced BI tools and the standardisation of financial reporting across multiple jurisdictions in the clean and low-carbon energy sector.</li>
+          <li>Designed and implemented financial systems and processes, materially improving data governance and management reporting for a €7B group. Partnered with regional Finance Directors and executive leadership on strategic finance initiatives.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Early career -->
+    <div class="role">
+      <div class="role-meta">
+        <span class="dates">Pre-2010</span>
+        Early career
+      </div>
+      <div>
+        <h3 class="role-title">Senior Business Controller. Demand Fulfilment Analyst. Business Analyst.</h3>
+        <p class="role-co">WinWind. Nokia Oyj / Nokia Siemens Networks. Finland.</p>
+      </div>
+    </div>
+
+    <div class="footer-row">
+      <span class="star">✱</span><span>The CV · All Rights Reserved</span><span>P.03</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 04 — Education & Programs (DARK like reference)
+       ============================================================ -->
+  <section class="card dark education-page">
+    <div class="section-head">
+      <div class="section-num" style="color: var(--paper-2);">04</div>
+    </div>
+
+    <h2 style="color: var(--paper-2);">Education &amp; <span style="color: rgba(255,255,255,0.45); font-weight:700;">programs.</span></h2>
+    <p class="lede" style="color: rgba(255,255,255,0.75); margin-top: 16px; margin-bottom: 56px;">
+      Formal education and a deliberate, ongoing investment in executive development.
+    </p>
+
+    <div class="two-col" style="grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+
+      <div>
+        <p style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 32px;">Education</p>
+        <div class="edu-list">
+          <div class="row">
+            <span class="yr">M.Sc.</span>
+            <span class="ttl">Master of Social Sciences,<br>Economics</span>
+            <span class="meta">University of Helsinki<br>Finland</span>
+          </div>
+          <div class="row">
+            <span class="yr">P.G.</span>
+            <span class="ttl">Postgraduate Certificate in<br>Distribution Logistics</span>
+            <span class="meta">Universidad de Valencia<br>Spain</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 32px;">Executive Education &amp; Certifications</p>
+        <div class="program-list">
+          <div class="row">
+            <span class="yr">2026</span>
+            <span class="ttl">Effective Boards Program</span>
+            <span class="meta">Harvard Business School</span>
+          </div>
+          <div class="row">
+            <span class="yr">2025</span>
+            <span class="ttl">CFO Program</span>
+            <span class="meta">Harvard Business School</span>
+          </div>
+          <div class="row">
+            <span class="yr">2023</span>
+            <span class="ttl">Positive Psychology Coach</span>
+            <span class="meta">PPC Certification</span>
+          </div>
+          <div class="row">
+            <span class="yr">2017</span>
+            <span class="ttl">Future is Now Leadership</span>
+            <span class="meta">IMD Lausanne</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-row">
+      <span class="star">✱</span><span>The CV · All Rights Reserved</span><span>P.04</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 05 — Board Affiliations
+       ============================================================ -->
+  <section class="card">
+    <div class="section-head">
+      <div class="section-num">05</div>
+    </div>
+
+    <h2>Board &amp; <span class="soft">affiliations.</span></h2>
+    <p class="lede" style="margin-top: 16px; margin-bottom: 56px;">
+      Governance roles across energy, clean technology, and bilateral commerce.
+    </p>
+
+    <div class="role">
+      <div class="role-meta">
+        <span class="dates">2026 — Present</span>
+        Current
+      </div>
+      <div>
+        <h3 class="role-title">Board Member</h3>
+        <p class="role-co">Posiva Solutions Oy. Finland.</p>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="role-meta">
+        <span class="dates">2011 — 2023</span>
+        Founder
+      </div>
+      <div>
+        <h3 class="role-title">Chairman of the Board / Founder</h3>
+        <p class="role-co">New Energy Finland Oy. Investment and advisory firm focused on clean technology.</p>
+        <ul>
+          <li>Founded and chaired a clean-technology investment and advisory firm. Led portfolio development and exits, including the IPO and exit from Nightingale Health (2021).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="role-meta">
+        <span class="dates">2016 — 2020</span>
+        Subsidiary boards
+      </div>
+      <div>
+        <h3 class="role-title">Member of the Boards</h3>
+        <p class="role-co">Neste Switzerland, Neste Netherlands, and Neste Belgium.</p>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="role-meta">
+        <span class="dates">2016 — 2018</span>
+        Treasurer
+      </div>
+      <div>
+        <h3 class="role-title">Board Member &amp; Treasurer</h3>
+        <p class="role-co">Finnish-Dutch Chamber of Commerce.</p>
+      </div>
+    </div>
+
+    <div class="footer-row">
+      <span class="star">✱</span><span>The CV · All Rights Reserved</span><span>P.05</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 06 — Tools & Languages
+       ============================================================ -->
+  <section class="card">
+    <div class="section-head">
+      <div class="section-num">06</div>
+    </div>
+
+    <h2>Tools &amp; <span class="soft">languages.</span></h2>
+
+    <div class="two-col" style="grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 4px; align-items: start;">
+
+      <div>
+        <p style="font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px;">Systems &amp; tools</p>
+        <p style="font-size: 11px; line-height: 1.45; color: var(--ink-2);">
+          Hyperion (HFM), SmartView, Anaplan, SAP, IFS, Procountor, Microsoft 365 and Fabric, BI tooling, applied AI.
+        </p>
+
+        <p style="font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin: 6px 0 3px;">Methodologies</p>
+        <p style="font-size: 11px; line-height: 1.45; color: var(--ink-2);">
+          Executive coaching, strategy methodologies, change management.
+        </p>
+      </div>
+
+      <div>
+        <p style="font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px;">Languages</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px; font-size: 11px;">
+          <div><strong>Finnish</strong> <span style="color: var(--muted);">native</span></div>
+          <div><strong>English</strong> <span style="color: var(--muted);">fluent</span></div>
+          <div><strong>Swedish</strong> <span style="color: var(--muted);">working</span></div>
+          <div><strong>Spanish</strong> <span style="color: var(--muted);">basic</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-row">
+      <span class="star">✱</span><span>The CV · All Rights Reserved</span><span>P.06</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 07 — Closing card (big statement + contact)
+       ============================================================ -->
+  <section class="card dark closing-card">
+    <div class="section-head">
+      <div class="section-num" style="color: var(--paper-2);">07</div>
+    </div>
+
+    <h2 style="color: var(--paper-2); font-size: 16px; max-width: none; line-height: 1.15; margin-bottom: 0;">
+      Available with three months’ notice. <span style="color: rgba(255,255,255,0.45);">Open to international relocation.</span>
+    </h2>
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.18);">
+      <div>
+        <p style="font-size: 8.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 3px;">Phone</p>
+        <p style="font-size: 11px; font-weight: 500; color: var(--paper-2);">+358 40 338 0559</p>
+      </div>
+      <div>
+        <p style="font-size: 8.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 3px;">Email</p>
+        <p style="font-size: 11px; font-weight: 500; color: var(--paper-2);">joni@juuri.me</p>
+      </div>
+      <div>
+        <p style="font-size: 8.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 3px;">LinkedIn</p>
+        <p style="font-size: 11px; font-weight: 500; color: var(--paper-2);">/in/joni-juuri-4431334</p>
+      </div>
+      <div>
+        <p style="font-size: 8.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 3px;">Location</p>
+        <p style="font-size: 11px; font-weight: 500; color: var(--paper-2);">Espoo, Finland</p>
+      </div>
+    </div>
+
+    <div class="footer-row">
+      <span class="star">✱</span><span>Joni Juuri · The CV · 2026</span><span>End.</span>
+    </div>
+  </section>
+
+  <!-- Document footer -->
+  <div class="doc-footer">
+    Joni Juuri · The CV · 2026 · All Rights Reserved
+  </div>
+
+</div>
+
+</body>
+</html>

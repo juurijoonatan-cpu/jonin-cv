@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--jj-paper);
+    font-family: "Helvetica Neue", "Inter", "Arial", sans-serif;
+    color: var(--jj-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body { width: 700px; min-height: 240px; padding: 22px 26px; display: flex; flex-direction: column; }
+  .star { font-size: 1.05em; line-height: 1; display: inline-block; }
+  .eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--jj-muted); }
+  .label  { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--jj-muted); }
+  .mono   { font-family: ui-monospace, "SF Mono", monospace; font-size: 10px; color: var(--jj-muted); }
+  
+</style></head><body>
+    <div class="eyebrow" style="margin-bottom:18px">Body type · 10 → 13.5 px</div>
+    <div style="display:flex;flex-direction:column;gap:11px;flex:1">
+      <div style="display:flex;align-items:baseline;gap:16px;border-bottom:1px solid rgba(0,0,0,0.08);padding-bottom:8px">
+        <span style="font-size:13.5px;font-weight:700;letter-spacing:-0.015em">Chief Financial Officer</span>
+        <span class="mono" style="margin-left:auto">h3 · 13.5/1.2</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:16px;border-bottom:1px solid rgba(0,0,0,0.08);padding-bottom:8px">
+        <span style="font-size:11.5px">Helvetica Neue 400. The body sits at 11–12px on the CV — dense, document-like.</span>
+        <span class="mono" style="margin-left:auto;white-space:nowrap">body · 11.5/1.55</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:16px;border-bottom:1px solid rgba(0,0,0,0.08);padding-bottom:8px">
+        <span style="font-size:11px;color:var(--jj-ink-2)">A lede paragraph, slightly muted ink-2, max-width 72ch. Reads like editorial.</span>
+        <span class="mono" style="margin-left:auto;white-space:nowrap">lede · 11/1.4</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:16px">
+        <span style="font-size:10px;color:var(--jj-ink-2)">— Bullet text. Hairline em-dash before, never a dot.</span>
+        <span class="mono" style="margin-left:auto;white-space:nowrap">bullet · 10/1.38</span>
+      </div>
+    </div>
+  </body></html>

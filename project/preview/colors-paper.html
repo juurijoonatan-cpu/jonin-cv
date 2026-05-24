@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--jj-paper);
+    font-family: "Helvetica Neue", "Inter", "Arial", sans-serif;
+    color: var(--jj-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body { width: 700px; min-height: 260px; padding: 22px 26px; display: flex; flex-direction: column; }
+  .star { font-size: 1.05em; line-height: 1; display: inline-block; }
+  .eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--jj-muted); }
+  .label  { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--jj-muted); }
+  .mono   { font-family: ui-monospace, "SF Mono", monospace; font-size: 10px; color: var(--jj-muted); }
+  
+</style></head><body>
+    <div class="eyebrow" style="margin-bottom:14px">Paper surfaces · cream → white</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;flex:1">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="aspect-ratio:1.4/1;background:#F4F2EE;border-radius:10px;border:1px solid rgba(0,0,0,0.08)"></div>
+        <div style="display:flex;justify-content:space-between"><span style="font-size:10.5px;font-weight:600">Paper</span><span class="mono">#F4F2EE</span></div>
+        <div style="font-size:9.5px;color:var(--jj-muted);line-height:1.4">Page bg. Default surface.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="aspect-ratio:1.4/1;background:#FFFFFF;border-radius:10px;border:1px solid rgba(0,0,0,0.08)"></div>
+        <div style="display:flex;justify-content:space-between"><span style="font-size:10.5px;font-weight:600">Paper 2</span><span class="mono">#FFFFFF</span></div>
+        <div style="font-size:9.5px;color:var(--jj-muted);line-height:1.4">Card surface.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="aspect-ratio:1.4/1;background:#DCD9D3;border-radius:10px"></div>
+        <div style="display:flex;justify-content:space-between"><span style="font-size:10.5px;font-weight:600">Stone</span><span class="mono">#DCD9D3</span></div>
+        <div style="font-size:9.5px;color:var(--jj-muted);line-height:1.4">Middle accent card.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="aspect-ratio:1.4/1;background:#E9E5DD;border-radius:10px"></div>
+        <div style="display:flex;justify-content:space-between"><span style="font-size:10.5px;font-weight:600">Warm</span><span class="mono">#E9E5DD</span></div>
+        <div style="font-size:9.5px;color:var(--jj-muted);line-height:1.4">Photo well, fills.</div>
+      </div>
+    </div>
+  </body></html>

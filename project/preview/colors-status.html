@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--jj-paper);
+    font-family: "Helvetica Neue", "Inter", "Arial", sans-serif;
+    color: var(--jj-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body { width: 700px; min-height: 200px; padding: 22px 26px; display: flex; flex-direction: column; }
+  .star { font-size: 1.05em; line-height: 1; display: inline-block; }
+  .eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--jj-muted); }
+  .label  { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--jj-muted); }
+  .mono   { font-family: ui-monospace, "SF Mono", monospace; font-size: 10px; color: var(--jj-muted); }
+  
+</style></head><body>
+    <div class="eyebrow" style="margin-bottom:14px">Signal color · used once on the page</div>
+    <div style="display:flex;gap:16px;align-items:center;flex:1">
+      <div style="width:96px;height:96px;background:#0A0A0A;border-radius:12px;display:grid;place-items:center;flex-shrink:0">
+        <span style="width:14px;height:14px;border-radius:50%;background:#6EE7B7;box-shadow:0 0 0 6px rgba(110,231,183,0.25)"></span>
+      </div>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:600;margin-bottom:6px">Status — Go</div>
+        <div class="mono" style="margin-bottom:8px">#6EE7B7</div>
+        <div style="font-size:10.5px;line-height:1.5;color:var(--jj-ink-2);max-width:38ch">
+          Mint green. Appears <strong>only</strong> on the pulsing "open to roles" dot, never elsewhere. The pulse keyframe rings the dot in a 10px shadow over 2 seconds.
+        </div>
+      </div>
+      <div style="display:inline-flex;align-items:center;gap:12px;background:#0A0A0A;color:#fff;border-radius:999px;padding:7px 16px 7px 12px;font-size:10.5px">
+        <span style="width:8px;height:8px;border-radius:50%;background:#6EE7B7"></span>
+        <span style="font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.6)">Open</span>
+      </div>
+    </div>
+  </body></html>
