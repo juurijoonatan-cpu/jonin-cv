@@ -36,7 +36,14 @@ const Role = ({ dates, sub, title, company, stat, bullets, dark }) => {
         margin: "0 0 6px",
       }}>{company}</p>
 
-      {stat && <MarqueeStat label={stat.label} value={stat.value} desc={stat.desc} />}
+      {stat && (
+        <div style={{ marginTop: 6, marginBottom: 4 }}>
+          <div style={{ fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 600, color: dark ? "rgba(255,255,255,0.5)" : "var(--jj-muted)", marginBottom: 5 }}>
+            {stat.label}
+          </div>
+          <MarqueeStat value={stat.value} desc={stat.desc} />
+        </div>
+      )}
 
       {bullets && (
         <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 3 }}>
@@ -153,12 +160,6 @@ const PrivateCV = ({ go, signOut }) => {
           overflow: "hidden",
           marginBottom: 5,
         }}>
-          <div style={{
-            position: "absolute", top: 14, right: 14,
-            width: 24, height: 24, border: "1px solid var(--jj-ink)",
-            borderRadius: "50%", display: "grid", placeItems: "center", fontSize: 11,
-            transform: "rotate(135deg)",
-          }}>↗</div>
 
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10, fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10, fontWeight: 600 }}>
@@ -458,6 +459,13 @@ const PrivateCV = ({ go, signOut }) => {
           letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--jj-muted)",
         }}>
           Joni Juuri · The CV · 2026 · All Rights Reserved
+        </div>
+        <div style={{ textAlign: "center", marginTop: 6, fontSize: 8.5, letterSpacing: "0.12em", color: "var(--jj-muted)", opacity: 0.7 }}>
+          Made with{" "}
+          <a href="https://puuhapatet.fi/it" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 3 }}>
+            Puuhapatet.fi/it
+          </a>
+          {" "}· Joonatan Juuri
         </div>
       </div>
     </div>

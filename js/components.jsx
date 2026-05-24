@@ -140,19 +140,16 @@ const Lede = ({ children, dark, style }) => (
   </p>
 );
 
-const MarqueeStat = ({ label, value, desc }) => (
+const MarqueeStat = ({ value, desc }) => (
   <div
     style={{
       background: "var(--jj-ink)",
       color: "var(--jj-paper-2)",
       borderRadius: 8,
-      padding: "6px 12px 7px",
+      padding: "8px 12px 9px",
       margin: "3px 0 4px",
     }}
   >
-    <div style={{ fontSize: 8, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: 2 }}>
-      {label}
-    </div>
     <div style={{
       fontFamily: "var(--jj-display)",
       fontWeight: 700,
@@ -291,22 +288,8 @@ const ChoiceCard = ({ eyebrow, title, soft, body, footnote, locked, onClick, dar
       ...style,
     }}
   >
-    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+    <div>
       <Eyebrow tone={dark ? "on-dark" : undefined}>{eyebrow}</Eyebrow>
-      <div
-        style={{
-          width: 28, height: 28,
-          border: `1px solid ${dark ? "var(--jj-paper-2)" : "var(--jj-ink)"}`,
-          borderRadius: "50%",
-          display: "grid", placeItems: "center",
-          fontSize: 12,
-          color: dark ? "var(--jj-paper-2)" : "var(--jj-ink)",
-          transform: locked ? "none" : "rotate(0deg)",
-        }}
-        aria-hidden
-      >
-        {locked ? <LockGlyph /> : "↗"}
-      </div>
     </div>
 
     <div style={{ marginTop: 60 }}>

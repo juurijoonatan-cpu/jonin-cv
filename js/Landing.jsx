@@ -84,14 +84,6 @@ const Landing = ({ go }) => {
             </p>
           </div>
 
-          <div style={{
-            position: "absolute", top: 18, right: 18, zIndex: 2,
-            width: 26, height: 26,
-            border: "1px solid var(--jj-ink)", borderRadius: "50%",
-            display: "grid", placeItems: "center", fontSize: 12,
-            transform: "rotate(135deg)",
-            background: "var(--jj-paper-2)",
-          }}>↗</div>
         </section>
 
         {/* Two choice cards */}
@@ -139,6 +131,13 @@ const Landing = ({ go }) => {
 
         <div style={{ textAlign: "center", marginTop: 12, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--jj-muted)" }}>
           <Asterisk size={12} /> &nbsp; Joni Juuri · 2026 · All rights reserved
+        </div>
+        <div style={{ textAlign: "center", marginTop: 6, fontSize: 8.5, letterSpacing: "0.12em", color: "var(--jj-muted)", opacity: 0.7 }}>
+          Made with{" "}
+          <a href="https://puuhapatet.fi/it" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 3 }}>
+            Puuhapatet.fi/it
+          </a>
+          {" "}· Joonatan Juuri
         </div>
       </div>
     </div>

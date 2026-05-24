@@ -33,6 +33,8 @@ const CompanyStrip = () => {
           animation: "jj-marquee 55s linear infinite",
           width: "max-content",
           paddingLeft: 40,
+          willChange: "transform",
+          transform: "translateZ(0)",
         }}
       >
         {items.map((c, i) => (

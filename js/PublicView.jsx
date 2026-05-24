@@ -271,16 +271,6 @@ const PublicView = ({ go }) => {
                   background: "linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.15) 45%, rgba(10,10,10,0.85) 100%)",
                 }} />
                 <div style={{
-                  position: "absolute", top: 22, right: 22,
-                  width: 22, height: 22,
-                  border: "1px solid rgba(255,255,255,0.9)",
-                  borderRadius: "50%",
-                  display: "grid", placeItems: "center",
-                  fontSize: 10,
-                  color: "var(--jj-paper-2)",
-                  background: "rgba(10,10,10,0.35)",
-                }}>↗</div>
-                <div style={{
                   position: "absolute", inset: 0,
                   padding: "24px 22px 26px",
                   display: "flex", flexDirection: "column", justifyContent: "space-between",
@@ -381,6 +371,13 @@ const PublicView = ({ go }) => {
 
         <div style={{ textAlign: "center", marginTop: 12, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--jj-muted)" }}>
           <Asterisk size={12} /> &nbsp; Joni Juuri · 2026
+        </div>
+        <div style={{ textAlign: "center", marginTop: 6, fontSize: 8.5, letterSpacing: "0.12em", color: "var(--jj-muted)", opacity: 0.7 }}>
+          Made with{" "}
+          <a href="https://puuhapatet.fi/it" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 3 }}>
+            Puuhapatet.fi/it
+          </a>
+          {" "}· Joonatan Juuri
         </div>
       </div>
     </div>
