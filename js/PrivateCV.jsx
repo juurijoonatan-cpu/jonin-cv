@@ -229,9 +229,6 @@ const PrivateCV = ({ go, signOut }) => {
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 />
               </div>
-              <p style={{ marginTop: 14, fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--jj-muted)" }}>Availability</p>
-              <p style={{ fontSize: 12, fontWeight: 500, marginTop: 4 }}>Three months' notice.</p>
-              <p style={{ fontSize: 12, fontWeight: 500 }}>Open to international relocation.</p>
             </div>
             <div>
               <H2 soft="summary.">Executive</H2>
