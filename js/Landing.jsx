@@ -91,8 +91,8 @@ const Landing = ({ go }) => {
           <ChoiceCard
             eyebrow="01 · Get to know"
             title="The about."
-            body="A few notes on where I'm from, where I've worked, what I'm working on now, and how to reach me. Open to anyone."
-            footnote="Public · come in"
+            body="A few notes on where I'm from, where I've worked, what I'm working on now, and how to reach me."
+            footnote="About me"
             onClick={() => go("public")}
             style={{ animation: "jj-fade 800ms var(--jj-ease) both", animationDelay: "1100ms" }}
           />
@@ -101,7 +101,7 @@ const Landing = ({ go }) => {
             eyebrow="02 · By invitation"
             title="The CV."
             body="Full executive CV. Phone, role detail, marquee numbers, board positions. For people I've sent an invitation to — or who write and ask."
-            footnote="Invitation only"
+            footnote="Full executive CV"
             onClick={() => go("cv")}
             style={{ animation: "jj-fade 800ms var(--jj-ease) both", animationDelay: "1300ms" }}
           />

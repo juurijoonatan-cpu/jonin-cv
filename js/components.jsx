@@ -329,7 +329,6 @@ const ChoiceCard = ({ eyebrow, title, soft, body, footnote, locked, onClick, dar
       justifyContent: "space-between",
     }}>
       <span>{footnote}</span>
-      <span>{locked ? "Login required" : "Open"}</span>
     </div>
   </button>
 );
