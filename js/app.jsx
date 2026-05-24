@@ -4,8 +4,12 @@ const VIEWS = ["landing", "public", "login", "cv"];
 
 const App = () => {
   const [view, setView] = React.useState(() => {
-    const saved = localStorage.getItem("jj-view");
-    return VIEWS.includes(saved) ? saved : "landing";
+    const isAuthed = localStorage.getItem("jj-authed") === "1";
+    if (isAuthed) {
+      const saved = localStorage.getItem("jj-view");
+      return VIEWS.includes(saved) ? saved : "landing";
+    }
+    return "login";
   });
   const [authed, setAuthed] = React.useState(() => localStorage.getItem("jj-authed") === "1");
   const [fade, setFade] = React.useState(false);
@@ -16,8 +20,6 @@ const App = () => {
 
   const go = (next) => {
     if (next === view) return;
-    // Gate: cv requires auth
-    if (next === "cv" && !authed) { setView("login"); return; }
     setFade(true);
     setTimeout(() => {
       setView(next);
@@ -28,10 +30,9 @@ const App = () => {
   const onLoginSuccess = () => {
     setAuthed(true);
     localStorage.setItem("jj-authed", "1");
-    // Bypass the gate in go() — we just authed but state hasn't flushed yet.
     setFade(true);
     setTimeout(() => {
-      setView("cv");
+      setView("landing");
       requestAnimationFrame(() => setFade(false));
     }, 180);
   };
@@ -39,7 +40,7 @@ const App = () => {
   const signOut = () => {
     setAuthed(false);
     localStorage.removeItem("jj-authed");
-    go("landing");
+    go("login");
   };
 
   let screen;

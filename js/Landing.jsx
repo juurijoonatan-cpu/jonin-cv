@@ -107,12 +107,11 @@ const Landing = ({ go }) => {
           />
           <ChoiceCard
             dark
-            locked
             eyebrow="02 · By invitation"
             title="The CV."
             body="Full executive CV. Phone, role detail, marquee numbers, board positions. For people I've sent an invitation to — or who write and ask."
             footnote="Invitation only"
-            onClick={() => go("login")}
+            onClick={() => go("cv")}
             style={{ animation: "jj-fade 800ms var(--jj-ease) both", animationDelay: "1300ms" }}
           />
         </section>

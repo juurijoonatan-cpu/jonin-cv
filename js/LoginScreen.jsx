@@ -1,7 +1,7 @@
 /* LoginScreen — cloud face that follows cursor and shuts eyes on password. */
 
 const LoginScreen = ({ go, onSuccess }) => {
-  const [email, setEmail] = React.useState("joni@juuri.me");
+  const [name, setName] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [typing, setTyping] = React.useState(false);
   const [error, setError] = React.useState(null);
@@ -12,10 +12,11 @@ const LoginScreen = ({ go, onSuccess }) => {
     setError(null);
     setLoading(true);
     setTimeout(() => {
-      if (email.trim().toLowerCase() === "joni@juuri.me" && password === "juuri2026") {
+      if (name.trim().length > 0 && password === "Jonij140804!") {
+        localStorage.setItem("jj-visitor-name", name.trim());
         onSuccess();
       } else {
-        setError("Wrong email or password. Try again, or get in touch.");
+        setError("Wrong password. Try again, or write to joni@juuri.me.");
         setLoading(false);
       }
     }, 450);
@@ -25,7 +26,7 @@ const LoginScreen = ({ go, onSuccess }) => {
     <div style={{ minHeight: "100vh", padding: "0 18px 24px", display: "flex", flexDirection: "column" }}>
       <div style={{ maxWidth: 1180, margin: "0 auto", width: "100%" }}>
 
-        <Topbar right={<Pill onClick={() => go("landing")}>← Back</Pill>} />
+        <Topbar />
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, minHeight: "76vh" }}>
 
@@ -43,7 +44,7 @@ const LoginScreen = ({ go, onSuccess }) => {
           }}>
             <div style={{ position: "relative", zIndex: 2, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
               <Eyebrow tone="on-dark">
-                <Asterisk size={14} /> &nbsp;The CV · Invitation only
+                <Asterisk size={14} /> &nbsp;Welcome · Sign in to continue
               </Eyebrow>
               <div style={{
                 width: 26, height: 26, border: "1px solid var(--jj-paper-2)",
@@ -65,16 +66,16 @@ const LoginScreen = ({ go, onSuccess }) => {
                 maxWidth: "16ch",
                 textAlign: "center",
               }}>
-                The full document
-                <span style={{ color: "rgba(255,255,255,0.45)" }}> sits behind a login.</span>
+                This site
+                <span style={{ color: "rgba(255,255,255,0.45)" }}> is invite-only.</span>
               </h2>
               <p style={{
                 marginTop: 18, fontSize: 12.5, lineHeight: 1.5,
                 color: "rgba(255,255,255,0.75)", maxWidth: "44ch",
                 margin: "18px auto 0", textAlign: "center",
               }}>
-                Phone, full role detail, marquee numbers, board positions, references on request.
-                If you don't have a password and you think you should, write to{" "}
+                If you have a password, sign in. If you think you should have one,
+                write to{" "}
                 <span style={{ color: "white" }}>joni@juuri.me</span> and ask.
               </p>
             </div>
@@ -118,16 +119,17 @@ const LoginScreen = ({ go, onSuccess }) => {
                 letterSpacing: "-0.03em",
                 margin: "0 0 28px",
               }}>
-                Welcome back.
+                Welcome.
               </h3>
 
               <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
                 <Field
-                  label="Email"
-                  type="email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  autoComplete="email"
+                  label="Your name"
+                  type="text"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  placeholder="Full name"
+                  autoComplete="name"
                   autoFocus
                 />
                 <Field
@@ -142,23 +144,12 @@ const LoginScreen = ({ go, onSuccess }) => {
                   }}
                   autoComplete="current-password"
                   error={error}
-                  hint={!error ? "Demo password: juuri2026" : null}
+                  hint={null}
                 />
               </div>
 
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 32 }}>
-                <button
-                  type="button"
-                  onClick={() => go("public")}
-                  style={{
-                    background: "transparent", border: 0, padding: 0,
-                    fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase",
-                    color: "var(--jj-muted)", cursor: "pointer", fontFamily: "inherit",
-                  }}
-                >
-                  Read the public version instead
-                </button>
-                <Button type="submit" disabled={loading || !password}>
+              <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 32 }}>
+                <Button type="submit" disabled={loading || !password || !name.trim()}>
                   {loading ? "Signing in…" : <>Sign in <ArrowGlyph /></>}
                 </Button>
               </div>
@@ -169,7 +160,7 @@ const LoginScreen = ({ go, onSuccess }) => {
               fontSize: 9.5, letterSpacing: "0.18em", textTransform: "uppercase",
               color: "var(--jj-muted)", display: "flex", justifyContent: "space-between",
             }}>
-              <span>Forgotten password? Email joni@juuri.me</span>
+              <span>No access? Write to joni@juuri.me</span>
               <span>Encrypted</span>
             </div>
           </section>
