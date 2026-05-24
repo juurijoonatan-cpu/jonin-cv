@@ -4,6 +4,7 @@
    of the hero. */
 
 const PublicView = ({ go }) => {
+  const isMobile = useIsMobile();
   return (
     <div style={{ minHeight: "100vh", padding: "0 18px 24px", position: "relative" }}>
       <Toast />
@@ -23,14 +24,14 @@ const PublicView = ({ go }) => {
         <section style={{
           background: "var(--jj-paper-2)",
           borderRadius: 18,
-          padding: "56px 40px 56px",
+          padding: isMobile ? "36px 20px 36px" : "56px 40px 56px",
           marginBottom: 6,
           position: "relative",
           overflow: "hidden",
-          minHeight: 420,
+          minHeight: isMobile ? "auto" : 420,
         }}>
           {/* Hero copy block — constrained to ~70% so the photo on the right has room */}
-          <div style={{ position: "relative", zIndex: 2, maxWidth: "70%" }}>
+          <div style={{ position: "relative", zIndex: 2, maxWidth: isMobile ? "100%" : "70%" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 28 }}>
               <Eyebrow style={{ fontWeight: 600 }}>
                 <Asterisk size={14} /> &nbsp;About me
@@ -87,6 +88,7 @@ const PublicView = ({ go }) => {
 
           {/* Casual photo, bottom-right corner */}
           <div style={{
+            display: isMobile ? "none" : "block",
             position: "absolute",
             right: 32,
             bottom: 28,
@@ -124,11 +126,11 @@ const PublicView = ({ go }) => {
         <CompanyStrip />
 
         {/* ============ WHERE I AM NOW ============ */}
-        <section style={{ background: "var(--jj-paper-2)", borderRadius: 18, padding: "28px 40px 32px", marginBottom: 6 }}>
+        <section style={{ background: "var(--jj-paper-2)", borderRadius: 18, padding: isMobile ? "24px 20px 28px" : "28px 40px 32px", marginBottom: 6 }}>
           <SectionHead num="01" />
           <H2 soft="now.">Where I am</H2>
 
-          <div style={{ display: "grid", gridTemplateColumns: "0.32fr 0.68fr", gap: 28, marginTop: 18, alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "0.32fr 0.68fr", gap: 28, marginTop: 18, alignItems: "start" }}>
             <div>
               <Eyebrow muted style={{ display: "block", marginBottom: 8 }}>Role</Eyebrow>
               <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 2 }}>Chief Financial Officer</div>
@@ -161,7 +163,7 @@ const PublicView = ({ go }) => {
           background: "var(--jj-ink)",
           color: "var(--jj-paper-2)",
           borderRadius: 18,
-          padding: "32px 40px 36px",
+          padding: isMobile ? "24px 20px 28px" : "32px 40px 36px",
           marginBottom: 6,
           overflow: "hidden",
           position: "relative",
@@ -184,7 +186,7 @@ const PublicView = ({ go }) => {
           {/* Journey legend — chronological legs */}
           <div style={{
             marginTop: 24,
-            display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12,
+            display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: 12,
           }}>
             {window.JJ_JOURNEY.map((leg, i) => (
               <div key={i} style={{
@@ -209,7 +211,7 @@ const PublicView = ({ go }) => {
             <Eyebrow tone="on-dark" style={{ display: "block", marginBottom: 12 }}>
               Elsewhere · short stints, off-map
             </Eyebrow>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(3, 1fr)", gap: 12 }}>
               {window.JJ_ELSEWHERE.map((e, i) => (
                 <div key={i} style={{
                   padding: "12px 14px",
@@ -232,14 +234,14 @@ const PublicView = ({ go }) => {
         </section>
 
         {/* ============ WHAT I WORK ON ============ */}
-        <section style={{ background: "var(--jj-paper-2)", borderRadius: 18, padding: "28px 40px 32px", marginBottom: 6 }}>
+        <section style={{ background: "var(--jj-paper-2)", borderRadius: 18, padding: isMobile ? "24px 20px 28px" : "28px 40px 32px", marginBottom: 6 }}>
           <SectionHead num="03" />
           <H2 soft="on.">What I work</H2>
           <Lede style={{ marginTop: 4, marginBottom: 22 }}>
             Three things take most of my attention right now.
           </Lede>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: 16 }}>
             {[
               { num: "01", title: "Green finance",            body: "TVO's European Green Bond programme — the sector's first EUGBS-aligned bond (€500M, 2025). The 2026 framework adds green bank loans.", photo: "assets/photos/green-finance.jpg", photoPos: "center 35%" },
               { num: "02", title: "Enterprise transformation", body: "An ops + finance + IT programme designed to land €130M+ in recurring annual value. Mine to deliver.",                                                                                  photo: "assets/photos/transformation.jpg", photoPos: "center center" },
@@ -247,7 +249,7 @@ const PublicView = ({ go }) => {
             ].map(c => (
               <div key={c.num} style={{
                 borderRadius: 24,
-                aspectRatio: "0.68 / 1",
+                aspectRatio: isMobile ? "1.6 / 1" : "0.68 / 1",
                 position: "relative",
                 overflow: "hidden",
                 background: "#0A0A0A",
@@ -284,7 +286,7 @@ const PublicView = ({ go }) => {
                   display: "flex", flexDirection: "column", justifyContent: "space-between",
                 }}>
                   <div style={{
-                    fontFamily: "var(--jj-display)", fontWeight: 700, fontSize: 56,
+                    fontFamily: "var(--jj-display)", fontWeight: 700, fontSize: isMobile ? 32 : 56,
                     letterSpacing: "-0.04em", lineHeight: 1,
                     color: "var(--jj-paper-2)",
                     textShadow: "0 1px 14px rgba(0,0,0,0.4)",
@@ -300,7 +302,7 @@ const PublicView = ({ go }) => {
         </section>
 
         {/* ============ TIMELINE — clean, no green dots ============ */}
-        <section style={{ background: "var(--jj-paper-2)", borderRadius: 18, padding: "28px 40px 32px", marginBottom: 6 }}>
+        <section style={{ background: "var(--jj-paper-2)", borderRadius: 18, padding: isMobile ? "24px 20px 28px" : "28px 40px 32px", marginBottom: 6 }}>
           <SectionHead num="04" />
           <H2 soft="been.">Where I've</H2>
           <Lede style={{ marginTop: 4, marginBottom: 22 }}>
@@ -316,16 +318,24 @@ const PublicView = ({ go }) => {
               ["2010 — 2015",  "Head of Planning & Reporting",                     "Fortum Power and Heat. Finland."],
               ["Pre-2010",     "Earlier roles — controller, analyst",              "WinWind. Nokia / NSN."],
             ].map(([when, what, where], i) => (
-              <div key={i} style={{
-                display: "grid", gridTemplateColumns: "140px 1fr auto",
-                gap: 16, alignItems: "baseline",
-                padding: "10px 0",
-                borderTop: i === 0 ? "0" : "1px solid rgba(0,0,0,0.12)",
-              }}>
-                <span style={{ fontSize: 10.5, fontWeight: 600, letterSpacing: "0.04em" }}>{when}</span>
-                <span style={{ fontSize: 13, fontWeight: 600, letterSpacing: "-0.015em" }}>{what}</span>
-                <span style={{ fontSize: 11, color: "var(--jj-muted)", textAlign: "right" }}>{where}</span>
-              </div>
+              isMobile ? (
+                <div key={i} style={{ padding: "10px 0", borderTop: i === 0 ? "0" : "1px solid rgba(0,0,0,0.12)" }}>
+                  <div style={{ fontSize: 9.5, fontWeight: 600, letterSpacing: "0.06em", color: "var(--jj-muted)", marginBottom: 3 }}>{when}</div>
+                  <div style={{ fontSize: 12.5, fontWeight: 600, letterSpacing: "-0.015em", marginBottom: 1 }}>{what}</div>
+                  <div style={{ fontSize: 11, color: "var(--jj-muted)" }}>{where}</div>
+                </div>
+              ) : (
+                <div key={i} style={{
+                  display: "grid", gridTemplateColumns: "140px 1fr auto",
+                  gap: 16, alignItems: "baseline",
+                  padding: "10px 0",
+                  borderTop: i === 0 ? "0" : "1px solid rgba(0,0,0,0.12)",
+                }}>
+                  <span style={{ fontSize: 10.5, fontWeight: 600, letterSpacing: "0.04em" }}>{when}</span>
+                  <span style={{ fontSize: 13, fontWeight: 600, letterSpacing: "-0.015em" }}>{what}</span>
+                  <span style={{ fontSize: 11, color: "var(--jj-muted)", textAlign: "right" }}>{where}</span>
+                </div>
+              )
             ))}
           </div>
 
@@ -351,7 +361,7 @@ const PublicView = ({ go }) => {
           background: "var(--jj-ink)",
           color: "var(--jj-paper-2)",
           borderRadius: 18,
-          padding: "30px 40px 32px",
+          padding: isMobile ? "24px 20px 28px" : "30px 40px 32px",
           marginBottom: 6,
         }}>
           <SectionHead num="07" dark />
@@ -362,7 +372,7 @@ const PublicView = ({ go }) => {
           </p>
 
           <div style={{
-            display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12,
+            display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 12,
             paddingTop: 16, borderTop: "1px solid rgba(255,255,255,0.18)",
           }}>
             {[

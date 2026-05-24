@@ -1,11 +1,13 @@
 /* PrivateCV — full-fidelity CV, ported from Joni_Juuri_CV.html.
    Adds a thin signed-in top bar with sign-out + download. */
 
-const Role = ({ dates, sub, title, company, stat, bullets, dark }) => (
+const Role = ({ dates, sub, title, company, stat, bullets, dark }) => {
+  const isMobile = useIsMobile();
+  return (
   <div style={{
     display: "grid",
-    gridTemplateColumns: "120px 1fr",
-    gap: 16,
+    gridTemplateColumns: isMobile ? "1fr" : "120px 1fr",
+    gap: isMobile ? 6 : 16,
     padding: "10px 0",
     borderTop: `1px solid ${dark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.12)"}`,
   }}>
@@ -59,12 +61,15 @@ const Role = ({ dates, sub, title, company, stat, bullets, dark }) => (
       )}
     </div>
   </div>
-);
+  );
+};
 
-const ListRow = ({ year, title, meta, dark }) => (
+const ListRow = ({ year, title, meta, dark }) => {
+  const isMobile = useIsMobile();
+  return (
   <div style={{
     display: "grid",
-    gridTemplateColumns: "48px 1fr auto",
+    gridTemplateColumns: isMobile ? "48px 1fr" : "48px 1fr auto",
     gap: 12,
     alignItems: "baseline",
     padding: "8px 0",
@@ -77,23 +82,32 @@ const ListRow = ({ year, title, meta, dark }) => (
       letterSpacing: "0.04em",
       color: dark ? "rgba(255,255,255,0.55)" : "var(--jj-muted)",
     }}>{year}</span>
-    <span style={{
-      fontSize: 11.5,
-      fontWeight: 600,
-      letterSpacing: "-0.015em",
-      lineHeight: 1.25,
-      color: dark ? "var(--jj-paper-2)" : "var(--jj-ink)",
-    }}>{title}</span>
-    <span style={{
-      fontSize: 10,
-      letterSpacing: "0.04em",
-      color: dark ? "rgba(255,255,255,0.55)" : "var(--jj-muted)",
-      textAlign: "right",
-    }}>{meta}</span>
+    <div>
+      <div style={{
+        fontSize: 11.5,
+        fontWeight: 600,
+        letterSpacing: "-0.015em",
+        lineHeight: 1.25,
+        color: dark ? "var(--jj-paper-2)" : "var(--jj-ink)",
+      }}>{title}</div>
+      {isMobile && meta && (
+        <div style={{ fontSize: 10, letterSpacing: "0.04em", color: dark ? "rgba(255,255,255,0.55)" : "var(--jj-muted)", marginTop: 2 }}>{meta}</div>
+      )}
+    </div>
+    {!isMobile && (
+      <span style={{
+        fontSize: 10,
+        letterSpacing: "0.04em",
+        color: dark ? "rgba(255,255,255,0.55)" : "var(--jj-muted)",
+        textAlign: "right",
+      }}>{meta}</span>
+    )}
   </div>
-);
+  );
+};
 
 const PrivateCV = ({ go, signOut }) => {
+  const isMobile = useIsMobile();
   return (
     <div style={{ padding: "0 18px 24px" }}>
       <div style={{ maxWidth: 1180, margin: "0 auto", width: "100%" }}>
@@ -134,7 +148,7 @@ const PrivateCV = ({ go, signOut }) => {
         <section style={{
           background: "var(--jj-paper-2)",
           borderRadius: 18,
-          padding: "16px 40px 18px",
+          padding: isMobile ? "16px 20px 18px" : "16px 40px 18px",
           position: "relative",
           overflow: "hidden",
           marginBottom: 5,
@@ -180,7 +194,7 @@ const PrivateCV = ({ go, signOut }) => {
           </div>
 
           <div style={{
-            display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10,
+            display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: 10,
             paddingTop: 12, borderTop: "1px solid var(--jj-ink)", marginTop: 14,
           }}>
             {[
@@ -200,7 +214,7 @@ const PrivateCV = ({ go, signOut }) => {
         {/* 01 — Executive Summary */}
         <Card>
           <SectionHead num="01" />
-          <div style={{ display: "grid", gridTemplateColumns: "0.32fr 0.68fr", gap: 18, alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "0.32fr 0.68fr", gap: 18, alignItems: "start" }}>
             <div>
               <div style={{
                 width: 64, height: 64, borderRadius: "50%",
@@ -350,7 +364,7 @@ const PrivateCV = ({ go, signOut }) => {
             Formal education and a deliberate, ongoing investment in executive development.
           </Lede>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 28 : 40, alignItems: "start" }}>
             <div>
               <p style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 14 }}>Education</p>
               <ListRow dark year="M.Sc." title={<>Master of Social Sciences,<br/>Economics</>} meta={<>University of Helsinki<br/>Finland</>} />
@@ -422,7 +436,7 @@ const PrivateCV = ({ go, signOut }) => {
             <span style={{ color: "rgba(255,255,255,0.45)" }}>Open to international relocation.</span>
           </H2>
           <div style={{
-            display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12,
+            display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: 12,
             marginTop: 14, paddingTop: 10, borderTop: "1px solid rgba(255,255,255,0.18)",
           }}>
             {[

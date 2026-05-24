@@ -1,6 +1,7 @@
 /* LoginScreen — cloud face that follows cursor and shuts eyes on password. */
 
 const LoginScreen = ({ go, onSuccess }) => {
+  const isMobile = useIsMobile();
   const [name, setName] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [typing, setTyping] = React.useState(false);
@@ -28,15 +29,15 @@ const LoginScreen = ({ go, onSuccess }) => {
 
         <Topbar />
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, minHeight: "76vh" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 6, minHeight: isMobile ? "auto" : "76vh" }}>
 
           {/* Left — dark statement with cloud face */}
           <section style={{
             background: "var(--jj-ink)",
             color: "var(--jj-paper-2)",
             borderRadius: 18,
-            padding: "36px 40px 36px",
-            display: "flex",
+            padding: isMobile ? "24px 20px" : "36px 40px 36px",
+            display: isMobile ? "none" : "flex",
             flexDirection: "column",
             justifyContent: "space-between",
             position: "relative",
@@ -100,7 +101,7 @@ const LoginScreen = ({ go, onSuccess }) => {
           <section style={{
             background: "var(--jj-paper-2)",
             borderRadius: 18,
-            padding: "40px 40px 36px",
+            padding: isMobile ? "28px 20px 24px" : "40px 40px 36px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",

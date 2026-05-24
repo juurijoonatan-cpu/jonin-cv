@@ -1,5 +1,16 @@
 /* Shared primitives for the Joni Juuri site UI kit. */
 
+const useIsMobile = () => {
+  const [m, setM] = React.useState(() => window.innerWidth < 640);
+  React.useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const fn = e => setM(e.matches);
+    mq.addEventListener("change", fn);
+    return () => mq.removeEventListener("change", fn);
+  }, []);
+  return m;
+};
+
 const Asterisk = ({ size = 18, style }) => (
   <span className="jj-star" style={{ fontSize: size, lineHeight: 1, ...style }}>✱</span>
 );
@@ -55,23 +66,26 @@ const Pill = ({ children, tone = "ink", as = "div", onClick, style, ...rest }) =
   );
 };
 
-const Card = ({ dark, children, style, className = "", id }) => (
-  <section
-    id={id}
-    className={"jj-card " + className}
-    style={{
-      background: dark ? "var(--jj-ink)" : "var(--jj-paper-2)",
-      color: dark ? "var(--jj-paper-2)" : "var(--jj-ink)",
-      borderRadius: 18,
-      padding: "20px 40px 22px",
-      marginBottom: 6,
-      position: "relative",
-      ...style,
-    }}
-  >
-    {children}
-  </section>
-);
+const Card = ({ dark, children, style, className = "", id }) => {
+  const m = useIsMobile();
+  return (
+    <section
+      id={id}
+      className={"jj-card " + className}
+      style={{
+        background: dark ? "var(--jj-ink)" : "var(--jj-paper-2)",
+        color: dark ? "var(--jj-paper-2)" : "var(--jj-ink)",
+        borderRadius: 18,
+        padding: m ? "20px 20px 22px" : "20px 40px 22px",
+        marginBottom: 6,
+        position: "relative",
+        ...style,
+      }}
+    >
+      {children}
+    </section>
+  );
+};
 
 const SectionHead = ({ num, dark }) => (
   <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 6 }}>
@@ -354,6 +368,7 @@ const ArrowGlyph = ({ direction = "right" }) => {
 };
 
 Object.assign(window, {
+  useIsMobile,
   Asterisk, Eyebrow, Pill, Card, SectionHead, H2, Lede, MarqueeStat,
   Topbar, Button, Field, ChoiceCard, LockGlyph, ArrowGlyph,
 });

@@ -2,7 +2,7 @@
    an "invitation-only CV" not a feature-behind-locks. No drifting paths. */
 
 const Landing = ({ go }) => {
-  const words = ["Hello —"];
+  const isMobile = useIsMobile();
 
   return (
     <div style={{ minHeight: "100vh", padding: "0 18px 24px", position: "relative" }}>
@@ -16,7 +16,7 @@ const Landing = ({ go }) => {
         <section style={{
           background: "var(--jj-paper-2)",
           borderRadius: 18,
-          padding: "70px 40px 60px",
+          padding: isMobile ? "40px 20px 40px" : "70px 40px 60px",
           marginBottom: 6,
           position: "relative",
           overflow: "hidden",
@@ -96,7 +96,7 @@ const Landing = ({ go }) => {
         </section>
 
         {/* Two choice cards */}
-        <section style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>
+        <section style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 6 }}>
           <ChoiceCard
             eyebrow="01 · Get to know"
             title="The about."
@@ -120,10 +120,10 @@ const Landing = ({ go }) => {
         <section style={{
           background: "var(--jj-paper-2)",
           borderRadius: 18,
-          padding: "18px 40px 20px",
+          padding: isMobile ? "16px 20px 18px" : "18px 40px 20px",
           marginTop: 6,
         }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10 }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: 10 }}>
             {[
               ["Based in", "Espoo, Finland"],
               ["At", "TVO · CFO"],

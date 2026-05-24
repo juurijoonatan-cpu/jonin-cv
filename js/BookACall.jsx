@@ -5,22 +5,29 @@
      <Cal calLink="joni-juuri/30min" style={{ width:"100%", height:600 }} />
    using the @calcom/embed-react package (npm i @calcom/embed-react). */
 
+/* Web3Forms key — go to https://web3forms.com, enter joni@juuri.me,
+   copy the key from the email they send, and paste it below. */
+const WEB3FORMS_KEY = "YOUR_KEY_HERE";
+
 const TIMES = ["09:30", "11:00", "13:30", "15:00"];
 
 const BookACall = () => {
+  const isMobile = useIsMobile();
   const today = new Date();
   const [monthOffset, setMonthOffset] = React.useState(0);
   const [pickedDate, setPickedDate] = React.useState(null);
   const [pickedTime, setPickedTime] = React.useState(null);
+  const [visitorName, setVisitorName] = React.useState("");
+  const [visitorEmail, setVisitorEmail] = React.useState("");
   const [confirmed, setConfirmed] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   const viewDate = new Date(today.getFullYear(), today.getMonth() + monthOffset, 1);
   const monthName = viewDate.toLocaleString("en-GB", { month: "long" });
   const year = viewDate.getFullYear();
-  const firstDow = (viewDate.getDay() + 6) % 7; // Mon-first
+  const firstDow = (viewDate.getDay() + 6) % 7;
   const daysInMonth = new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 0).getDate();
 
-  // Pseudo-random "available" days — fixed per month so it doesn't shimmer
   const seed = viewDate.getFullYear() * 100 + viewDate.getMonth();
   const available = new Set();
   for (let d = 1; d <= daysInMonth; d++) {
@@ -30,13 +37,34 @@ const BookACall = () => {
     if ((r - Math.floor(r)) > 0.55) available.add(d);
   }
 
+  const onConfirm = async () => {
+    setLoading(true);
+    if (WEB3FORMS_KEY && WEB3FORMS_KEY !== "YOUR_KEY_HERE") {
+      try {
+        await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_KEY,
+            subject: `Meeting request: ${monthName} ${pickedDate} at ${pickedTime}`,
+            name: visitorName || "Website visitor",
+            email: visitorEmail || "unknown@unknown.com",
+            message: `Meeting request for ${monthName} ${pickedDate}, ${pickedTime} (30 min, Helsinki GMT+2).\n\nFrom: ${visitorName || "—"}\nReply to: ${visitorEmail || "—"}`,
+          }),
+        });
+      } catch (_) {}
+    }
+    setLoading(false);
+    setConfirmed(true);
+  };
+
   if (confirmed) {
     return (
       <section style={{
         background: "var(--jj-ink)",
         color: "var(--jj-paper-2)",
         borderRadius: 18,
-        padding: "44px 40px",
+        padding: isMobile ? "36px 20px" : "44px 40px",
         marginBottom: 6,
         textAlign: "center",
       }}>
@@ -45,7 +73,7 @@ const BookACall = () => {
         </div>
         <h2 style={{
           fontFamily: "var(--jj-display)", fontWeight: 700,
-          fontSize: "clamp(28px, 3.4vw, 40px)",
+          fontSize: "clamp(24px, 3.4vw, 40px)",
           lineHeight: 1, letterSpacing: "-0.035em",
           margin: 0,
         }}>
@@ -55,7 +83,7 @@ const BookACall = () => {
           I'll confirm the slot and send a calendar invite within a working day.
         </p>
         <button
-          onClick={() => { setConfirmed(false); setPickedDate(null); setPickedTime(null); }}
+          onClick={() => { setConfirmed(false); setPickedDate(null); setPickedTime(null); setVisitorName(""); setVisitorEmail(""); }}
           style={{
             marginTop: 22,
             background: "transparent", color: "var(--jj-paper-2)",
@@ -76,7 +104,7 @@ const BookACall = () => {
     <section style={{
       background: "var(--jj-paper-2)",
       borderRadius: 18,
-      padding: "28px 40px 32px",
+      padding: isMobile ? "24px 20px 28px" : "28px 40px 32px",
       marginBottom: 6,
     }}>
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
@@ -89,7 +117,7 @@ const BookACall = () => {
         Pick a slot — I confirm within a working day.
       </Lede>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 28, alignItems: "start" }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr", gap: 28, alignItems: "start" }}>
         {/* Calendar grid */}
         <div>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
@@ -157,7 +185,7 @@ const BookACall = () => {
         </div>
 
         {/* Slot picker */}
-        <div style={{ borderLeft: "1px solid rgba(0,0,0,0.08)", paddingLeft: 28, minHeight: 280 }}>
+        <div style={{ borderLeft: isMobile ? "none" : "1px solid rgba(0,0,0,0.08)", borderTop: isMobile ? "1px solid rgba(0,0,0,0.08)" : "none", paddingLeft: isMobile ? 0 : 28, paddingTop: isMobile ? 20 : 0, minHeight: isMobile ? "auto" : 280 }}>
           <Eyebrow muted style={{ display: "block", marginBottom: 10 }}>
             {pickedDate ? <>Times on {monthName} {pickedDate}</> : "Pick a date first"}
           </Eyebrow>
@@ -198,13 +226,30 @@ const BookACall = () => {
                 </button>
               ))}
 
-              <Button
-                disabled={!pickedTime}
-                onClick={() => setConfirmed(true)}
-                style={{ marginTop: 8, justifyContent: "center" }}
-              >
-                Confirm slot <ArrowGlyph />
-              </Button>
+              {pickedTime && (
+                <div style={{ display: "flex", flexDirection: "column", gap: 14, marginTop: 8, paddingTop: 14, borderTop: "1px solid rgba(0,0,0,0.08)" }}>
+                  <Field
+                    label="Your name"
+                    value={visitorName}
+                    onChange={e => setVisitorName(e.target.value)}
+                    placeholder="Full name"
+                  />
+                  <Field
+                    label="Email"
+                    type="email"
+                    value={visitorEmail}
+                    onChange={e => setVisitorEmail(e.target.value)}
+                    placeholder="so I can confirm"
+                  />
+                  <Button
+                    disabled={loading || !visitorName.trim() || !visitorEmail.trim()}
+                    onClick={onConfirm}
+                    style={{ justifyContent: "center", marginTop: 4 }}
+                  >
+                    {loading ? "Sending…" : <>Confirm slot <ArrowGlyph /></>}
+                  </Button>
+                </div>
+              )}
             </div>
           )}
 
@@ -214,7 +259,7 @@ const BookACall = () => {
             display: "flex", justifyContent: "space-between",
           }}>
             <span>Helsinki, GMT+2</span>
-            <span>Cal.com</span>
+            <span>30 min</span>
           </div>
         </div>
       </div>
