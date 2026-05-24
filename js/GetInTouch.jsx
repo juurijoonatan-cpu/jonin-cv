@@ -1,7 +1,7 @@
 /* GetInTouch — minimal form, in the same understated underline-only style. */
 
 /* Same Web3Forms key as BookACall — paste it once in both files. */
-const WEB3FORMS_KEY_TOUCH = "YOUR_KEY_HERE";
+const WEB3FORMS_KEY_TOUCH = "02d289c3-66d9-4b55-9f91-5dd2b00b7f1e";
 
 const GetInTouch = () => {
   const isMobile = useIsMobile();

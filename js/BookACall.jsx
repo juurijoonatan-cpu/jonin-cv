@@ -7,7 +7,7 @@
 
 /* Web3Forms key — go to https://web3forms.com, enter joni@juuri.me,
    copy the key from the email they send, and paste it below. */
-const WEB3FORMS_KEY = "YOUR_KEY_HERE";
+const WEB3FORMS_KEY = "02d289c3-66d9-4b55-9f91-5dd2b00b7f1e";
 
 const WEEKDAY_TIMES = ["06:00", "07:00", "08:00", "17:00", "18:00", "19:00"];
 const WEEKEND_TIMES = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"];
