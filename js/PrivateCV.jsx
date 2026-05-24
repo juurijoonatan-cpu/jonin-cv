@@ -126,7 +126,7 @@ const PrivateCV = ({ go, signOut }) => {
           </div>
           <div style={{ display: "flex", gap: 8 }}>
             <Pill as="a" href="assets/Joni_Juuri_CV.pdf" download="Joni_Juuri_CV.pdf">Download CV (PDF)</Pill>
-            <Pill onClick={signOut}>Sign out</Pill>
+            <Pill onClick={() => go("landing")}>← Back</Pill>
           </div>
         </div>
 

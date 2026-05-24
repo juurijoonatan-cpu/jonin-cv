@@ -1,6 +1,9 @@
-/* BookACall — a designed booking card with a real-feeling month grid.
-   Visual mock; clicking a slot opens a confirmation. Easily swapped for
-   a real Cal.com inline embed by replacing the <CalSlots /> block. */
+/* BookACall — calendar booking card.
+   TODO: replace this visual mock with a real Cal.com embed.
+   Steps: create a Cal.com account, set up a 30-min event type, then swap the
+   calendar grid + slot picker below for:
+     <Cal calLink="joni-juuri/30min" style={{ width:"100%", height:600 }} />
+   using the @calcom/embed-react package (npm i @calcom/embed-react). */
 
 const TIMES = ["09:30", "11:00", "13:30", "15:00"];
 
@@ -49,7 +52,7 @@ const BookACall = () => {
           See you {monthName} {pickedDate}, {pickedTime}.
         </h2>
         <p style={{ marginTop: 16, fontSize: 13, color: "rgba(255,255,255,0.75)", lineHeight: 1.5 }}>
-          A calendar invitation is on its way to your inbox.
+          I'll confirm the slot and send a calendar invite within a working day.
         </p>
         <button
           onClick={() => { setConfirmed(false); setPickedDate(null); setPickedTime(null); }}
