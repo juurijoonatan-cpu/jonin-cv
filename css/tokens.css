@@ -1,0 +1,140 @@
+/* ============================================================
+   Joni Juuri Design System — Tokens
+   Editorial / Swiss-modernist. Cream paper, ink black, tight type.
+   ============================================================ */
+
+:root {
+  /* --- Core surfaces --- */
+  --jj-ink:      #0A0A0A;   /* primary text, dark cards */
+  --jj-ink-2:    #1A1A1A;   /* secondary text */
+  --jj-paper:    #F4F2EE;   /* page background (cream) */
+  --jj-paper-2:  #FFFFFF;   /* card surface (light) */
+  --jj-paper-3:  #DCD9D3;   /* tertiary stone (middle card) */
+  --jj-warm:     #E9E5DD;   /* photo well */
+  --jj-rule:     #1A1A1A;   /* horizontal rule */
+  --jj-muted:    #8A8A8A;   /* meta, labels */
+  --jj-hairline: rgba(0,0,0,0.12);
+  --jj-hairline-on-dark: rgba(255,255,255,0.18);
+  --jj-on-dark-muted: rgba(255,255,255,0.55);
+  --jj-on-dark-body:  rgba(255,255,255,0.85);
+
+  /* --- Accent / status --- */
+  --jj-status-go: #6EE7B7;  /* "open to roles" pulsing dot — only signal color */
+
+  /* --- Type families --- */
+  --jj-display: "Helvetica Neue", "Inter", "Arial", sans-serif;
+  --jj-body:    "Helvetica Neue", "Inter", "Arial", sans-serif;
+  --jj-mono:    "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+
+  /* --- Type scale (CV-tight, editorial) --- */
+  --jj-display-xl: 700 clamp(60px, 9vw, 100px)/0.82 var(--jj-display);  /* hero year */
+  --jj-display-l:  700 clamp(30px, 4.6vw, 44px)/0.92 var(--jj-display); /* hero h1 */
+  --jj-display-m:  700 clamp(22px, 2.8vw, 32px)/0.9 var(--jj-display);  /* section num */
+  --jj-h2:         700 clamp(17px, 2.2vw, 22px)/1   var(--jj-display);
+  --jj-h3:         700 13.5px/1.2 var(--jj-display);                    /* role title */
+  --jj-body-m:     400 11.5px/1.55 var(--jj-body);
+  --jj-body-s:     400 11px/1.4 var(--jj-body);                         /* lede */
+  --jj-body-xs:    400 10px/1.38 var(--jj-body);                        /* bullets */
+  --jj-eyebrow:    500 10px/1 var(--jj-body);                           /* uppercase, tracked */
+  --jj-eyebrow-xs: 500 8.5px/1 var(--jj-body);
+
+  /* --- Letter-spacing --- */
+  --jj-track-display: -0.04em;  /* huge type */
+  --jj-track-h:       -0.025em; /* h2 */
+  --jj-track-tight:   -0.015em; /* role title */
+  --jj-track-body:    -0.005em; /* body */
+  --jj-track-eyebrow: 0.16em;   /* uppercase labels */
+  --jj-track-eyebrow-wide: 0.22em;
+
+  /* --- Radii --- */
+  --jj-radius-card:   18px;     /* sections */
+  --jj-radius-card-l: 28px;     /* mobile sections */
+  --jj-radius-stack:  24px;     /* stacked feature cards */
+  --jj-radius-pill:   999px;
+  --jj-radius-stat:   8px;      /* marquee stat block */
+  --jj-radius-bar:    6px;      /* progress bars */
+
+  /* --- Spacing scale (4px base) --- */
+  --jj-space-1: 4px;
+  --jj-space-2: 8px;
+  --jj-space-3: 12px;
+  --jj-space-4: 16px;
+  --jj-space-5: 24px;
+  --jj-space-6: 32px;
+  --jj-space-7: 40px;
+  --jj-space-8: 56px;
+  --jj-space-9: 64px;
+
+  /* --- Borders / shadows --- */
+  --jj-border-hair: 1px solid var(--jj-hairline);
+  --jj-border-ink:  1px solid var(--jj-ink);
+  --jj-border-paper:1px solid var(--jj-paper-2);
+  /* No drop shadows in the system — depth comes from cream-on-white card layering. */
+  --jj-shadow-lift: none;
+
+  /* --- Motion --- */
+  --jj-ease:        cubic-bezier(0.2, 0.6, 0.2, 1);
+  --jj-ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --jj-dur-fast:    140ms;
+  --jj-dur-base:    240ms;
+  --jj-dur-slow:    480ms;
+
+  /* --- Layout --- */
+  --jj-max:    1180px;
+  --jj-pad:    40px;
+  --jj-pad-sm: 18px;
+}
+
+/* ============================================================
+   Semantic element styles — opt in by adding .jj to a root
+   ============================================================ */
+
+.jj {
+  background: var(--jj-paper);
+  color: var(--jj-ink);
+  font-family: var(--jj-body);
+  font-weight: 400;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.jj h1 { font: var(--jj-display-l); letter-spacing: var(--jj-track-display); }
+.jj h2 { font: var(--jj-h2); letter-spacing: var(--jj-track-h); }
+.jj h2 .soft { color: var(--jj-muted); font-weight: 700; }
+.jj h3 { font: var(--jj-h3); letter-spacing: var(--jj-track-tight); }
+.jj p  { font: var(--jj-body-m); letter-spacing: var(--jj-track-body); }
+.jj .lede { font: var(--jj-body-s); color: var(--jj-ink-2); max-width: 72ch; }
+
+/* Editorial eyebrow — uppercase tracked label */
+.jj .eyebrow {
+  font: var(--jj-eyebrow);
+  letter-spacing: var(--jj-track-eyebrow);
+  text-transform: uppercase;
+  color: var(--jj-ink);
+}
+.jj .eyebrow--muted { color: var(--jj-muted); }
+.jj .eyebrow--xs {
+  font: var(--jj-eyebrow-xs);
+  letter-spacing: var(--jj-track-eyebrow-wide);
+  text-transform: uppercase;
+}
+
+/* Big section numeral, e.g. 01 02 */
+.jj .section-num {
+  font: var(--jj-display-m);
+  letter-spacing: var(--jj-track-display);
+}
+
+/* The signature asterisk mark */
+.jj .star {
+  display: inline-block;
+  font-size: 1.1em;
+  line-height: 1;
+  vertical-align: -0.04em;
+}
+
+/* Dark surface inversion */
+.jj .on-dark { color: var(--jj-paper-2); }
+.jj .on-dark .soft,
+.jj .on-dark .muted { color: var(--jj-on-dark-muted); }

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Joni Juuri</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Joni Juuri — CFO in energy. International by habit. Based in Espoo, Finland." />
+
+<!-- Helvetica Neue isn't on Google Fonts — Inter is the closest match -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css" />
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--jj-paper);
+    color: var(--jj-ink);
+    font-family: var(--jj-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
+  }
+  :root {
+    --jj-display: "Helvetica Neue", "Inter", "Arial", sans-serif;
+    --jj-body:    "Helvetica Neue", "Inter", "Arial", sans-serif;
+  }
+  button, input, textarea { font-family: inherit; }
+
+  /* Hover state */
+  .jj-pill, button.jj-choice, button:not([disabled]) {
+    transition: opacity 140ms var(--jj-ease), transform 100ms var(--jj-ease), background 140ms var(--jj-ease);
+  }
+  .jj-pill:hover, button:not([disabled]):hover { opacity: 0.78; }
+  button:not([disabled]):active { transform: scale(0.98); }
+  button.jj-choice:hover { opacity: 1; transform: translateY(-2px); }
+  button.jj-choice:hover h3 { opacity: 0.85; }
+
+  /* Focus */
+  button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visible {
+    outline: 2px solid var(--jj-ink);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Pulsing "open" dot */
+  @keyframes jj-pulse {
+    0%   { box-shadow: 0 0 0 0   rgba(110, 231, 183, 0.7); }
+    70%  { box-shadow: 0 0 0 10px rgba(110, 231, 183, 0); }
+    100% { box-shadow: 0 0 0 0   rgba(110, 231, 183, 0); }
+  }
+  .jj-pulse-dot {
+    animation: jj-pulse 2s infinite;
+    flex-shrink: 0;
+  }
+
+  /* Page-load reveal helpers */
+  @keyframes jj-rise {
+    from { transform: translateY(28%); opacity: 0; }
+    to   { transform: translateY(0);   opacity: 1; }
+  }
+  @keyframes jj-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* Background wireframe paths — slow drift */
+  @keyframes jj-path-drift {
+    from { stroke-dashoffset: 0; }
+    to   { stroke-dashoffset: -2800; }
+  }
+
+  /* Company strip marquee */
+  @keyframes jj-marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .jj-marquee:hover { animation-play-state: running; }
+  .jj-marquee--locked { animation-play-state: running !important; pointer-events: none; }
+
+  /* Print: only the CV section */
+  @page { size: A4; margin: 8mm; }
+  @media print {
+    html, body { background: white; }
+    .jj-pill, button { display: none !important; }
+  }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <!-- d3 + topojson for the world map -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+
+  <!-- Primitives first -->
+  <script type="text/babel" src="js/components.jsx"></script>
+  <script type="text/babel" src="js/BackgroundPaths.jsx"></script>
+  <script type="text/babel" src="js/Toast.jsx"></script>
+  <script type="text/babel" src="js/CloudFace.jsx"></script>
+  <script type="text/babel" src="js/WorldMap.jsx"></script>
+  <script type="text/babel" src="js/CompanyStrip.jsx"></script>
+  <script type="text/babel" src="js/BookACall.jsx"></script>
+  <script type="text/babel" src="js/GetInTouch.jsx"></script>
+
+  <!-- Screens -->
+  <script type="text/babel" src="js/Landing.jsx"></script>
+  <script type="text/babel" src="js/PublicView.jsx"></script>
+  <script type="text/babel" src="js/LoginScreen.jsx"></script>
+  <script type="text/babel" src="js/PrivateCV.jsx"></script>
+
+  <!-- App last -->
+  <script type="text/babel" src="js/app.jsx"></script>
+</body>
+</html>
