@@ -218,10 +218,7 @@ const PrivateCV = ({ go, signOut }) => {
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "0.32fr 0.68fr", gap: 18, alignItems: "start" }}>
             <div>
               <div style={{
-                width: "100%",
-                maxWidth: isMobile ? 160 : "100%",
-                aspectRatio: "3 / 4",
-                borderRadius: 16,
+                width: 96, height: 96, borderRadius: "50%",
                 border: "1px solid var(--jj-ink)",
                 background: "var(--jj-warm)",
                 overflow: "hidden",
