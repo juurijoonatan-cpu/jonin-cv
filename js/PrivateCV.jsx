@@ -218,7 +218,10 @@ const PrivateCV = ({ go, signOut }) => {
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "0.32fr 0.68fr", gap: 18, alignItems: "start" }}>
             <div>
               <div style={{
-                width: 64, height: 64, borderRadius: "50%",
+                width: "100%",
+                maxWidth: isMobile ? 160 : "100%",
+                aspectRatio: "3 / 4",
+                borderRadius: 16,
                 border: "1px solid var(--jj-ink)",
                 background: "var(--jj-warm)",
                 overflow: "hidden",
@@ -226,7 +229,7 @@ const PrivateCV = ({ go, signOut }) => {
                 <img
                   src="assets/joni-headshot.png"
                   alt="Joni Juuri"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
                 />
               </div>
             </div>
