@@ -51,7 +51,7 @@ const Landing = ({ go }) => {
                 display: "inline-block",
                 animation: "jj-fade 700ms var(--jj-ease) both",
               }}>
-                Hello —
+                Hello,
               </span>
               <br />
               <span style={{
@@ -79,9 +79,8 @@ const Landing = ({ go }) => {
               animation: "jj-fade 800ms var(--jj-ease) both",
               animationDelay: "900ms",
             }}>
-              A small site for friends, recruiters and boards. Two doors.
-              One opens to a quick get-to-know-me, the other to the full CV — by invitation only.
-              Either is fine.
+              A personal site for recruiters, boards and colleagues.
+              Two things to explore — pick whichever suits you.
             </p>
           </div>
 

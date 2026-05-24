@@ -151,7 +151,7 @@ const LoginScreen = ({ go, onSuccess }) => {
 
               <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 32 }}>
                 <Button type="submit" disabled={loading || !password || !name.trim()}>
-                  {loading ? "Signing in…" : <>Sign in <ArrowGlyph /></>}
+                  {loading ? "Signing in…" : "Sign in"}
                 </Button>
               </div>
             </form>

@@ -75,7 +75,7 @@ const PublicView = ({ go }) => {
               animation: "jj-fade 800ms var(--jj-ease) both", animationDelay: "900ms",
             }}>
               <Button onClick={() => { const el = document.getElementById('jj-book'); if (el) window.scrollTo({ top: el.offsetTop - 16, behavior: 'smooth' }); }}>
-                Book a call <ArrowGlyph />
+                Book a call
               </Button>
               <Button variant="ghost" onClick={() => { const el = document.getElementById('jj-touch'); if (el) window.scrollTo({ top: el.offsetTop - 16, behavior: 'smooth' }); }}>
                 Drop a note
@@ -339,15 +339,6 @@ const PublicView = ({ go }) => {
             ))}
           </div>
 
-          <div style={{
-            marginTop: 22, paddingTop: 14, borderTop: "1px solid rgba(0,0,0,0.12)",
-            display: "flex", justifyContent: "space-between", alignItems: "center",
-          }}>
-            <Eyebrow muted>For the full document, with numbers</Eyebrow>
-            <Button onClick={() => go("login")}>
-              The CV is invitation-only <ArrowGlyph />
-            </Button>
-          </div>
         </section>
 
         {/* ============ BOOK A CALL ============ */}
@@ -389,7 +380,7 @@ const PublicView = ({ go }) => {
         </section>
 
         <div style={{ textAlign: "center", marginTop: 12, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--jj-muted)" }}>
-          <Asterisk size={12} /> &nbsp; Public · about me · no login needed
+          <Asterisk size={12} /> &nbsp; Joni Juuri · 2026
         </div>
       </div>
     </div>

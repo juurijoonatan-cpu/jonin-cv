@@ -133,7 +133,7 @@ const GetInTouch = () => {
               {sent ? "✓ Sent · I'll reply within a week" : "Encrypted in transit"}
             </span>
             <Button type="submit" disabled={sending || !name || !email || !msg}>
-              {sending ? "Sending…" : <> Send <ArrowGlyph /></>}
+              {sending ? "Sending…" : "Send"}
             </Button>
           </div>
         </div>

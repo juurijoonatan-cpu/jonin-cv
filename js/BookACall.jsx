@@ -9,7 +9,8 @@
    copy the key from the email they send, and paste it below. */
 const WEB3FORMS_KEY = "YOUR_KEY_HERE";
 
-const TIMES = ["09:30", "11:00", "13:30", "15:00"];
+const WEEKDAY_TIMES = ["06:00", "07:00", "08:00", "17:00", "18:00", "19:00"];
+const WEEKEND_TIMES = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"];
 
 const BookACall = () => {
   const isMobile = useIsMobile();
@@ -28,14 +29,17 @@ const BookACall = () => {
   const firstDow = (viewDate.getDay() + 6) % 7;
   const daysInMonth = new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 0).getDate();
 
-  const seed = viewDate.getFullYear() * 100 + viewDate.getMonth();
   const available = new Set();
   for (let d = 1; d <= daysInMonth; d++) {
     const isPast = monthOffset === 0 && d < today.getDate();
-    if (isPast) continue;
-    const r = Math.sin(seed + d * 7.31) * 10000;
-    if ((r - Math.floor(r)) > 0.55) available.add(d);
+    if (!isPast) available.add(d);
   }
+
+  const getTimesForDate = (day) => {
+    if (!day) return [];
+    const dow = new Date(viewDate.getFullYear(), viewDate.getMonth(), day).getDay();
+    return (dow === 0 || dow === 6) ? WEEKEND_TIMES : WEEKDAY_TIMES;
+  };
 
   const onConfirm = async () => {
     setLoading(true);
@@ -198,7 +202,7 @@ const BookACall = () => {
 
           {pickedDate && (
             <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 6 }}>
-              {TIMES.map(t => (
+              {getTimesForDate(pickedDate).map(t => (
                 <button
                   key={t}
                   onClick={() => setPickedTime(t)}
@@ -246,7 +250,7 @@ const BookACall = () => {
                     onClick={onConfirm}
                     style={{ justifyContent: "center", marginTop: 4 }}
                   >
-                    {loading ? "Sending…" : <>Confirm slot <ArrowGlyph /></>}
+                    {loading ? "Sending…" : "Confirm slot"}
                   </Button>
                 </div>
               )}
