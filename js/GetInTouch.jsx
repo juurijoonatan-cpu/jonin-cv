@@ -12,6 +12,13 @@ const GetInTouch = () => {
   const [sent, setSent] = React.useState(false);
   const [sending, setSending] = React.useState(false);
 
+  const reasons = [
+    { id: "hello",     label: "Just saying hello"   },
+    { id: "role",      label: "About a role"        },
+    { id: "board",     label: "Board / advisory"    },
+    { id: "press",     label: "Press / podcast"     },
+  ];
+
   const onSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
@@ -35,13 +42,6 @@ const GetInTouch = () => {
     setTimeout(() => setSent(false), 4000);
     setName(""); setEmail(""); setMsg(""); setReason("hello");
   };
-
-  const reasons = [
-    { id: "hello",     label: "Just saying hello"   },
-    { id: "role",      label: "About a role"        },
-    { id: "board",     label: "Board / advisory"    },
-    { id: "press",     label: "Press / podcast"     },
-  ];
 
   return (
     <section style={{
