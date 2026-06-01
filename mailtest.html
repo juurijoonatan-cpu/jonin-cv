@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Web3Forms key test</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body { font-family: -apple-system, system-ui, sans-serif; max-width: 560px; margin: 40px auto; padding: 0 20px; line-height: 1.5; }
+  button { padding: 12px 20px; font-size: 15px; cursor: pointer; border-radius: 8px; border: 1px solid #000; background: #000; color: #fff; }
+  pre { background: #f4f4f4; padding: 16px; border-radius: 8px; white-space: pre-wrap; word-break: break-word; font-size: 13px; }
+  .ok { color: #1F8A5B; font-weight: 700; }
+  .bad { color: #C84343; font-weight: 700; }
+</style>
+</head>
+<body>
+  <h1>Web3Forms key test</h1>
+  <p>This sends one real test message using the same key the site uses.
+     If it works, an email lands in the inbox tied to the key and you'll see
+     <span class="ok">SUCCESS</span> below. If not, the exact error from Web3Forms appears.</p>
+  <p><strong>Key:</strong> <code>02d289c3-66d9-4b55-9f91-5dd2b00b7f1e</code></p>
+  <button id="go">Send test email now</button>
+  <pre id="out">Result will appear here…</pre>
+
+  <script>
+    const KEY = "02d289c3-66d9-4b55-9f91-5dd2b00b7f1e";
+    const out = document.getElementById("out");
+    document.getElementById("go").addEventListener("click", async () => {
+      out.textContent = "Sending…";
+      try {
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            access_key: KEY,
+            subject: "[juuri.me] mailtest.html connectivity check",
+            from_name: "juuri.me mailtest",
+            name: "Mail Test",
+            email: "test@example.com",
+            message: "If you received this, the Web3Forms key is valid and email works.",
+          }),
+        });
+        const data = await res.json().catch(() => ({}));
+        const status = (res.ok && data.success) ? "✅ SUCCESS" : "❌ FAILED";
+        out.innerHTML = '<span class="' + ((res.ok && data.success) ? "ok" : "bad") + '">' + status + "</span>\n\n"
+          + "HTTP status: " + res.status + "\n"
+          + "Response: " + JSON.stringify(data, null, 2);
+      } catch (err) {
+        out.innerHTML = '<span class="bad">❌ NETWORK ERROR</span>\n\n' + (err && err.message ? err.message : String(err));
+      }
+    });
+  </script>
+</body>
+</html>

@@ -11,6 +11,7 @@ const GetInTouch = () => {
   const [msg, setMsg] = React.useState("");
   const [sent, setSent] = React.useState(false);
   const [sending, setSending] = React.useState(false);
+  const [error, setError] = React.useState("");
 
   const reasons = [
     { id: "hello",     label: "Just saying hello"   },
@@ -22,25 +23,32 @@ const GetInTouch = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
-    if (WEB3FORMS_KEY_TOUCH && WEB3FORMS_KEY_TOUCH !== "YOUR_KEY_HERE") {
-      try {
-        await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            access_key: WEB3FORMS_KEY_TOUCH,
-            subject: `[juuri.me] ${reasons.find(r => r.id === reason)?.label || reason}`,
-            name,
-            email,
-            message: msg,
-          }),
-        });
-      } catch (_) {}
+    setError("");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY_TOUCH,
+          subject: `[juuri.me] ${reasons.find(r => r.id === reason)?.label || reason}`,
+          from_name: "juuri.me contact form",
+          name,
+          email,
+          message: msg,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || `Request failed (${res.status})`);
+      }
+      setSending(false);
+      setSent(true);
+      setTimeout(() => setSent(false), 4000);
+      setName(""); setEmail(""); setMsg(""); setReason("hello");
+    } catch (err) {
+      setSending(false);
+      setError(err.message || "Something went wrong — email joni@juuri.me directly.");
     }
-    setSending(false);
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
-    setName(""); setEmail(""); setMsg(""); setReason("hello");
   };
 
   return (
@@ -126,11 +134,12 @@ const GetInTouch = () => {
 
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 18 }}>
             <span style={{
-              fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase",
-              color: sent ? "#1F8A5B" : "var(--jj-muted)",
+              fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase",
+              color: error ? "#C84343" : sent ? "#1F8A5B" : "var(--jj-muted)",
               transition: "color 240ms var(--jj-ease)",
+              maxWidth: "60%",
             }}>
-              {sent ? "✓ Sent · I'll reply within a week" : "Encrypted in transit"}
+              {error ? error : sent ? "✓ Sent · I'll reply within a week" : "Encrypted in transit"}
             </span>
             <Button type="submit" disabled={sending || !name || !email || !msg}>
               {sending ? "Sending…" : "Send"}

@@ -22,6 +22,7 @@ const BookACall = () => {
   const [visitorEmail, setVisitorEmail] = React.useState("");
   const [confirmed, setConfirmed] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState("");
 
   const viewDate = new Date(today.getFullYear(), today.getMonth() + monthOffset, 1);
   const monthName = viewDate.toLocaleString("en-GB", { month: "long" });
@@ -43,23 +44,30 @@ const BookACall = () => {
 
   const onConfirm = async () => {
     setLoading(true);
-    if (WEB3FORMS_KEY && WEB3FORMS_KEY !== "YOUR_KEY_HERE") {
-      try {
-        await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            access_key: WEB3FORMS_KEY,
-            subject: `Meeting request: ${monthName} ${pickedDate} at ${pickedTime}`,
-            name: visitorName || "Website visitor",
-            email: visitorEmail || "unknown@unknown.com",
-            message: `Meeting request for ${monthName} ${pickedDate}, ${pickedTime} (30 min, Helsinki GMT+2).\n\nFrom: ${visitorName || "—"}\nReply to: ${visitorEmail || "—"}`,
-          }),
-        });
-      } catch (_) {}
+    setError("");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Meeting request: ${monthName} ${pickedDate} at ${pickedTime}`,
+          from_name: "juuri.me booking",
+          name: visitorName || "Website visitor",
+          email: visitorEmail || "unknown@unknown.com",
+          message: `Meeting request for ${monthName} ${pickedDate}, ${pickedTime} (30 min, Helsinki GMT+2).\n\nFrom: ${visitorName || "—"}\nReply to: ${visitorEmail || "—"}`,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || `Request failed (${res.status})`);
+      }
+      setLoading(false);
+      setConfirmed(true);
+    } catch (err) {
+      setLoading(false);
+      setError(err.message || "Couldn't send — email joni@juuri.me directly.");
     }
-    setLoading(false);
-    setConfirmed(true);
   };
 
   if (confirmed) {
@@ -252,6 +260,11 @@ const BookACall = () => {
                   >
                     {loading ? "Sending…" : "Confirm slot"}
                   </Button>
+                  {error && (
+                    <div style={{ fontSize: 10, color: "#C84343", lineHeight: 1.4, letterSpacing: "0.02em" }}>
+                      {error}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
