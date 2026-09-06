@@ -4,6 +4,14 @@
 
 const PublicView = ({ go }) => {
   const isMobile = useIsMobile();
+  const [bookOpen, setBookOpen] = React.useState(false);
+  const [touchOpen, setTouchOpen] = React.useState(false);
+
+  const scrollToOpen = (id, setOpen) => {
+    setOpen(true);
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.offsetTop - 16, behavior: "smooth" });
+  };
   return (
     <div style={{ minHeight: "100vh", padding: "0 18px 24px", position: "relative" }}>
       <Toast />
@@ -80,10 +88,10 @@ const PublicView = ({ go }) => {
               display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center",
               animation: "jj-fade 800ms var(--jj-ease) both", animationDelay: "900ms",
             }}>
-              <Button onClick={() => { const el = document.getElementById('jj-book'); if (el) window.scrollTo({ top: el.offsetTop - 16, behavior: 'smooth' }); }}>
+              <Button onClick={() => scrollToOpen("jj-book", setBookOpen)}>
                 Book a call
               </Button>
-              <Button variant="ghost" onClick={() => { const el = document.getElementById('jj-touch'); if (el) window.scrollTo({ top: el.offsetTop - 16, behavior: 'smooth' }); }}>
+              <Button variant="ghost" onClick={() => scrollToOpen("jj-touch", setTouchOpen)}>
                 Send a message
               </Button>
             </div>
@@ -155,10 +163,11 @@ const PublicView = ({ go }) => {
 
             <div>
               <p style={{ fontSize: 14, lineHeight: 1.55, margin: 0 }}>
-                I lead finance, strategy and transformation for Finland's largest nuclear
-                power producer, generating roughly{" "}
-                <strong style={{ fontWeight: 600 }}>30% of the country's electricity</strong>.
-                Full P&L responsibility, reporting to the Board and owners.
+                As Chief Financial Officer, I hold full P&L responsibility for finance,
+                strategy and transformation at Finland's largest nuclear power producer,
+                generating roughly{" "}
+                <strong style={{ fontWeight: 600 }}>30% of the country's electricity</strong>,
+                and report directly to the Board and ownership.
               </p>
               <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--jj-ink-2)", marginTop: 14 }}>
                 The work is long-horizon: capital programmes in the billions, payback
@@ -339,10 +348,10 @@ const PublicView = ({ go }) => {
         </section>
 
         {/* ============ BOOK A CALL ============ */}
-        <div id="jj-book"><BookACall /></div>
+        <div id="jj-book"><BookACall open={bookOpen} onToggle={() => setBookOpen(v => !v)} /></div>
 
         {/* ============ GET IN TOUCH ============ */}
-        <div id="jj-touch"><GetInTouch /></div>
+        <div id="jj-touch"><GetInTouch open={touchOpen} onToggle={() => setTouchOpen(v => !v)} /></div>
 
         {/* ============ CLOSING ============ */}
         <section style={{

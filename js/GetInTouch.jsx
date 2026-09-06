@@ -3,7 +3,7 @@
 /* Same Web3Forms key as BookACall — paste it once in both files. */
 const WEB3FORMS_KEY_TOUCH = "02d289c3-66d9-4b55-9f91-5dd2b00b7f1e";
 
-const GetInTouch = () => {
+const GetInTouch = ({ open, onToggle }) => {
   const isMobile = useIsMobile();
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -63,11 +63,31 @@ const GetInTouch = () => {
         <div style={{ fontFamily: "var(--jj-display)", fontWeight: 700, fontSize: "clamp(22px, 2.8vw, 32px)", letterSpacing: "-0.04em", lineHeight: 0.9 }}>06</div>
       </div>
       <H2 soft="a message.">Send</H2>
-      <Lede style={{ marginTop: 6, marginBottom: 22 }}>
+      <Lede style={{ marginTop: 6, marginBottom: 18 }}>
         Direct email: <strong>joni@juuri.me</strong>. Replies within a week.
       </Lede>
 
-      <form onSubmit={onSubmit} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 22 : 28 }}>
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={open}
+        style={{
+          display: "inline-flex", alignItems: "center", gap: 8,
+          background: "transparent", border: "1px solid var(--jj-ink)",
+          borderRadius: 999, padding: "8px 16px",
+          fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase",
+          color: "var(--jj-ink)", cursor: "pointer", fontFamily: "inherit",
+        }}
+      >
+        {open ? "Hide form" : "Show form"}
+        <span style={{ display: "inline-flex", transform: `rotate(${open ? 180 : 0}deg)`, transition: "transform 220ms var(--jj-ease)" }}>
+          <ArrowGlyph direction="down" />
+        </span>
+      </button>
+
+      <div className={`jj-collapse${open ? " jj-collapse--open" : ""}`}>
+      <div>
+      <form onSubmit={onSubmit} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 22 : 28, paddingTop: 22 }}>
         <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
           <Field label="Your name" value={name} onChange={e => setName(e.target.value)} />
           <Field label="Email" type="email" value={email} onChange={e => setEmail(e.target.value)} />
@@ -147,6 +167,8 @@ const GetInTouch = () => {
           </div>
         </div>
       </form>
+      </div>
+      </div>
     </section>
   );
 };

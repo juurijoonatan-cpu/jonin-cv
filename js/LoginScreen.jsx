@@ -157,10 +157,9 @@ const LoginScreen = ({ go, onSuccess }) => {
             <div style={{
               marginTop: "auto", paddingTop: 14, borderTop: "1px solid rgba(0,0,0,0.12)",
               fontSize: 9.5, letterSpacing: "0.18em", textTransform: "uppercase",
-              color: "var(--jj-muted)", display: "flex", justifyContent: "space-between",
+              color: "var(--jj-muted)", textAlign: "center",
             }}>
-              <span>Access requests: joni@juuri.me</span>
-              <span>Encrypted</span>
+              Encrypted connection
             </div>
           </section>
         </div>
