@@ -7,17 +7,17 @@ const GetInTouch = () => {
   const isMobile = useIsMobile();
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const [reason, setReason] = React.useState("hello");
+  const [reason, setReason] = React.useState("general");
   const [msg, setMsg] = React.useState("");
   const [sent, setSent] = React.useState(false);
   const [sending, setSending] = React.useState(false);
   const [error, setError] = React.useState("");
 
   const reasons = [
-    { id: "hello",     label: "Just saying hello"   },
-    { id: "role",      label: "About a role"        },
-    { id: "board",     label: "Board / advisory"    },
-    { id: "press",     label: "Press / podcast"     },
+    { id: "general",   label: "General enquiry"     },
+    { id: "role",      label: "Executive search"    },
+    { id: "board",     label: "Board or advisory"   },
+    { id: "press",     label: "Press"               },
   ];
 
   const onSubmit = async (e) => {
@@ -44,10 +44,10 @@ const GetInTouch = () => {
       setSending(false);
       setSent(true);
       setTimeout(() => setSent(false), 4000);
-      setName(""); setEmail(""); setMsg(""); setReason("hello");
+      setName(""); setEmail(""); setMsg(""); setReason("general");
     } catch (err) {
       setSending(false);
-      setError(err.message || "Something went wrong — email joni@juuri.me directly.");
+      setError(err.message || "Could not send. Email joni@juuri.me directly.");
     }
   };
 
@@ -62,9 +62,9 @@ const GetInTouch = () => {
         <Eyebrow muted>Get in touch</Eyebrow>
         <div style={{ fontFamily: "var(--jj-display)", fontWeight: 700, fontSize: "clamp(22px, 2.8vw, 32px)", letterSpacing: "-0.04em", lineHeight: 0.9 }}>06</div>
       </div>
-      <H2 soft="a note.">Drop me</H2>
+      <H2 soft="a message.">Send</H2>
       <Lede style={{ marginTop: 6, marginBottom: 22 }}>
-        Or email directly: <strong>joni@juuri.me</strong>. Slowest reply is about a week.
+        Direct email: <strong>joni@juuri.me</strong>. Replies within a week.
       </Lede>
 
       <form onSubmit={onSubmit} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 22 : 28 }}>
@@ -117,7 +117,7 @@ const GetInTouch = () => {
             value={msg}
             onChange={e => setMsg(e.target.value)}
             rows={isMobile ? 5 : 7}
-            placeholder="Two sentences is plenty."
+            placeholder="Brief is fine."
             style={{
               border: 0,
               borderBottom: "1px solid var(--jj-ink)",
@@ -139,7 +139,7 @@ const GetInTouch = () => {
               transition: "color 240ms var(--jj-ease)",
               maxWidth: "60%",
             }}>
-              {error ? error : sent ? "✓ Sent · I'll reply within a week" : "Encrypted in transit"}
+              {error ? error : sent ? "Sent. Reply within a week." : "Encrypted in transit"}
             </span>
             <Button type="submit" disabled={sending || !name || !email || !msg}>
               {sending ? "Sending…" : "Send"}

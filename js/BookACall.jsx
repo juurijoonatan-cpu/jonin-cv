@@ -55,7 +55,7 @@ const BookACall = () => {
           from_name: "juuri.me booking",
           name: visitorName || "Website visitor",
           email: visitorEmail || "unknown@unknown.com",
-          message: `Meeting request for ${monthName} ${pickedDate}, ${pickedTime} (30 min, Helsinki GMT+2).\n\nFrom: ${visitorName || "—"}\nReply to: ${visitorEmail || "—"}`,
+          message: `Meeting request for ${monthName} ${pickedDate}, ${pickedTime} (30 min, Helsinki GMT+2).\n\nFrom: ${visitorName || "not given"}\nReply to: ${visitorEmail || "not given"}`,
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -66,7 +66,7 @@ const BookACall = () => {
       setConfirmed(true);
     } catch (err) {
       setLoading(false);
-      setError(err.message || "Couldn't send — email joni@juuri.me directly.");
+      setError(err.message || "Could not send. Email joni@juuri.me directly.");
     }
   };
 
@@ -81,7 +81,7 @@ const BookACall = () => {
         textAlign: "center",
       }}>
         <div style={{ fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 18 }}>
-          Confirmed
+          Request sent
         </div>
         <h2 style={{
           fontFamily: "var(--jj-display)", fontWeight: 700,
@@ -89,10 +89,10 @@ const BookACall = () => {
           lineHeight: 1, letterSpacing: "-0.035em",
           margin: 0,
         }}>
-          See you {monthName} {pickedDate}, {pickedTime}.
+          {monthName} {pickedDate}, {pickedTime}.
         </h2>
         <p style={{ marginTop: 16, fontSize: 13, color: "rgba(255,255,255,0.75)", lineHeight: 1.5 }}>
-          I'll confirm the slot and send a calendar invite within a working day.
+          You will receive a calendar invite within one working day.
         </p>
         <button
           onClick={() => { setConfirmed(false); setPickedDate(null); setPickedTime(null); setVisitorName(""); setVisitorEmail(""); }}
@@ -106,7 +106,7 @@ const BookACall = () => {
             fontFamily: "inherit",
           }}
         >
-          Pick another time
+          Choose another time
         </button>
       </section>
     );
@@ -123,10 +123,10 @@ const BookACall = () => {
         <Eyebrow muted>Book a call</Eyebrow>
         <div style={{ fontFamily: "var(--jj-display)", fontWeight: 700, fontSize: "clamp(22px, 2.8vw, 32px)", letterSpacing: "-0.04em", lineHeight: 0.9 }}>05</div>
       </div>
-      <H2 soft="thirty minutes.">A focused</H2>
+      <H2 soft="thirty minutes.">Book</H2>
       <Lede style={{ marginTop: 6, marginBottom: 22 }}>
-        Short intro calls work best for boards, recruiters, and ex-colleagues.
-        Pick a slot — I confirm within a working day.
+        Introductory calls for boards, recruiters and former colleagues.
+        Select a slot. Confirmation within one working day.
       </Lede>
 
       <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr", gap: 28, alignItems: "start" }}>
@@ -204,7 +204,7 @@ const BookACall = () => {
 
           {!pickedDate && (
             <div style={{ fontSize: 11, color: "var(--jj-muted)", lineHeight: 1.5, marginTop: 6 }}>
-              Highlighted days have open slots — I usually keep one morning and one early-afternoon block each week.
+              Available days are highlighted. Weekday mornings and evenings, daytime at weekends.
             </div>
           )}
 
@@ -251,7 +251,7 @@ const BookACall = () => {
                     type="email"
                     value={visitorEmail}
                     onChange={e => setVisitorEmail(e.target.value)}
-                    placeholder="so I can confirm"
+                    placeholder="For the invite"
                   />
                   <Button
                     disabled={loading || !visitorName.trim() || !visitorEmail.trim()}

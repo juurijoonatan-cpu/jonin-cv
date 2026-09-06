@@ -17,7 +17,7 @@ const LoginScreen = ({ go, onSuccess }) => {
         localStorage.setItem("jj-visitor-name", name.trim());
         onSuccess();
       } else {
-        setError("Wrong password. Try again, or write to joni@juuri.me.");
+        setError("Incorrect password.");
         setLoading(false);
       }
     }, 450);
@@ -45,7 +45,7 @@ const LoginScreen = ({ go, onSuccess }) => {
           }}>
             <div style={{ position: "relative", zIndex: 2, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
               <Eyebrow tone="on-dark">
-                <Asterisk size={14} /> &nbsp;Welcome · Sign in to continue
+                <Asterisk size={14} /> &nbsp;Restricted access
               </Eyebrow>
               <div style={{
                 width: 26, height: 26, border: "1px solid var(--jj-paper-2)",
@@ -67,17 +67,16 @@ const LoginScreen = ({ go, onSuccess }) => {
                 maxWidth: "16ch",
                 textAlign: "center",
               }}>
-                This site
-                <span style={{ color: "rgba(255,255,255,0.45)" }}> is invite-only.</span>
+                Access
+                <span style={{ color: "rgba(255,255,255,0.45)" }}> by invitation.</span>
               </h2>
               <p style={{
                 marginTop: 18, fontSize: 12.5, lineHeight: 1.5,
                 color: "rgba(255,255,255,0.75)", maxWidth: "44ch",
                 margin: "18px auto 0", textAlign: "center",
               }}>
-                If you have a password, sign in. If you think you should have one,
-                write to{" "}
-                <span style={{ color: "white" }}>joni@juuri.me</span> and ask.
+                Enter the password you were sent. To request access, write to{" "}
+                <span style={{ color: "white" }}>joni@juuri.me</span>.
               </p>
             </div>
 
@@ -88,7 +87,7 @@ const LoginScreen = ({ go, onSuccess }) => {
             }}>
               <div>
                 <div style={{ fontSize: 8.5, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 4 }}>Access for</div>
-                <div style={{ fontSize: 12, fontWeight: 500 }}>Boards, recruiters, ex-colleagues</div>
+                <div style={{ fontSize: 12, fontWeight: 500 }}>Boards, recruiters, former colleagues</div>
               </div>
               <div>
                 <div style={{ fontSize: 8.5, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 4 }}>Updated</div>
@@ -104,14 +103,13 @@ const LoginScreen = ({ go, onSuccess }) => {
             padding: isMobile ? "28px 20px 24px" : "40px 40px 36px",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between",
           }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
               <Eyebrow muted>Sign in</Eyebrow>
               <div style={{ fontFamily: "var(--jj-display)", fontWeight: 700, fontSize: "clamp(22px, 2.8vw, 32px)", letterSpacing: "-0.04em", lineHeight: 0.9 }}>02</div>
             </div>
 
-            <form onSubmit={handleSubmit} style={{ margin: "36px 0 0" }}>
+            <form onSubmit={handleSubmit} style={{ margin: "44px 0 0" }}>
               <h3 style={{
                 fontFamily: "var(--jj-display)",
                 fontWeight: 700,
@@ -120,7 +118,7 @@ const LoginScreen = ({ go, onSuccess }) => {
                 letterSpacing: "-0.03em",
                 margin: "0 0 28px",
               }}>
-                Welcome.
+                Sign in.
               </h3>
 
               <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
@@ -157,11 +155,11 @@ const LoginScreen = ({ go, onSuccess }) => {
             </form>
 
             <div style={{
-              marginTop: 32, paddingTop: 14, borderTop: "1px solid rgba(0,0,0,0.12)",
+              marginTop: "auto", paddingTop: 14, borderTop: "1px solid rgba(0,0,0,0.12)",
               fontSize: 9.5, letterSpacing: "0.18em", textTransform: "uppercase",
               color: "var(--jj-muted)", display: "flex", justifyContent: "space-between",
             }}>
-              <span>No access? Write to joni@juuri.me</span>
+              <span>Access requests: joni@juuri.me</span>
               <span>Encrypted</span>
             </div>
           </section>

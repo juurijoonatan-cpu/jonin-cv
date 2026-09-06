@@ -1,7 +1,6 @@
-/* PublicView — the about / get-to-know page.
-   Business-tilted but warm. World map shows the abroad-with-family
-   journey (CPH → AMS → GVA → Espoo). Casual photo lives bottom-right
-   of the hero. */
+/* PublicView — the public profile page.
+   Career map shows the seven years abroad (Espoo, Billund, Rotterdam,
+   Geneva, Espoo). Photo sits bottom-right of the hero. */
 
 const PublicView = ({ go }) => {
   const isMobile = useIsMobile();
@@ -15,7 +14,7 @@ const PublicView = ({ go }) => {
           right={
             <div style={{ display: "flex", gap: 8 }}>
               <Pill onClick={() => go("landing")}>← Back</Pill>
-              <Pill tone="filled" onClick={() => go("login")}>The CV →</Pill>
+              <Pill tone="filled" onClick={() => go("cv")}>The CV</Pill>
             </div>
           }
         />
@@ -34,7 +33,7 @@ const PublicView = ({ go }) => {
           <div style={{ position: "relative", zIndex: 2, maxWidth: isMobile ? "100%" : "70%" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 28 }}>
               <Eyebrow style={{ fontWeight: 600 }}>
-                <Asterisk size={14} /> &nbsp;About me
+                <Asterisk size={14} /> &nbsp;Profile
               </Eyebrow>
             </div>
 
@@ -47,26 +46,33 @@ const PublicView = ({ go }) => {
               margin: 0,
               maxWidth: "16ch",
             }}>
-              <span style={{ animation: "jj-fade 700ms var(--jj-ease) both" }}>Hi, I'm Joni.</span><br />
-              <span style={{
-                color: "var(--jj-muted)",
-                animation: "jj-fade 1000ms var(--jj-ease) both",
-                animationDelay: "400ms",
-                display: "inline-block",
-              }}>
-                CFO in energy.<br />International by habit.
-              </span>
+              <span style={{ animation: "jj-fade 700ms var(--jj-ease) both" }}>Joni Juuri.</span>
             </h1>
+
+            <p style={{
+              fontFamily: "var(--jj-display)",
+              fontWeight: 700,
+              fontSize: "clamp(18px, 2.5vw, 30px)",
+              lineHeight: 1.08,
+              letterSpacing: "-0.03em",
+              color: "var(--jj-muted)",
+              marginTop: 10,
+              maxWidth: "20ch",
+              animation: "jj-fade 1000ms var(--jj-ease) both",
+              animationDelay: "400ms",
+            }}>
+              Chief Financial Officer.<br />Energy and infrastructure.
+            </p>
 
             <p style={{
               fontSize: 14, lineHeight: 1.55, color: "var(--jj-ink-2)",
               maxWidth: "52ch", marginTop: 26,
               animation: "jj-fade 800ms var(--jj-ease) both", animationDelay: "700ms",
             }}>
-              Seven years of senior finance work across <strong>Denmark, the Netherlands and Switzerland</strong> —
-              Siemens Wind, then Neste. A year travelling the world before that.
-              Back in Espoo since 2020, now CFO at TVO. Long-horizon capital programmes,
-              green finance, transformations measured in years, not quarters.
+              Fifteen years of senior finance leadership across power, renewables and clean technology.
+              Seven of those abroad, in <strong>Denmark, the Netherlands and Switzerland</strong>:
+              Siemens Wind, then Neste. Based in Espoo since 2020, CFO at TVO since 2025.
+              Long-horizon capital programmes, green finance, and transformation measured in years.
             </p>
 
             <div style={{
@@ -78,15 +84,12 @@ const PublicView = ({ go }) => {
                 Book a call
               </Button>
               <Button variant="ghost" onClick={() => { const el = document.getElementById('jj-touch'); if (el) window.scrollTo({ top: el.offsetTop - 16, behavior: 'smooth' }); }}>
-                Drop a note
+                Send a message
               </Button>
-              <span style={{ marginLeft: 10, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--jj-muted)" }}>
-                or just scroll
-              </span>
             </div>
           </div>
 
-          {/* Casual photo, bottom-right corner */}
+          {/* Photo, bottom-right corner */}
           <div style={{
             display: isMobile ? "none" : "block",
             position: "absolute",
@@ -105,30 +108,19 @@ const PublicView = ({ go }) => {
           }}>
             <img
               src="assets/joni-casual.jpg"
-              alt="Joni, off the clock"
+              alt="Joni Juuri"
               style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
-            <div style={{
-              position: "absolute", bottom: 8, left: 10,
-              fontSize: 8, letterSpacing: "0.22em", textTransform: "uppercase",
-              color: "var(--jj-paper-2)",
-              background: "rgba(10,10,10,0.55)",
-              padding: "3px 7px",
-              borderRadius: 4,
-              backdropFilter: "blur(2px)",
-            }}>
-              Off the clock
-            </div>
           </div>
         </section>
 
         {/* ============ COMPANY STRIP ============ */}
         <CompanyStrip />
 
-        {/* ============ WHERE I AM NOW ============ */}
+        {/* ============ CURRENT ROLE ============ */}
         <section style={{ background: "var(--jj-paper-2)", borderRadius: 18, padding: isMobile ? "24px 20px 28px" : "28px 40px 32px", marginBottom: 6 }}>
           <SectionHead num="01" />
-          <H2 soft="now.">Where I am</H2>
+          <H2 soft="role.">Current</H2>
 
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "0.32fr 0.68fr", gap: 28, marginTop: 18, alignItems: "start" }}>
             <div>
@@ -138,21 +130,20 @@ const PublicView = ({ go }) => {
 
               <Eyebrow muted style={{ display: "block", marginTop: 24, marginBottom: 8 }}>Based</Eyebrow>
               <div style={{ fontSize: 12, lineHeight: 1.5 }}>
-                Espoo, Finland. On an island you can drive onto.
+                Espoo, Finland.
               </div>
             </div>
 
             <div>
               <p style={{ fontSize: 14, lineHeight: 1.55, margin: 0 }}>
-                I lead finance for a company that generates roughly{" "}
+                I lead finance, strategy and transformation for a producer of roughly{" "}
                 <strong style={{ fontWeight: 600 }}>30% of Finland's electricity</strong>.
-                Before this, nine years at Neste across Switzerland and the Netherlands;
-                before that, offshore wind in Denmark at Siemens, and a longer run at Fortum back home.
+                Full P&L responsibility, reporting to the Board and owners.
               </p>
               <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--jj-ink-2)", marginTop: 14 }}>
-                The work is long-horizon. Capital programmes measured in billions,
-                payback measured in decades, business cases that have to stay
-                honest through three rounds of political weather. I like that.
+                The work is long-horizon: capital programmes in the billions, payback
+                across decades, and business cases that must hold through successive
+                regulatory and political cycles.
               </p>
             </div>
           </div>
@@ -169,16 +160,15 @@ const PublicView = ({ go }) => {
           position: "relative",
         }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
-            <Eyebrow tone="on-dark">A working life on the map</Eyebrow>
+            <Eyebrow tone="on-dark">Career map</Eyebrow>
             <div style={{ fontFamily: "var(--jj-display)", fontWeight: 700, fontSize: "clamp(22px, 2.8vw, 32px)", letterSpacing: "-0.04em", lineHeight: 0.9 }}>02</div>
           </div>
-          <H2 dark soft="and home.">Seven years abroad</H2>
+          <H2 dark soft="abroad.">Seven years</H2>
 
           <p style={{ fontSize: 13.5, lineHeight: 1.55, color: "rgba(255,255,255,0.75)", margin: "12px 0 24px", maxWidth: "66ch" }}>
-            <strong style={{ color: "white", fontWeight: 600 }}>Billund → Rotterdam → Geneva.</strong>{" "}
-            Siemens Wind in Billund. Then Neste in Rotterdam — we lived in Kijkduin and I biked in.
-            Then Neste in Geneva, with a one-week IMD stint in Lausanne while we were there.
-            Home to Espoo in 2020.
+            <strong style={{ color: "white", fontWeight: 600 }}>Billund, Rotterdam, Geneva.</strong>{" "}
+            Siemens Wind in Denmark from 2015. Neste in the Netherlands from 2016,
+            then Neste in Geneva from 2017. Returned to Espoo in 2020.
           </p>
 
           <WorldMap />
@@ -209,7 +199,7 @@ const PublicView = ({ go }) => {
           {/* Elsewhere — short stints off-map */}
           <div style={{ marginTop: 26 }}>
             <Eyebrow tone="on-dark" style={{ display: "block", marginBottom: 12 }}>
-              Elsewhere · short stints, off-map
+              Elsewhere
             </Eyebrow>
             <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(3, 1fr)", gap: 12 }}>
               {window.JJ_ELSEWHERE.map((e, i) => (
@@ -227,25 +217,22 @@ const PublicView = ({ go }) => {
                 </div>
               ))}
             </div>
-            <p style={{ marginTop: 14, fontSize: 11.5, lineHeight: 1.55, color: "rgba(255,255,255,0.6)", maxWidth: "66ch" }}>
-              Plus a year on the road — a family trip around the world before settling abroad for work.
-            </p>
           </div>
         </section>
 
         {/* ============ WHAT I WORK ON ============ */}
         <section style={{ background: "var(--jj-paper-2)", borderRadius: 18, padding: isMobile ? "24px 20px 28px" : "28px 40px 32px", marginBottom: 6 }}>
           <SectionHead num="03" />
-          <H2 soft="on.">What I work</H2>
+          <H2 soft="priorities.">Current</H2>
           <Lede style={{ marginTop: 4, marginBottom: 22 }}>
-            Three things take most of my attention right now.
+            Three programmes account for most of my time.
           </Lede>
 
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: 16 }}>
             {[
-              { num: "01", title: "Green finance",            body: "TVO's European Green Bond programme — the sector's first EUGBS-aligned bond (€500M, 2025). The 2026 framework adds green bank loans.", photo: "assets/photos/green-finance.jpg", photoPos: "center 35%" },
-              { num: "02", title: "Enterprise transformation", body: "An ops + finance + IT programme designed to land €130M+ in recurring annual value. Mine to deliver.",                                                                                  photo: "assets/photos/transformation.jpg", photoPos: "center center" },
-              { num: "03", title: "Capital planning",          body: "Multi-billion-euro capital programmes — business cases that survive long-horizon energy-asset economics.",                                                                            photo: "assets/photos/capital.jpg",        photoPos: "center 40%" },
+              { num: "01", title: "Green finance",            body: "TVO's European Green Bond programme. The sector's first EUGBS-aligned bond, €500M in 2025. The 2026 framework extends this to green bank loans.", photo: "assets/photos/green-finance.jpg", photoPos: "center 35%" },
+              { num: "02", title: "Enterprise transformation", body: "An operations, finance and IT programme built to deliver €130M+ in recurring annual value.",                                                                                  photo: "assets/photos/transformation.jpg", photoPos: "center center" },
+              { num: "03", title: "Capital planning",          body: "Multi-billion-euro capital programmes, and business cases built to survive long-horizon energy-asset economics.",                                                                            photo: "assets/photos/capital.jpg",        photoPos: "center 40%" },
             ].map(c => (
               <div key={c.num} style={{
                 borderRadius: 24,
@@ -291,22 +278,22 @@ const PublicView = ({ go }) => {
           </div>
         </section>
 
-        {/* ============ TIMELINE — clean, no green dots ============ */}
+        {/* ============ TRACK RECORD ============ */}
         <section style={{ background: "var(--jj-paper-2)", borderRadius: 18, padding: isMobile ? "24px 20px 28px" : "28px 40px 32px", marginBottom: 6 }}>
           <SectionHead num="04" />
-          <H2 soft="been.">Where I've</H2>
+          <H2 soft="record.">Track</H2>
           <Lede style={{ marginTop: 4, marginBottom: 22 }}>
-            Fifteen years of senior finance leadership across power, renewables, wind, and clean tech.
+            Fifteen years of senior finance leadership across power, renewables and clean technology.
           </Lede>
 
           <div>
             {[
-              ["2025 — Now",   "Chief Financial Officer",                          "TVO. Finland."],
-              ["2020 — 2025",  "VP Business Finance",                              "Neste. Finland."],
-              ["2016 — 2020",  "VP Business Finance / General Manager",            "Neste. Switzerland, Netherlands."],
-              ["2015 — 2016",  "Head of Performance Control & Business Partner",   "Siemens Wind Power. Denmark."],
-              ["2010 — 2015",  "Head of Planning & Reporting",                     "Fortum Power and Heat. Finland."],
-              ["Pre-2010",     "Earlier roles — controller, analyst",              "WinWind. Nokia / NSN."],
+              ["2025–present", "Chief Financial Officer",                          "TVO. Finland."],
+              ["2020–2025",    "VP Business Finance",                              "Neste. Finland."],
+              ["2016–2020",    "VP Business Finance / General Manager",            "Neste. Switzerland, Netherlands."],
+              ["2015–2016",    "Head of Performance Control & Business Partner",   "Siemens Wind Power. Denmark."],
+              ["2010–2015",    "Head of Planning & Reporting",                     "Fortum Power and Heat. Finland."],
+              ["Pre-2010",     "Controller and analyst roles",              "WinWind. Nokia / NSN."],
             ].map(([when, what, where], i) => (
               isMobile ? (
                 <div key={i} style={{ padding: "10px 0", borderTop: i === 0 ? "0" : "1px solid rgba(0,0,0,0.12)" }}>
@@ -346,10 +333,10 @@ const PublicView = ({ go }) => {
           marginBottom: 6,
         }}>
           <SectionHead num="07" dark />
-          <H2 dark soft="hello.">Say</H2>
+          <H2 dark soft="touch.">Get in</H2>
           <p style={{ fontSize: 14, color: "var(--jj-paper-2)", margin: "16px 0 22px", maxWidth: "56ch", lineHeight: 1.5 }}>
-            Boards, recruiters, ex-colleagues, founders building in energy — I read every email.
-            Slowest reply is about a week.
+            Boards, recruiters, former colleagues and founders in energy.
+            Every message is read. Replies within a week.
           </p>
 
           <div style={{
