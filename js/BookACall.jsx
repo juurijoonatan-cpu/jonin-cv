@@ -12,7 +12,7 @@ const WEB3FORMS_KEY = "02d289c3-66d9-4b55-9f91-5dd2b00b7f1e";
 const WEEKDAY_TIMES = ["06:00", "07:00", "08:00", "17:00", "18:00", "19:00"];
 const WEEKEND_TIMES = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"];
 
-const BookACall = () => {
+const BookACall = ({ open, onToggle }) => {
   const isMobile = useIsMobile();
   const today = new Date();
   const [monthOffset, setMonthOffset] = React.useState(0);
@@ -124,12 +124,32 @@ const BookACall = () => {
         <div style={{ fontFamily: "var(--jj-display)", fontWeight: 700, fontSize: "clamp(22px, 2.8vw, 32px)", letterSpacing: "-0.04em", lineHeight: 0.9 }}>05</div>
       </div>
       <H2 soft="thirty minutes.">Book</H2>
-      <Lede style={{ marginTop: 6, marginBottom: 22 }}>
+      <Lede style={{ marginTop: 6, marginBottom: 18 }}>
         Introductory calls for boards, recruiters and former colleagues.
         Select a slot. Confirmation within one working day.
       </Lede>
 
-      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr", gap: 28, alignItems: "start" }}>
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={open}
+        style={{
+          display: "inline-flex", alignItems: "center", gap: 8,
+          background: "transparent", border: "1px solid var(--jj-ink)",
+          borderRadius: 999, padding: "8px 16px",
+          fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase",
+          color: "var(--jj-ink)", cursor: "pointer", fontFamily: "inherit",
+        }}
+      >
+        {open ? "Hide calendar" : "Show calendar"}
+        <span style={{ display: "inline-flex", transform: `rotate(${open ? 180 : 0}deg)`, transition: "transform 220ms var(--jj-ease)" }}>
+          <ArrowGlyph direction="down" />
+        </span>
+      </button>
+
+      <div className={`jj-collapse${open ? " jj-collapse--open" : ""}`}>
+      <div>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr", gap: 28, alignItems: "start", paddingTop: 22 }}>
         {/* Calendar grid */}
         <div>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
@@ -279,6 +299,8 @@ const BookACall = () => {
             <span>30 min</span>
           </div>
         </div>
+      </div>
+      </div>
       </div>
     </section>
   );
