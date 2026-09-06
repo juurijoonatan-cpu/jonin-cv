@@ -234,8 +234,8 @@ const PrivateCV = ({ go, signOut }) => {
               <H2 soft="summary.">Executive</H2>
               <Lede style={{ marginTop: 6 }}>
                 CFO with fifteen years of senior finance leadership in the global energy sector.
-                Currently responsible for finance, strategy and transformation at one of Finland's
-                largest power producers, generating approximately 30% of national electricity.
+                Currently responsible for finance, strategy and transformation at Finland's
+                largest nuclear power producer, generating approximately 30% of national electricity.
               </Lede>
               <Lede style={{ marginTop: 4 }}>
                 Energy infrastructure and large-scale capital assets, multi-jurisdictional finance
@@ -337,7 +337,7 @@ const PrivateCV = ({ go, signOut }) => {
             ]}
           />
           <Role
-            dates="2010–2015"
+            dates="2010–2014"
             sub="Clean energy"
             title="Head of Planning & Reporting"
             company="Fortum Power and Heat Oy. Finland."
@@ -388,7 +388,7 @@ const PrivateCV = ({ go, signOut }) => {
 
           <Role dates="2026–present" sub="Current" title="Board Member" company="Posiva Solutions Oy. Finland." />
           <Role
-            dates="2011–2023" sub="Founder"
+            dates="2009–2022" sub="Founder"
             title="Chairman of the Board / Founder"
             company="New Energy Finland Oy. Investment and advisory firm focused on clean technology."
             bullets={[
@@ -396,7 +396,7 @@ const PrivateCV = ({ go, signOut }) => {
             ]}
           />
           <Role dates="2016–2020" sub="Subsidiary boards" title="Member of the Boards" company="Neste Switzerland, Neste Netherlands, and Neste Belgium." />
-          <Role dates="2016–2018" sub="Treasurer" title="Board Member & Treasurer" company="Finnish-Dutch Chamber of Commerce." />
+          <Role dates="2017–2018" sub="Treasurer" title="Board Member & Treasurer" company="Finnish-Dutch Chamber of Commerce." />
         </Card>
 
         {/* 06 — Tools & Languages */}

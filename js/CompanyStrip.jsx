@@ -1,4 +1,12 @@
-/* CompanyStrip — logos only, infinite scroll, no mouse interaction. */
+/* CompanyStrip — logos only, infinite scroll, no mouse interaction.
+   The track is two identical copies of LOGOS end to end; the keyframe moves
+   exactly -50% so the seam is invisible. Spacing between logos is a
+   marginRight on every item, not a flex `gap` on the container — `gap`
+   only inserts space BETWEEN items (n-1 gaps for n items), so duplicating
+   the list and moving -50% lands you half a gap short every cycle and the
+   strip visibly jumps once per 55s loop. A trailing margin on every item
+   (including the last) makes each 10-logo set an identical, self-contained
+   width, so two of them really are exactly double and -50% is exact. */
 
 const LOGOS = [
   { src: "assets/logos/tvo.png",       alt: "TVO" },
@@ -28,11 +36,9 @@ const CompanyStrip = () => {
         className="jj-marquee jj-marquee--locked"
         style={{
           display: "flex",
-          gap: 80,
           alignItems: "center",
           animation: "jj-marquee 55s linear infinite",
           width: "max-content",
-          paddingLeft: 40,
           willChange: "transform",
           transform: "translateZ(0)",
         }}
@@ -44,6 +50,7 @@ const CompanyStrip = () => {
             justifyContent: "center",
             height: 56,
             flexShrink: 0,
+            marginRight: 80,
           }}>
             <img
               src={c.src}
