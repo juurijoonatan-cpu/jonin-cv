@@ -89,28 +89,47 @@ const PublicView = ({ go }) => {
             </div>
           </div>
 
-          {/* Photo, bottom-right corner */}
+          {/* Photo, bottom-right corner, with a handwritten margin note */}
           <div style={{
             display: isMobile ? "none" : "block",
             position: "absolute",
             right: 32,
             bottom: 28,
             width: "clamp(140px, 18vw, 220px)",
-            aspectRatio: "0.86 / 1",
-            borderRadius: 18,
-            overflow: "hidden",
-            zIndex: 1,
-            transform: "rotate(2.2deg)",
-            border: "1px solid var(--jj-ink)",
-            background: "var(--jj-warm)",
-            animation: "jj-fade 1100ms var(--jj-ease) both",
-            animationDelay: "600ms",
           }}>
-            <img
-              src="assets/joni-casual.jpg"
-              alt="Joni Juuri"
-              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-            />
+            <div style={{
+              aspectRatio: "0.86 / 1",
+              borderRadius: 18,
+              overflow: "hidden",
+              zIndex: 1,
+              transform: "rotate(2.2deg)",
+              border: "1px solid var(--jj-ink)",
+              background: "var(--jj-warm)",
+              animation: "jj-fade 1100ms var(--jj-ease) both",
+              animationDelay: "600ms",
+            }}>
+              <img
+                src="assets/joni-casual.jpg"
+                alt="Joni Juuri"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
+            <div style={{
+              position: "absolute",
+              left: -16,
+              bottom: -14,
+              fontFamily: "var(--jj-hand)",
+              fontWeight: 600,
+              fontSize: 23,
+              lineHeight: 1,
+              color: "var(--jj-ink)",
+              transform: "rotate(-7deg)",
+              whiteSpace: "nowrap",
+              animation: "jj-fade 900ms var(--jj-ease) both",
+              animationDelay: "1000ms",
+            }}>
+              off the clock
+            </div>
           </div>
         </section>
 
@@ -136,8 +155,9 @@ const PublicView = ({ go }) => {
 
             <div>
               <p style={{ fontSize: 14, lineHeight: 1.55, margin: 0 }}>
-                I lead finance, strategy and transformation for a producer of roughly{" "}
-                <strong style={{ fontWeight: 600 }}>30% of Finland's electricity</strong>.
+                I lead finance, strategy and transformation for Finland's largest nuclear
+                power producer, generating roughly{" "}
+                <strong style={{ fontWeight: 600 }}>30% of the country's electricity</strong>.
                 Full P&L responsibility, reporting to the Board and owners.
               </p>
               <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--jj-ink-2)", marginTop: 14 }}>
@@ -292,7 +312,7 @@ const PublicView = ({ go }) => {
               ["2020–2025",    "VP Business Finance",                              "Neste. Finland."],
               ["2016–2020",    "VP Business Finance / General Manager",            "Neste. Switzerland, Netherlands."],
               ["2015–2016",    "Head of Performance Control & Business Partner",   "Siemens Wind Power. Denmark."],
-              ["2010–2015",    "Head of Planning & Reporting",                     "Fortum Power and Heat. Finland."],
+              ["2010–2014",    "Head of Planning & Reporting",                     "Fortum Power and Heat. Finland."],
               ["Pre-2010",     "Controller and analyst roles",              "WinWind. Nokia / NSN."],
             ].map(([when, what, where], i) => (
               isMobile ? (
