@@ -122,8 +122,8 @@ const CloudFace = ({ typing }) => {
         marginTop: 8,
       }}>
         {typing
-          ? "Eyes shut — your password is safe"
-          : "Hi. I won't peek."}
+          ? "Eyes closed while you type"
+          : "Password is never stored"}
       </div>
     </div>
   );

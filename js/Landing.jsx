@@ -51,24 +51,29 @@ const Landing = ({ go }) => {
                 display: "inline-block",
                 animation: "jj-fade 700ms var(--jj-ease) both",
               }}>
-                Hello,
+                Joni
               </span>
               <br />
               <span style={{
                 display: "inline-block",
                 animation: "jj-rise 800ms var(--jj-ease-out) both",
                 animationDelay: "180ms",
-              }}>I'm Joni.</span>
-              <br />
-              <span style={{
-                color: "var(--jj-muted)",
-                animation: "jj-fade 1000ms var(--jj-ease) both",
-                animationDelay: "500ms",
-                display: "inline-block",
-              }}>
-                Come in.
-              </span>
+              }}>Juuri.</span>
             </h1>
+
+            <p style={{
+              fontFamily: "var(--jj-display)",
+              fontWeight: 700,
+              fontSize: "clamp(18px, 2.5vw, 30px)",
+              lineHeight: 1.05,
+              letterSpacing: "-0.03em",
+              color: "var(--jj-muted)",
+              marginTop: 10,
+              animation: "jj-fade 1000ms var(--jj-ease) both",
+              animationDelay: "500ms",
+            }}>
+              Chief Financial Officer. Energy.
+            </p>
 
             <p style={{
               fontSize: 14,
@@ -79,8 +84,7 @@ const Landing = ({ go }) => {
               animation: "jj-fade 800ms var(--jj-ease) both",
               animationDelay: "900ms",
             }}>
-              A personal site for recruiters, boards and colleagues.
-              Two things to explore — pick whichever suits you.
+              Two sections: a short professional profile, and the full executive CV.
             </p>
           </div>
 
@@ -89,19 +93,19 @@ const Landing = ({ go }) => {
         {/* Two choice cards */}
         <section style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 6 }}>
           <ChoiceCard
-            eyebrow="01 · Get to know"
-            title="The about."
-            body="A few notes on where I'm from, where I've worked, what I'm working on now, and how to reach me."
-            footnote="About me"
+            eyebrow="01 · Profile"
+            title="The profile."
+            body="Background, current mandate, and the route through Denmark, the Netherlands and Switzerland."
+            footnote="Profile"
             onClick={() => go("public")}
             style={{ animation: "jj-fade 800ms var(--jj-ease) both", animationDelay: "1100ms" }}
           />
           <ChoiceCard
             dark
-            eyebrow="02 · By invitation"
+            eyebrow="02 · Full record"
             title="The CV."
-            body="Full executive CV. Phone, role detail, marquee numbers, board positions. For people I've sent an invitation to — or who write and ask."
-            footnote="Full executive CV"
+            body="Roles, mandates, board positions, figures, and direct contact details."
+            footnote="Executive CV"
             onClick={() => go("cv")}
             style={{ animation: "jj-fade 800ms var(--jj-ease) both", animationDelay: "1300ms" }}
           />
@@ -119,7 +123,7 @@ const Landing = ({ go }) => {
               ["Based in", "Espoo, Finland"],
               ["At", "TVO · CFO"],
               ["Reach", "joni@juuri.me"],
-              ["Or", "Book a call"],
+              ["Notice", "Three months"],
             ].map(([k, v]) => (
               <div key={k}>
                 <div style={{ fontSize: 8.5, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--jj-muted)", marginBottom: 4 }}>{k}</div>

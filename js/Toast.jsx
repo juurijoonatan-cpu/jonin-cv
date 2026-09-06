@@ -2,6 +2,7 @@
    slides in from the top-right after a delay. Dismissible. */
 
 const Toast = ({ delay = 1400 }) => {
+  const isMobile = useIsMobile();
   const [visible, setVisible] = React.useState(false);
   const [dismissed, setDismissed] = React.useState(() => sessionStorage.getItem("jj-toast-dismissed") === "1");
 
@@ -27,8 +28,10 @@ const Toast = ({ delay = 1400 }) => {
       aria-live="polite"
       style={{
         position: "fixed",
-        top: 18,
-        right: 18,
+        top: isMobile ? "auto" : 72,
+        bottom: isMobile ? 12 : "auto",
+        right: isMobile ? 12 : 18,
+        left: isMobile ? 12 : "auto",
         zIndex: 80,
         background: "var(--jj-ink)",
         color: "var(--jj-paper-2)",
@@ -37,9 +40,9 @@ const Toast = ({ delay = 1400 }) => {
         display: "flex",
         alignItems: "flex-start",
         gap: 14,
-        maxWidth: 360,
+        maxWidth: isMobile ? "none" : 360,
         boxShadow: "0 12px 40px -20px rgba(0,0,0,0.45)",
-        transform: visible ? "translateY(0)" : "translateY(-120%)",
+        transform: visible ? "translateY(0)" : `translateY(${isMobile ? "120%" : "-120%"})`,
         opacity: visible ? 1 : 0,
         transition: "transform 480ms var(--jj-ease-out), opacity 240ms var(--jj-ease)",
         fontFamily: "var(--jj-body)",
@@ -64,7 +67,7 @@ const Toast = ({ delay = 1400 }) => {
           color: "rgba(255,255,255,0.55)",
           marginBottom: 5,
         }}>
-          Status · just in
+          Status
         </div>
         <div style={{
           fontSize: 12.5,

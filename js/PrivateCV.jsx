@@ -1,5 +1,5 @@
 /* PrivateCV — full-fidelity CV, ported from Joni_Juuri_CV.html.
-   Adds a thin signed-in top bar with sign-out + download. */
+   Thin signed-in top bar carries the PDF download and the way back. */
 
 const Role = ({ dates, sub, title, company, stat, bullets, dark }) => {
   const isMobile = useIsMobile();
@@ -233,15 +233,15 @@ const PrivateCV = ({ go, signOut }) => {
             <div>
               <H2 soft="summary.">Executive</H2>
               <Lede style={{ marginTop: 6 }}>
-                Strategic CFO with 15+ years of senior finance leadership across the global energy sector.
-                Currently steering finance, strategy, and transformation for one of Finland's largest power
-                producers, generating approximately 30% of national electricity.
+                CFO with fifteen years of senior finance leadership in the global energy sector.
+                Currently responsible for finance, strategy and transformation at one of Finland's
+                largest power producers, generating approximately 30% of national electricity.
               </Lede>
               <Lede style={{ marginTop: 4 }}>
-                Combines deep energy infrastructure and large-scale capital-asset knowledge with a proven record of leading
-                multi-jurisdictional finance transformations and constructing sustainable, decision-ready
-                business cases for multi-billion-euro capital programs. Trusted board, owner, and investor
-                partner experienced in IFRS, public-company readiness, project finance, and long-horizon capital planning.
+                Energy infrastructure and large-scale capital assets, multi-jurisdictional finance
+                transformation, and decision-ready business cases for multi-billion-euro capital
+                programmes. Board, owner and investor counterpart in IFRS, public-company readiness,
+                project finance and long-horizon capital planning.
               </Lede>
             </div>
           </div>
@@ -252,7 +252,7 @@ const PrivateCV = ({ go, signOut }) => {
           <SectionHead num="02" />
           <H2 soft="expertise.">Areas of</H2>
           <Lede style={{ marginTop: 3, marginBottom: 8 }}>
-            Ten focus areas where I create durable value for shareholders, boards, and operators.
+            Ten areas of concentration across finance, capital and governance.
           </Lede>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
             {[
@@ -286,11 +286,11 @@ const PrivateCV = ({ go, signOut }) => {
           <SectionHead num="03" />
           <H2 soft="experience.">Professional</H2>
           <Lede style={{ marginTop: 10, marginBottom: 24 }}>
-            Fifteen years of senior finance leadership across power generation, renewables, wind, and clean technology.
+            Fifteen years of senior finance leadership across power generation, renewables and clean technology.
           </Lede>
 
           <Role
-            dates="2025 — Present"
+            dates="2025–present"
             sub="Current"
             title="Chief Financial Officer"
             company="TVO, Teollisuuden Voima Oyj. Finland."
@@ -306,7 +306,7 @@ const PrivateCV = ({ go, signOut }) => {
             ]}
           />
           <Role
-            dates="2016 — 2025"
+            dates="2016–2025"
             sub="Nine years"
             title="Vice President, Business Finance / General Manager"
             company="Neste. Switzerland, Netherlands and Finland."
@@ -322,7 +322,7 @@ const PrivateCV = ({ go, signOut }) => {
             ]}
           />
           <Role
-            dates="2015 — 2016"
+            dates="2015–2016"
             sub="Offshore wind"
             title="Head of Performance Control & Business Partner"
             company="Siemens Wind Power A/S. Denmark."
@@ -337,7 +337,7 @@ const PrivateCV = ({ go, signOut }) => {
             ]}
           />
           <Role
-            dates="2010 — 2015"
+            dates="2010–2015"
             sub="Clean energy"
             title="Head of Planning & Reporting"
             company="Fortum Power and Heat Oy. Finland."
@@ -359,7 +359,7 @@ const PrivateCV = ({ go, signOut }) => {
           <SectionHead num="04" dark />
           <H2 dark soft="programs.">Education &amp;</H2>
           <Lede dark style={{ marginTop: 10, marginBottom: 24 }}>
-            Formal education and a deliberate, ongoing investment in executive development.
+            Formal education and continuing executive development.
           </Lede>
 
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 28 : 40, alignItems: "start" }}>
@@ -386,17 +386,17 @@ const PrivateCV = ({ go, signOut }) => {
             Governance roles across energy, clean technology, and bilateral commerce.
           </Lede>
 
-          <Role dates="2026 — Present" sub="Current" title="Board Member" company="Posiva Solutions Oy. Finland." />
+          <Role dates="2026–present" sub="Current" title="Board Member" company="Posiva Solutions Oy. Finland." />
           <Role
-            dates="2011 — 2023" sub="Founder"
+            dates="2011–2023" sub="Founder"
             title="Chairman of the Board / Founder"
             company="New Energy Finland Oy. Investment and advisory firm focused on clean technology."
             bullets={[
               "Founded and chaired a clean-technology investment and advisory firm. Led portfolio development and exits, including the IPO and exit from Nightingale Health (2021).",
             ]}
           />
-          <Role dates="2016 — 2020" sub="Subsidiary boards" title="Member of the Boards" company="Neste Switzerland, Neste Netherlands, and Neste Belgium." />
-          <Role dates="2016 — 2018" sub="Treasurer" title="Board Member & Treasurer" company="Finnish-Dutch Chamber of Commerce." />
+          <Role dates="2016–2020" sub="Subsidiary boards" title="Member of the Boards" company="Neste Switzerland, Neste Netherlands, and Neste Belgium." />
+          <Role dates="2016–2018" sub="Treasurer" title="Board Member & Treasurer" company="Finnish-Dutch Chamber of Commerce." />
         </Card>
 
         {/* 06 — Tools & Languages */}
