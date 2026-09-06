@@ -93,17 +93,19 @@ const PublicView = ({ go }) => {
             </div>
           </div>
 
-          {/* Photo, bottom-right corner, with a handwritten margin note */}
+          {/* Photo, bottom-right corner, with a handwritten margin note.
+              Frame is landscape to match the source (1.1:1), so the whole
+              sailing scene reads rather than being cropped to a tall sliver. */}
           <div style={{
             display: isMobile ? "none" : "block",
             position: "absolute",
             right: 32,
-            bottom: 28,
-            width: "clamp(140px, 18vw, 220px)",
+            bottom: 34,
+            width: "clamp(170px, 24vw, 300px)",
           }}>
             <div style={{
-              aspectRatio: "0.86 / 1",
-              borderRadius: 18,
+              aspectRatio: "1.1 / 1",
+              borderRadius: 16,
               overflow: "hidden",
               zIndex: 1,
               transform: "rotate(2.2deg)",
@@ -113,18 +115,22 @@ const PublicView = ({ go }) => {
               animationDelay: "600ms",
             }}>
               <img
-                src="assets/joni-casual.jpg"
-                alt="Joni Juuri"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                src="assets/joni-sailing.jpg"
+                alt="Joni Juuri sailing"
+                style={{
+                  width: "100%", height: "100%",
+                  objectFit: "cover", objectPosition: "center 45%",
+                  display: "block",
+                }}
               />
             </div>
             <div style={{
               position: "absolute",
-              left: -16,
-              bottom: -14,
+              left: -14,
+              bottom: -18,
               fontFamily: "var(--jj-hand)",
               fontWeight: 600,
-              fontSize: 23,
+              fontSize: 24,
               lineHeight: 1,
               color: "var(--jj-ink)",
               transform: "rotate(-7deg)",

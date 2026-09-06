@@ -9,26 +9,33 @@
    thread can guarantee at 60fps, and shows up as stutter. Both directions
    are kept (that's the crossing-lines look), each cut to a count that
    stays visually just as busy — the paths overlap heavily at this
-   opacity — but is a fraction of the paint cost: 16 animated strokes
+   opacity — but is a fraction of the paint cost: 24 animated strokes
    total instead of 72. */
-const BackgroundPaths = ({ position = 1, color = "var(--jj-ink)", count = 8, opacity = 1 }) => {
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    // Wait one frame so the initial 0-opacity render commits before we fade in.
-    const id = requestAnimationFrame(() => setMounted(true));
-    return () => cancelAnimationFrame(id);
-  }, []);
+const BackgroundPaths = ({ position = 1, color = "var(--jj-ink)", count = 12, opacity = 1 }) => {
 
+  /* Geometry, width and opacity are all normalised across `count` rather than
+     driven by the raw loop index. The original fan was tuned for 36 lines, so
+     indexing directly meant a smaller count silently drew only the first few
+     lines — the faintest, thinnest ones, bunched into a narrow band. Mapping
+     i onto 0..1 and back onto the original 36-line span keeps the fan the same
+     size and the same brightness range at any count. */
   const paths = React.useMemo(() => {
-    return Array.from({ length: count }, (_, i) => ({
-      id: i,
-      d: `M-${380 - i * 5 * position} -${189 + i * 6}` +
-         `C-${380 - i * 5 * position} -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${152 - i * 5 * position} ${343 - i * 6}` +
-         `C${616 - i * 5 * position} ${470 - i * 6} ${684 - i * 5 * position} ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
-      width: 0.5 + i * 0.03,
-      duration: 20 + (i % 7) * 1.4,
-      delay: (i % 9) * 0.6,
-    }));
+    const span = Math.max(count - 1, 1);
+    return Array.from({ length: count }, (_, i) => {
+      const t = i / span;          // 0..1 across however many lines we draw
+      const k = t * 35;            // remapped onto the original 36-line geometry
+      const n = (v) => v.toFixed(1);
+      return {
+        id: i,
+        d: `M-${n(380 - k * 5 * position)} -${n(189 + k * 6)}` +
+           `C-${n(380 - k * 5 * position)} -${n(189 + k * 6)} -${n(312 - k * 5 * position)} ${n(216 - k * 6)} ${n(152 - k * 5 * position)} ${n(343 - k * 6)}` +
+           `C${n(616 - k * 5 * position)} ${n(470 - k * 6)} ${n(684 - k * 5 * position)} ${n(875 - k * 6)} ${n(684 - k * 5 * position)} ${n(875 - k * 6)}`,
+        width: 0.5 + t * 1.05,
+        strokeOpacity: 0.10 + t * 0.62,
+        duration: 20 + (i % 7) * 1.4,
+        delay: (i % 9) * 0.6,
+      };
+    });
   }, [position, count]);
 
   return (
@@ -38,8 +45,7 @@ const BackgroundPaths = ({ position = 1, color = "var(--jj-ink)", count = 8, opa
         position: "absolute",
         inset: 0,
         pointerEvents: "none",
-        opacity: mounted ? opacity : 0,
-        transition: "opacity 1200ms var(--jj-ease)",
+        opacity,
       }}
       aria-hidden
     >
@@ -56,7 +62,7 @@ const BackgroundPaths = ({ position = 1, color = "var(--jj-ink)", count = 8, opa
             d={p.d}
             stroke="currentColor"
             strokeWidth={p.width}
-            strokeOpacity={0.08 + p.id * 0.02}
+            strokeOpacity={p.strokeOpacity}
             strokeLinecap="round"
             style={{
               strokeDasharray: 1400,
@@ -70,26 +76,32 @@ const BackgroundPaths = ({ position = 1, color = "var(--jj-ink)", count = 8, opa
   );
 };
 
-const BackgroundPathsLayer = ({ inverted, opacity = 1 }) => {
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    const id = requestAnimationFrame(() => setMounted(true));
-    return () => cancelAnimationFrame(id);
-  }, []);
-  return (
-    <div style={{
-      position: "absolute",
-      inset: 0,
-      opacity: mounted ? opacity : 0,
-      transition: "opacity 900ms var(--jj-ease)",
-      pointerEvents: "none",
-      contain: "strict",
-    }}>
-      <BackgroundPaths position={1}  color={inverted ? "var(--jj-paper-2)" : "var(--jj-ink)"} />
-      <BackgroundPaths position={-1} color={inverted ? "var(--jj-paper-2)" : "var(--jj-ink)"} />
-    </div>
-  );
-};
+/* This and BackgroundPaths both used to hold the layer at opacity:0 until a
+   `mounted` state was flipped inside requestAnimationFrame, purely to avoid a
+   flash before a fade-in transition. If that frame never lands, the layer is
+   stuck invisible for good — which is exactly what was happening, and every
+   earlier screenshot check missed it because the test harness forces
+   opacity:1 when it disables animations. Swapping the JS gate for a CSS
+   keyframe hit the same class of problem from the other side (an animation
+   that never advances leaves it at the 0 of its `from` state).
+
+   So there is no reveal gate at all now: the layer just renders at its target
+   opacity. These are slow-drifting decorative lines at 0.32 opacity behind
+   hero copy that does its own fade-in — nothing here needs to be sequenced,
+   and this way there is no state, no timing, and no way for it to end up
+   invisible. */
+const BackgroundPathsLayer = ({ inverted, opacity = 1 }) => (
+  <div style={{
+    position: "absolute",
+    inset: 0,
+    opacity,
+    pointerEvents: "none",
+    contain: "layout paint",
+  }}>
+    <BackgroundPaths position={1}  color={inverted ? "var(--jj-paper-2)" : "var(--jj-ink)"} />
+    <BackgroundPaths position={-1} color={inverted ? "var(--jj-paper-2)" : "var(--jj-ink)"} />
+  </div>
+);
 
 window.BackgroundPaths = BackgroundPaths;
 window.BackgroundPathsLayer = BackgroundPathsLayer;
