@@ -22,12 +22,14 @@ const LOGOS = [
 ];
 
 const CompanyStrip = () => {
+  const isMobile = useIsMobile();
+  const gap = isMobile ? 44 : 80;
   const items = [...LOGOS, ...LOGOS]; // duplicate for seamless loop
   return (
     <div style={{
       background: "var(--jj-paper-2)",
       borderRadius: 18,
-      padding: "30px 0",
+      padding: isMobile ? "20px 0" : "30px 0",
       marginBottom: 6,
       overflow: "hidden",
       position: "relative",
@@ -50,18 +52,18 @@ const CompanyStrip = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            height: 56,
+            height: isMobile ? 38 : 56,
             flexShrink: 0,
-            marginRight: 80,
+            marginRight: gap,
           }}>
             <img
               src={c.src}
               alt={c.alt}
               draggable={false}
               style={{
-                height: 44,
+                height: isMobile ? 28 : 44,
                 width: "auto",
-                maxWidth: 200,
+                maxWidth: isMobile ? 128 : 200,
                 objectFit: "contain",
                 userSelect: "none",
                 pointerEvents: "none",
@@ -73,12 +75,12 @@ const CompanyStrip = () => {
 
       {/* Soft fade edges */}
       <div style={{
-        position: "absolute", top: 0, bottom: 0, left: 0, width: 80,
+        position: "absolute", top: 0, bottom: 0, left: 0, width: isMobile ? 40 : 80,
         background: "linear-gradient(90deg, var(--jj-paper-2), transparent)",
         pointerEvents: "none",
       }} />
       <div style={{
-        position: "absolute", top: 0, bottom: 0, right: 0, width: 80,
+        position: "absolute", top: 0, bottom: 0, right: 0, width: isMobile ? 40 : 80,
         background: "linear-gradient(270deg, var(--jj-paper-2), transparent)",
         pointerEvents: "none",
       }} />

@@ -16,11 +16,11 @@ const Landing = ({ go }) => {
         <section style={{
           background: "var(--jj-paper-2)",
           borderRadius: 18,
-          padding: isMobile ? "40px 20px 40px" : "70px 40px 60px",
+          padding: isMobile ? "34px 20px 34px" : "70px 40px 60px",
           marginBottom: 6,
           position: "relative",
           overflow: "hidden",
-          minHeight: 360,
+          minHeight: isMobile ? 290 : 360,
         }}>
           {/* Subtle background paths — only on the right 45%, very low opacity */}
           <div style={{
@@ -126,8 +126,8 @@ const Landing = ({ go }) => {
               ["Notice", "Three months"],
             ].map(([k, v]) => (
               <div key={k}>
-                <div style={{ fontSize: 8.5, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--jj-muted)", marginBottom: 4 }}>{k}</div>
-                <div style={{ fontSize: 12, fontWeight: 500 }}>{v}</div>
+                <div style={{ fontSize: isMobile ? 9.5 : 8.5, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--jj-muted)", marginBottom: 4 }}>{k}</div>
+                <div style={{ fontSize: isMobile ? 13 : 12, fontWeight: 500 }}>{v}</div>
               </div>
             ))}
           </div>

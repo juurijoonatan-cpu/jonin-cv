@@ -30,7 +30,7 @@ const PublicView = ({ go }) => {
         <section style={{
           background: "var(--jj-paper-2)",
           borderRadius: 18,
-          padding: isMobile ? "36px 20px 36px" : "56px 40px 56px",
+          padding: isMobile ? "30px 20px 44px" : "56px 40px 56px",
           marginBottom: 6,
           position: "relative",
           overflow: "hidden",
@@ -97,18 +97,19 @@ const PublicView = ({ go }) => {
               Frame is landscape to match the source (1.1:1), so the whole
               sailing scene reads rather than being cropped to a tall sliver. */}
           <div style={{
-            display: isMobile ? "none" : "block",
-            position: "absolute",
-            right: 32,
-            bottom: 34,
-            width: "clamp(170px, 24vw, 300px)",
+            position: isMobile ? "relative" : "absolute",
+            right: isMobile ? "auto" : 32,
+            bottom: isMobile ? "auto" : 34,
+            width: isMobile ? "calc(100% - 10px)" : "clamp(170px, 24vw, 300px)",
+            margin: isMobile ? "34px auto 10px" : 0,
+            zIndex: 2,
           }}>
             <div style={{
               aspectRatio: "1.1 / 1",
               borderRadius: 16,
               overflow: "hidden",
               zIndex: 1,
-              transform: "rotate(2.2deg)",
+              transform: isMobile ? "rotate(-1.4deg)" : "rotate(2.2deg)",
               border: "1px solid var(--jj-ink)",
               background: "var(--jj-warm)",
               animation: "jj-fade 1100ms var(--jj-ease) both",
@@ -126,14 +127,14 @@ const PublicView = ({ go }) => {
             </div>
             <div style={{
               position: "absolute",
-              left: -14,
-              bottom: -18,
+              left: isMobile ? 2 : -14,
+              bottom: isMobile ? -20 : -18,
               fontFamily: "var(--jj-hand)",
               fontWeight: 600,
-              fontSize: 24,
+              fontSize: isMobile ? 26 : 24,
               lineHeight: 1,
               color: "var(--jj-ink)",
-              transform: "rotate(-7deg)",
+              transform: isMobile ? "rotate(-5deg)" : "rotate(-7deg)",
               whiteSpace: "nowrap",
               animation: "jj-fade 900ms var(--jj-ease) both",
               animationDelay: "1000ms",
@@ -215,7 +216,7 @@ const PublicView = ({ go }) => {
                 borderTop: "1px solid rgba(255,255,255,0.18)",
               }}>
                 <div style={{
-                  fontSize: 8.5, letterSpacing: "0.22em", textTransform: "uppercase",
+                  fontSize: isMobile ? 9.5 : 8.5, letterSpacing: "0.2em", textTransform: "uppercase",
                   color: "rgba(255,255,255,0.5)", marginBottom: 6,
                 }}>
                   Leg {String(i + 1).padStart(2, "0")} · {leg.years}
@@ -377,7 +378,7 @@ const PublicView = ({ go }) => {
               ["Location", "Espoo, Finland"],
             ].map(([k, v]) => (
               <div key={k}>
-                <div style={{ fontSize: 8.5, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 4 }}>{k}</div>
+                <div style={{ fontSize: isMobile ? 9.5 : 8.5, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 4 }}>{k}</div>
                 <div style={{ fontSize: 13, fontWeight: 500 }}>{v}</div>
               </div>
             ))}

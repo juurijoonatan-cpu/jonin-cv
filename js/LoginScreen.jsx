@@ -61,10 +61,11 @@ const LoginScreen = ({ go, onSuccess }) => {
             background: "var(--jj-ink)",
             color: "var(--jj-paper-2)",
             borderRadius: 18,
-            padding: isMobile ? "24px 20px" : "36px 40px 36px",
-            display: isMobile ? "none" : "flex",
+            padding: isMobile ? "22px 20px 24px" : "36px 40px 36px",
+            display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
+            gap: isMobile ? 20 : 0,
             position: "relative",
             overflow: "hidden",
           }}>
@@ -85,7 +86,7 @@ const LoginScreen = ({ go, onSuccess }) => {
               <h2 style={{
                 fontFamily: "var(--jj-display)",
                 fontWeight: 700,
-                fontSize: "clamp(30px, 4vw, 44px)",
+                fontSize: isMobile ? "clamp(28px, 8.5vw, 36px)" : "clamp(30px, 4vw, 44px)",
                 lineHeight: 0.94,
                 letterSpacing: "-0.04em",
                 margin: 0,
@@ -96,7 +97,7 @@ const LoginScreen = ({ go, onSuccess }) => {
                 <span style={{ color: "rgba(255,255,255,0.45)" }}> by invitation.</span>
               </h2>
               <p style={{
-                marginTop: 18, fontSize: 12.5, lineHeight: 1.5,
+                marginTop: 18, fontSize: isMobile ? 13 : 12.5, lineHeight: 1.5,
                 color: "rgba(255,255,255,0.75)", maxWidth: "44ch",
                 margin: "18px auto 0", textAlign: "center",
               }}>
@@ -108,7 +109,7 @@ const LoginScreen = ({ go, onSuccess }) => {
             <div style={{
               position: "relative", zIndex: 2,
               paddingTop: 18, borderTop: "1px solid rgba(255,255,255,0.18)",
-              display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12,
+              display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 10 : 12,
             }}>
               <div>
                 <div style={{ fontSize: 8.5, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 4 }}>Access for</div>
@@ -134,11 +135,11 @@ const LoginScreen = ({ go, onSuccess }) => {
               <div style={{ fontFamily: "var(--jj-display)", fontWeight: 700, fontSize: "clamp(22px, 2.8vw, 32px)", letterSpacing: "-0.04em", lineHeight: 0.9 }}>02</div>
             </div>
 
-            <form onSubmit={handleSubmit} style={{ margin: "44px 0 0" }}>
+            <form onSubmit={handleSubmit} style={{ margin: isMobile ? "28px 0 0" : "44px 0 0" }}>
               <h3 style={{
                 fontFamily: "var(--jj-display)",
                 fontWeight: 700,
-                fontSize: 28,
+                fontSize: isMobile ? 24 : 28,
                 lineHeight: 1,
                 letterSpacing: "-0.03em",
                 margin: "0 0 28px",

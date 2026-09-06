@@ -50,6 +50,16 @@ const WorldMap = () => {
      that is about 0.44x, so labels drawn at desktop sizes end up ~4px on
      screen. Scale the whole label system up to compensate. */
   const LS = isMobile ? 2 : 1;
+
+  /* On a phone the plate is only ~190px tall, and the route uses barely a third
+     of its width — the rest is open sea. Crop the viewBox to the journey on
+     mobile so the same drawing renders roughly 1.5x larger. Label extents were
+     checked against this window; Rotterdam is the one that would run off the
+     left edge, so it labels to the right here (see labelSide below). */
+  const view = isMobile
+    ? { x: 128, y: 10, w: 542, h: 420 }
+    : { x: 0, y: 0, w: VB.w, h: VB.h };
+  const labelSide = (c) => (isMobile && c.name === "Rotterdam" ? "right" : c.label);
   const [dotPath, setDotPath] = React.useState("");
   const [failed, setFailed] = React.useState(false);
 
@@ -154,7 +164,7 @@ const WorldMap = () => {
       position: "relative",
     }}>
       <svg
-        viewBox={`0 0 ${VB.w} ${VB.h}`}
+        viewBox={`${view.x} ${view.y} ${view.w} ${view.h}`}
         preserveAspectRatio="xMidYMid meet"
         style={{ width: "100%", height: "auto", display: "block" }}
         role="img"
@@ -183,7 +193,7 @@ const WorldMap = () => {
             <stop offset="100%" stopColor="#fff" stopOpacity="0.62" />
           </radialGradient>
           <mask id="jj-dotmask">
-            <rect width={VB.w} height={VB.h} fill="url(#jj-dotfade)" />
+            <rect x={view.x} y={view.y} width={view.w} height={view.h} fill="url(#jj-dotfade)" />
           </mask>
         </defs>
 
@@ -202,7 +212,7 @@ const WorldMap = () => {
 
         {!ready && (
           <text
-            x={VB.w / 2} y={VB.h / 2} textAnchor="middle"
+            x={view.x + view.w / 2} y={view.y + view.h / 2} textAnchor="middle"
             fill="rgba(255,255,255,0.35)" fontSize="10" letterSpacing="0.22em"
             style={{ fontFamily: "var(--jj-body)", textTransform: "uppercase" }}
           >
@@ -257,7 +267,7 @@ const WorldMap = () => {
 
         {/* Labels — tick, name, caption */}
         {ready && projected.map(c => {
-          const right = c.label === "right";
+          const right = labelSide(c) === "right";
           const dir = right ? 1 : -1;
           const tickFrom = c.x + dir * 7 * LS;
           const tickTo   = c.x + dir * 15 * LS;
@@ -320,9 +330,9 @@ const WorldMap = () => {
           key={`ping-${c.name}`}
           className="jj-ping-dot"
           style={{
-            left: `${((c.x / VB.w) * 100).toFixed(3)}%`,
-            top: `${((c.y / VB.h) * 100).toFixed(3)}%`,
-            width: isMobile ? "1.6%" : "1%",
+            left: `${(((c.x - view.x) / view.w) * 100).toFixed(3)}%`,
+            top: `${(((c.y - view.y) / view.h) * 100).toFixed(3)}%`,
+            width: `${((8 * (isMobile ? 1.6 : 1)) / view.w * 100).toFixed(2)}%`,
           }}
           aria-hidden
         />

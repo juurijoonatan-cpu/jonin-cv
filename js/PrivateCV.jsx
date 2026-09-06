@@ -24,14 +24,14 @@ const Role = ({ dates, sub, title, company, stat, bullets, dark }) => {
       <h3 style={{
         fontFamily: "var(--jj-display)",
         fontWeight: 700,
-        fontSize: 13.5,
-        lineHeight: 1.2,
+        fontSize: isMobile ? 14.5 : 13.5,
+        lineHeight: 1.25,
         letterSpacing: "-0.015em",
         margin: "0 0 2px",
         color: dark ? "var(--jj-paper-2)" : "var(--jj-ink)",
       }}>{title}</h3>
       <p style={{
-        fontSize: 10.5,
+        fontSize: isMobile ? 11.5 : 10.5,
         color: dark ? "rgba(255,255,255,0.6)" : "var(--jj-muted)",
         margin: "0 0 6px",
       }}>{company}</p>
@@ -51,8 +51,8 @@ const Role = ({ dates, sub, title, company, stat, bullets, dark }) => {
             <li key={i} style={{
               position: "relative",
               paddingLeft: 14,
-              fontSize: 10.5,
-              lineHeight: 1.4,
+              fontSize: isMobile ? 11.5 : 10.5,
+              lineHeight: isMobile ? 1.5 : 1.4,
               color: dark ? "var(--jj-paper-2)" : "var(--jj-ink-2)",
             }}>
               <span style={{
@@ -91,10 +91,10 @@ const ListRow = ({ year, title, meta, dark }) => {
     }}>{year}</span>
     <div>
       <div style={{
-        fontSize: 11.5,
+        fontSize: isMobile ? 12.5 : 11.5,
         fontWeight: 600,
         letterSpacing: "-0.015em",
-        lineHeight: 1.25,
+        lineHeight: 1.3,
         color: dark ? "var(--jj-paper-2)" : "var(--jj-ink)",
       }}>{title}</div>
       {isMobile && meta && (
@@ -124,30 +124,38 @@ const PrivateCV = ({ go, signOut }) => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          gap: 10,
           padding: "14px 0 10px",
         }}>
           <div style={{
             display: "flex", alignItems: "center", gap: 10,
             fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600,
+            whiteSpace: "nowrap",
           }}>
             <Asterisk />
             <span>Joni Juuri</span>
-            <span style={{
-              marginLeft: 8,
-              fontSize: 9,
-              padding: "3px 8px",
-              border: "1px solid var(--jj-status-go)",
-              color: "#1F8A5B",
-              borderRadius: 999,
-              letterSpacing: "0.18em",
-              fontWeight: 500,
-            }}>
-              Signed in
-            </span>
+            {/* The "signed in" badge is the first thing to go on a narrow bar —
+                it is reassurance, not navigation. */}
+            {!isMobile && (
+              <span style={{
+                marginLeft: 8,
+                fontSize: 9,
+                padding: "3px 8px",
+                border: "1px solid var(--jj-status-go)",
+                color: "#1F8A5B",
+                borderRadius: 999,
+                letterSpacing: "0.18em",
+                fontWeight: 500,
+              }}>
+                Signed in
+              </span>
+            )}
           </div>
-          <div style={{ display: "flex", gap: 8 }}>
-            <Pill as="a" href="assets/Joni_Juuri_CV.pdf" download="Joni_Juuri_CV.pdf">Download CV (PDF)</Pill>
-            <Pill onClick={() => go("landing")}>← Back</Pill>
+          <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
+            <Pill as="a" href="assets/Joni_Juuri_CV.pdf" download="Joni_Juuri_CV.pdf" style={{ whiteSpace: "nowrap" }}>
+              {isMobile ? "PDF" : "Download CV (PDF)"}
+            </Pill>
+            <Pill onClick={() => go("landing")} style={{ whiteSpace: "nowrap" }}>← Back</Pill>
           </div>
         </div>
 
@@ -205,8 +213,8 @@ const PrivateCV = ({ go, signOut }) => {
               ["LinkedIn", "/in/joni-juuri-4431334"],
             ].map(([k, v]) => (
               <div key={k}>
-                <span style={{ fontSize: 8.5, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--jj-muted)", marginBottom: 3, display: "block" }}>{k}</span>
-                <span style={{ fontSize: 11.5, color: "var(--jj-ink)", fontWeight: 500 }}>{v}</span>
+                <span style={{ fontSize: isMobile ? 9.5 : 8.5, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--jj-muted)", marginBottom: 3, display: "block" }}>{k}</span>
+                <span style={{ fontSize: isMobile ? 12.5 : 11.5, color: "var(--jj-ink)", fontWeight: 500 }}>{v}</span>
               </div>
             ))}
           </div>
@@ -254,7 +262,7 @@ const PrivateCV = ({ go, signOut }) => {
           <Lede style={{ marginTop: 3, marginBottom: 8 }}>
             Ten areas of concentration across finance, capital and governance.
           </Lede>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 0 }}>
             {[
               "Energy & Infrastructure Finance",
               "Sustainable Business Case Development",
@@ -269,13 +277,13 @@ const PrivateCV = ({ go, signOut }) => {
             ].map((label, i) => (
               <div key={i} style={{
                 padding: "4px 0",
-                borderTop: i < 2 ? 0 : "1px solid rgba(0,0,0,0.12)",
+                borderTop: (isMobile ? i < 1 : i < 2) ? 0 : "1px solid rgba(0,0,0,0.12)",
                 display: "flex", alignItems: "baseline", gap: 10,
               }}>
                 <span style={{ fontFamily: "var(--jj-display)", fontWeight: 600, fontSize: 10, color: "var(--jj-muted)", minWidth: 22 }}>
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span style={{ fontSize: 11, fontWeight: 500, letterSpacing: "-0.01em" }}>{label}</span>
+                <span style={{ fontSize: isMobile ? 12.5 : 11, fontWeight: 500, letterSpacing: "-0.01em" }}>{label}</span>
               </div>
             ))}
           </div>
@@ -403,20 +411,20 @@ const PrivateCV = ({ go, signOut }) => {
         <Card>
           <SectionHead num="06" />
           <H2 soft="languages.">Tools &amp;</H2>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, marginTop: 6, alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 20 : 40, marginTop: 6, alignItems: "start" }}>
             <div>
               <p style={{ fontSize: 9.5, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--jj-muted)", marginBottom: 3 }}>Systems &amp; tools</p>
-              <p style={{ fontSize: 11, lineHeight: 1.45, color: "var(--jj-ink-2)" }}>
+              <p style={{ fontSize: isMobile ? 12.5 : 11, lineHeight: 1.5, color: "var(--jj-ink-2)" }}>
                 Hyperion (HFM), SmartView, Anaplan, SAP, IFS, Procountor, Microsoft 365 and Fabric, BI tooling, applied AI.
               </p>
               <p style={{ fontSize: 9.5, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--jj-muted)", margin: "10px 0 3px" }}>Methodologies</p>
-              <p style={{ fontSize: 11, lineHeight: 1.45, color: "var(--jj-ink-2)" }}>
+              <p style={{ fontSize: isMobile ? 12.5 : 11, lineHeight: 1.5, color: "var(--jj-ink-2)" }}>
                 Executive coaching, strategy methodologies, change management.
               </p>
             </div>
             <div>
               <p style={{ fontSize: 9.5, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--jj-muted)", marginBottom: 6 }}>Languages</p>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px 24px", fontSize: 11 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px 24px", fontSize: isMobile ? 12.5 : 11 }}>
                 <div><strong>Finnish</strong> <span style={{ color: "var(--jj-muted)" }}>native</span></div>
                 <div><strong>English</strong> <span style={{ color: "var(--jj-muted)" }}>fluent</span></div>
                 <div><strong>Swedish</strong> <span style={{ color: "var(--jj-muted)" }}>working</span></div>
@@ -444,8 +452,8 @@ const PrivateCV = ({ go, signOut }) => {
               ["Location", "Espoo, Finland"],
             ].map(([k, v]) => (
               <div key={k}>
-                <p style={{ fontSize: 8.5, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 3 }}>{k}</p>
-                <p style={{ fontSize: 11, fontWeight: 500, color: "var(--jj-paper-2)" }}>{v}</p>
+                <p style={{ fontSize: isMobile ? 9.5 : 8.5, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 3 }}>{k}</p>
+                <p style={{ fontSize: isMobile ? 12.5 : 11, fontWeight: 500, color: "var(--jj-paper-2)" }}>{v}</p>
               </div>
             ))}
           </div>

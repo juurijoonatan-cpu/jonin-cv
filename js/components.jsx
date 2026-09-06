@@ -126,10 +126,12 @@ const H2 = ({ children, soft, dark, style }) => (
   </h2>
 );
 
-const Lede = ({ children, dark, style }) => (
+const Lede = ({ children, dark, style }) => {
+  const m = useIsMobile();
+  return (
   <p
     style={{
-      fontSize: 11,
+      fontSize: m ? 12.5 : 11,
       lineHeight: 1.4,
       color: dark ? "rgba(255,255,255,0.75)" : "var(--jj-ink-2)",
       maxWidth: "72ch",
@@ -138,7 +140,8 @@ const Lede = ({ children, dark, style }) => (
   >
     {children}
   </p>
-);
+  );
+};
 
 const MarqueeStat = ({ value, desc }) => (
   <div
@@ -266,7 +269,9 @@ const Field = ({ label, type = "text", value, onChange, placeholder, autoFocus, 
   </label>
 );
 
-const ChoiceCard = ({ eyebrow, title, soft, body, footnote, locked, onClick, dark, style }) => (
+const ChoiceCard = ({ eyebrow, title, soft, body, footnote, locked, onClick, dark, style }) => {
+  const m = useIsMobile();
+  return (
   <button
     onClick={onClick}
     className="jj-choice"
@@ -276,14 +281,14 @@ const ChoiceCard = ({ eyebrow, title, soft, body, footnote, locked, onClick, dar
       color: dark ? "var(--jj-paper-2)" : "var(--jj-ink)",
       border: 0,
       borderRadius: 18,
-      padding: "28px 32px 28px",
+      padding: m ? "22px 22px 24px" : "28px 32px 28px",
       cursor: "pointer",
       transition: "transform 240ms var(--jj-ease-out), opacity 140ms var(--jj-ease)",
       position: "relative",
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-between",
-      minHeight: 360,
+      minHeight: m ? 230 : 360,
       fontFamily: "var(--jj-body)",
       ...style,
     }}
@@ -292,7 +297,7 @@ const ChoiceCard = ({ eyebrow, title, soft, body, footnote, locked, onClick, dar
       <Eyebrow tone={dark ? "on-dark" : undefined}>{eyebrow}</Eyebrow>
     </div>
 
-    <div style={{ marginTop: 60 }}>
+    <div style={{ marginTop: m ? 26 : 60 }}>
       <h3 style={{
         fontFamily: "var(--jj-display)",
         fontWeight: 700,
@@ -318,7 +323,7 @@ const ChoiceCard = ({ eyebrow, title, soft, body, footnote, locked, onClick, dar
     </div>
 
     <div style={{
-      marginTop: 32,
+      marginTop: m ? 22 : 32,
       paddingTop: 14,
       borderTop: `1px solid ${dark ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.12)"}`,
       fontSize: 9.5,
@@ -331,7 +336,8 @@ const ChoiceCard = ({ eyebrow, title, soft, body, footnote, locked, onClick, dar
       <span>{footnote}</span>
     </div>
   </button>
-);
+  );
+};
 
 const LockGlyph = () => (
   <svg width="11" height="13" viewBox="0 0 11 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>

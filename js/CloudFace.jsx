@@ -3,6 +3,7 @@
    drawn in pure SVG so it inherits the cream/ink palette. */
 
 const CloudFace = ({ typing }) => {
+  const isMobile = useIsMobile();
   const wrapRef = React.useRef(null);
   const [pupil, setPupil] = React.useState({ x: 0, y: 0 });
   const [blink, setBlink] = React.useState(false);
@@ -41,7 +42,7 @@ const CloudFace = ({ typing }) => {
   return (
     <div
       ref={wrapRef}
-      style={{ width: "100%", maxWidth: 360, margin: "0 auto 18px", position: "relative" }}
+      style={{ width: "100%", maxWidth: isMobile ? 210 : 360, margin: isMobile ? "0 auto 10px" : "0 auto 18px", position: "relative" }}
       aria-hidden
     >
       <svg viewBox="0 0 320 180" style={{ width: "100%", display: "block" }}>
