@@ -1,6 +1,6 @@
 /* GetInTouch — minimal form, in the same understated underline-only style. */
 
-/* Same Web3Forms key as BookACall — paste it once in both files. */
+/* Same Web3Forms key used for the login-notification email in LoginScreen. */
 const WEB3FORMS_KEY_TOUCH = "02d289c3-66d9-4b55-9f91-5dd2b00b7f1e";
 
 const GetInTouch = ({ open, onToggle }) => {
@@ -60,7 +60,7 @@ const GetInTouch = ({ open, onToggle }) => {
     }}>
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
         <Eyebrow muted>Get in touch</Eyebrow>
-        <div style={{ fontFamily: "var(--jj-display)", fontWeight: 700, fontSize: "clamp(22px, 2.8vw, 32px)", letterSpacing: "-0.04em", lineHeight: 0.9 }}>06</div>
+        <div style={{ fontFamily: "var(--jj-display)", fontWeight: 700, fontSize: "clamp(22px, 2.8vw, 32px)", letterSpacing: "-0.04em", lineHeight: 0.9 }}>05</div>
       </div>
       <H2 soft="a message.">Send</H2>
       <Lede style={{ marginTop: 6, marginBottom: 18 }}>

@@ -1,8 +1,17 @@
 /* BackgroundPaths — animated wireframe paths that drift behind the hero.
    Lifted from the user's reference component; rebuilt in plain CSS+SVG
-   (no framer-motion) to stay light. */
+   (no framer-motion) to stay light.
 
-const BackgroundPaths = ({ position = 1, color = "var(--jj-ink)", count = 36, opacity = 1 }) => {
+   `stroke-dashoffset` is a main-thread paint animation in every browser —
+   it can't be handed off to the compositor the way `transform` can. The
+   layer used to render two copies of this at 36 paths each (72 animated
+   strokes total on one page), which is more per-frame paint work than the
+   thread can guarantee at 60fps, and shows up as stutter. Both directions
+   are kept (that's the crossing-lines look), each cut to a count that
+   stays visually just as busy — the paths overlap heavily at this
+   opacity — but is a fraction of the paint cost: 16 animated strokes
+   total instead of 72. */
+const BackgroundPaths = ({ position = 1, color = "var(--jj-ink)", count = 8, opacity = 1 }) => {
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
     // Wait one frame so the initial 0-opacity render commits before we fade in.
@@ -39,6 +48,7 @@ const BackgroundPaths = ({ position = 1, color = "var(--jj-ink)", count = 36, op
         preserveAspectRatio="xMidYMid slice"
         style={{ width: "100%", height: "100%", display: "block", color }}
         fill="none"
+        shapeRendering="optimizeSpeed"
       >
         {paths.map(p => (
           <path
@@ -73,6 +83,7 @@ const BackgroundPathsLayer = ({ inverted, opacity = 1 }) => {
       opacity: mounted ? opacity : 0,
       transition: "opacity 900ms var(--jj-ease)",
       pointerEvents: "none",
+      contain: "strict",
     }}>
       <BackgroundPaths position={1}  color={inverted ? "var(--jj-paper-2)" : "var(--jj-ink)"} />
       <BackgroundPaths position={-1} color={inverted ? "var(--jj-paper-2)" : "var(--jj-ink)"} />

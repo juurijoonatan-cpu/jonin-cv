@@ -1,5 +1,28 @@
 /* LoginScreen — cloud face that follows cursor and shuts eyes on password. */
 
+/* Same Web3Forms key used by GetInTouch. Fires one email to whatever inbox
+   that key is registered to, every time someone signs in — best-effort,
+   fire-and-forget: a failed or slow notification must never block or
+   visibly interrupt the visitor's own login. */
+const WEB3FORMS_KEY_LOGIN = "02d289c3-66d9-4b55-9f91-5dd2b00b7f1e";
+
+const notifyLogin = (visitorName) => {
+  const when = new Date().toLocaleString("en-GB", {
+    dateStyle: "medium", timeStyle: "short", timeZone: "Europe/Helsinki",
+  });
+  fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      access_key: WEB3FORMS_KEY_LOGIN,
+      subject: `[juuri.me] Sign-in: ${visitorName}`,
+      from_name: "juuri.me sign-in",
+      name: visitorName,
+      message: `${visitorName} signed in at ${when} (Helsinki time).`,
+    }),
+  }).catch(() => {});
+};
+
 const LoginScreen = ({ go, onSuccess }) => {
   const isMobile = useIsMobile();
   const [name, setName] = React.useState("");
@@ -14,7 +37,9 @@ const LoginScreen = ({ go, onSuccess }) => {
     setLoading(true);
     setTimeout(() => {
       if (name.trim().length > 0 && password === "Jonij140804!") {
-        localStorage.setItem("jj-visitor-name", name.trim());
+        const visitorName = name.trim();
+        localStorage.setItem("jj-visitor-name", visitorName);
+        notifyLogin(visitorName);
         onSuccess();
       } else {
         setError("Incorrect password.");

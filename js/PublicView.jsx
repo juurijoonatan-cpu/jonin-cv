@@ -4,7 +4,6 @@
 
 const PublicView = ({ go }) => {
   const isMobile = useIsMobile();
-  const [bookOpen, setBookOpen] = React.useState(false);
   const [touchOpen, setTouchOpen] = React.useState(false);
 
   const scrollToOpen = (id, setOpen) => {
@@ -88,10 +87,7 @@ const PublicView = ({ go }) => {
               display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center",
               animation: "jj-fade 800ms var(--jj-ease) both", animationDelay: "900ms",
             }}>
-              <Button onClick={() => scrollToOpen("jj-book", setBookOpen)}>
-                Book a call
-              </Button>
-              <Button variant="ghost" onClick={() => scrollToOpen("jj-touch", setTouchOpen)}>
+              <Button onClick={() => scrollToOpen("jj-touch", setTouchOpen)}>
                 Send a message
               </Button>
             </div>
@@ -347,9 +343,6 @@ const PublicView = ({ go }) => {
 
         </section>
 
-        {/* ============ BOOK A CALL ============ */}
-        <div id="jj-book"><BookACall open={bookOpen} onToggle={() => setBookOpen(v => !v)} /></div>
-
         {/* ============ GET IN TOUCH ============ */}
         <div id="jj-touch"><GetInTouch open={touchOpen} onToggle={() => setTouchOpen(v => !v)} /></div>
 
@@ -361,7 +354,7 @@ const PublicView = ({ go }) => {
           padding: isMobile ? "24px 20px 28px" : "30px 40px 32px",
           marginBottom: 6,
         }}>
-          <SectionHead num="07" dark />
+          <SectionHead num="06" dark />
           <H2 dark soft="touch.">Get in</H2>
           <p style={{ fontSize: 14, color: "var(--jj-paper-2)", margin: "16px 0 22px", maxWidth: "56ch", lineHeight: 1.5 }}>
             Boards, recruiters, former colleagues and founders in energy.
