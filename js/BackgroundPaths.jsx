@@ -2,15 +2,15 @@
    Lifted from the user's reference component; rebuilt in plain CSS+SVG
    (no framer-motion) to stay light.
 
-   `stroke-dashoffset` is a main-thread paint animation in every browser —
-   it can't be handed off to the compositor the way `transform` can. The
-   layer used to render two copies of this at 36 paths each (72 animated
-   strokes total on one page), which is more per-frame paint work than the
-   thread can guarantee at 60fps, and shows up as stutter. Both directions
-   are kept (that's the crossing-lines look), each cut to a count that
-   stays visually just as busy — the paths overlap heavily at this
-   opacity — but is a fraction of the paint cost: 24 animated strokes
-   total instead of 72. */
+   The strokes themselves are static. Motion comes from a transform on the
+   wrapping .jj-paths-drift div, which the compositor owns outright.
+
+   These lines used to flow via `stroke-dashoffset`, which is a paint
+   property: it dirtied and re-rasterised the whole layer on every frame.
+   Measured on the landing page, that was ~900ms of raster work per 5s and
+   a repaint on all 300 frames — the stutter that kept being reported.
+   Drifting a transform instead costs no repaint at all, so it stays smooth
+   no matter what else the page is doing. */
 const BackgroundPaths = ({ position = 1, color = "var(--jj-ink)", count = 12, opacity = 1 }) => {
 
   /* Geometry, width and opacity are all normalised across `count` rather than
@@ -32,8 +32,6 @@ const BackgroundPaths = ({ position = 1, color = "var(--jj-ink)", count = 12, op
            `C${n(616 - k * 5 * position)} ${n(470 - k * 6)} ${n(684 - k * 5 * position)} ${n(875 - k * 6)} ${n(684 - k * 5 * position)} ${n(875 - k * 6)}`,
         width: 0.5 + t * 1.05,
         strokeOpacity: 0.10 + t * 0.62,
-        duration: 20 + (i % 7) * 1.4,
-        delay: (i % 9) * 0.6,
       };
     });
   }, [position, count]);
@@ -46,9 +44,11 @@ const BackgroundPaths = ({ position = 1, color = "var(--jj-ink)", count = 12, op
         inset: 0,
         pointerEvents: "none",
         opacity,
+        overflow: "hidden",
       }}
       aria-hidden
     >
+      <div className="jj-paths-drift">
       <svg
         viewBox="0 0 696 316"
         preserveAspectRatio="xMidYMid slice"
@@ -64,14 +64,10 @@ const BackgroundPaths = ({ position = 1, color = "var(--jj-ink)", count = 12, op
             strokeWidth={p.width}
             strokeOpacity={p.strokeOpacity}
             strokeLinecap="round"
-            style={{
-              strokeDasharray: 1400,
-              strokeDashoffset: 0,
-              animation: `jj-path-drift ${p.duration}s linear ${p.delay}s infinite`,
-            }}
           />
         ))}
       </svg>
+      </div>
     </div>
   );
 };

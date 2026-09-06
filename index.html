@@ -11,6 +11,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230A0A0A'/%3E%3Ctext x='16' y='23' font-size='21' text-anchor='middle' fill='%23F4F2EE' font-family='Helvetica Neue,Helvetica,Arial,sans-serif'%3E%E2%9C%B1%3C/text%3E%3C/svg%3E" />
+
 <link rel="stylesheet" href="css/tokens.css" />
 
 <style>
@@ -66,10 +68,61 @@
     to   { opacity: 1; }
   }
 
-  /* Background wireframe paths — slow drift */
+  /* Background wireframe paths — slow drift.
+     This animates transform on a plain div, not stroke-dashoffset on the SVG
+     strokes. Dash-offset is a paint property: it forced a full repaint and
+     re-raster of the whole layer every single frame (measured: ~900ms of
+     raster work per 5s, a repaint on all 300 frames). transform is a
+     compositor property, so the drift now costs no repaint at all. */
   @keyframes jj-path-drift {
-    from { stroke-dashoffset: 0; }
-    to   { stroke-dashoffset: -2800; }
+    from { transform: translate3d(-1.7%, 1.3%, 0); }
+    to   { transform: translate3d(1.7%, -1.3%, 0); }
+  }
+  .jj-paths-drift {
+    position: absolute;
+    inset: -7%;
+    will-change: transform;
+    animation: jj-path-drift 30s ease-in-out infinite alternate;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .jj-paths-drift { animation: none; }
+  }
+
+  /* World map. SMIL (<animate>, <animateMotion>) invalidates SVG geometry, so
+     it forced a full Layout on every frame for as long as the map was on
+     screen — measured at 300 layouts per 5s with a 23ms spike, which is what
+     made the logo marquee on the same page stutter. Replacements below use
+     only CSS, and only properties that do not touch layout. */
+
+  /* Route arcs are drawn statically. A dash-offset "draw-in" was tried here
+     and reverted: its resting state is an invisible stroke, so any failure to
+     run the animation leaves the routes missing entirely — the same
+     hidden-by-default trap that hid the background paths. Solid strokes
+     always render, and cost nothing per frame. */
+
+  /* Pulse ring. Deliberately an HTML div overlaid on the map, not an SVG
+     circle: a CSS transform on an SVG element is not composited in Chromium
+     and still forced a Layout on every frame (measured: 236 layouts per 5s,
+     which vanished the moment this animation was switched off). On a plain
+     div, transform + opacity are compositor-only and cost nothing. */
+  @keyframes jj-ping {
+    0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.55; }
+    70%  { transform: translate(-50%, -50%) scale(4.2); opacity: 0; }
+    100% { transform: translate(-50%, -50%) scale(4.2); opacity: 0; }
+  }
+  .jj-ping-dot {
+    position: absolute;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: #6EE7B7;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    will-change: transform, opacity;
+    animation: jj-ping 2.8s var(--jj-ease-out) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .jj-ping-dot { animation: none; opacity: 0.4; }
   }
 
   /* Collapsible section (Send a message) — animates open/closed height
@@ -82,10 +135,11 @@
   .jj-collapse.jj-collapse--open { grid-template-rows: 1fr; }
   .jj-collapse > div { overflow: hidden; min-height: 0; }
 
-  /* Company strip marquee */
+  /* Company strip marquee. translate3d keeps it on its own compositor layer
+     so the scroll never depends on main-thread work. */
   @keyframes jj-marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
   }
   .jj-marquee:hover { animation-play-state: running; }
   .jj-marquee--locked { animation-play-state: running !important; pointer-events: none; }
@@ -110,21 +164,21 @@
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
 
   <!-- Primitives first -->
-  <script type="text/babel" src="js/components.jsx?v=17"></script>
-  <script type="text/babel" src="js/BackgroundPaths.jsx?v=17"></script>
-  <script type="text/babel" src="js/Toast.jsx?v=17"></script>
-  <script type="text/babel" src="js/CloudFace.jsx?v=17"></script>
-  <script type="text/babel" src="js/WorldMap.jsx?v=17"></script>
-  <script type="text/babel" src="js/CompanyStrip.jsx?v=17"></script>
-  <script type="text/babel" src="js/GetInTouch.jsx?v=17"></script>
+  <script type="text/babel" src="js/components.jsx?v=18"></script>
+  <script type="text/babel" src="js/BackgroundPaths.jsx?v=18"></script>
+  <script type="text/babel" src="js/Toast.jsx?v=18"></script>
+  <script type="text/babel" src="js/CloudFace.jsx?v=18"></script>
+  <script type="text/babel" src="js/WorldMap.jsx?v=18"></script>
+  <script type="text/babel" src="js/CompanyStrip.jsx?v=18"></script>
+  <script type="text/babel" src="js/GetInTouch.jsx?v=18"></script>
 
   <!-- Screens -->
-  <script type="text/babel" src="js/Landing.jsx?v=17"></script>
-  <script type="text/babel" src="js/PublicView.jsx?v=17"></script>
-  <script type="text/babel" src="js/LoginScreen.jsx?v=17"></script>
-  <script type="text/babel" src="js/PrivateCV.jsx?v=17"></script>
+  <script type="text/babel" src="js/Landing.jsx?v=18"></script>
+  <script type="text/babel" src="js/PublicView.jsx?v=18"></script>
+  <script type="text/babel" src="js/LoginScreen.jsx?v=18"></script>
+  <script type="text/babel" src="js/PrivateCV.jsx?v=18"></script>
 
   <!-- App last -->
-  <script type="text/babel" src="js/app.jsx?v=17"></script>
+  <script type="text/babel" src="js/app.jsx?v=18"></script>
 </body>
 </html>

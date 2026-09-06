@@ -31,6 +31,7 @@ const CompanyStrip = () => {
       marginBottom: 6,
       overflow: "hidden",
       position: "relative",
+      contain: "layout paint",
     }}>
       <div
         className="jj-marquee jj-marquee--locked"
@@ -41,6 +42,7 @@ const CompanyStrip = () => {
           width: "max-content",
           willChange: "transform",
           transform: "translateZ(0)",
+          backfaceVisibility: "hidden",
         }}
       >
         {items.map((c, i) => (

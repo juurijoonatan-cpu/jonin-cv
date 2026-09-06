@@ -143,10 +143,6 @@ const WorldMap = () => {
     return `M ${a.x.toFixed(1)} ${a.y.toFixed(1)} Q ${((a.x + b.x) / 2).toFixed(1)} ${midY.toFixed(1)} ${b.x.toFixed(1)} ${b.y.toFixed(1)}`;
   };
 
-  const legDur = 2.6;
-  const legGap = 0.45;
-  const totalDur = JOURNEY.length * legDur + (JOURNEY.length - 1) * legGap + 1.6;
-
   const ready = dotPath.length > 0;
 
   return (
@@ -234,45 +230,16 @@ const WorldMap = () => {
           const a = cityByName[leg.from], b = cityByName[leg.to];
           if (!a || !b) return null;
           const d = arcPath(a, b);
-          const begin = i * (legDur + legGap);
-          const t0 = (begin / totalDur).toFixed(3);
-          const t1 = ((begin + legDur) / totalDur).toFixed(3);
           return (
-            <g key={`leg-${i}`}>
-              <path
-                d={d}
-                stroke="url(#jj-arc)"
-                strokeWidth={1.5 * (isMobile ? 1.8 : 1)}
-                fill="none"
-                strokeLinecap="round"
-                style={{ filter: "url(#jj-glow)" }}
-              >
-                <animate
-                  attributeName="stroke-dasharray"
-                  values="0 900; 900 0; 900 0; 0 900"
-                  keyTimes={`0; ${t0}; ${t1}; 1`}
-                  dur={`${totalDur}s`}
-                  repeatCount="indefinite"
-                />
-              </path>
-              <circle r={2.6 * (isMobile ? 1.7 : 1)} fill="#6EE7B7" style={{ filter: "url(#jj-glow)" }}>
-                <animateMotion
-                  dur={`${totalDur}s`}
-                  repeatCount="indefinite"
-                  path={d}
-                  keyPoints="0; 0; 1; 1"
-                  keyTimes={`0; ${t0}; ${t1}; 1`}
-                  calcMode="linear"
-                />
-                <animate
-                  attributeName="opacity"
-                  values="0; 0; 1; 1; 0; 0"
-                  keyTimes={`0; ${t0}; ${(+t0 + 0.008).toFixed(3)}; ${(+t1 - 0.008).toFixed(3)}; ${t1}; 1`}
-                  dur={`${totalDur}s`}
-                  repeatCount="indefinite"
-                />
-              </circle>
-            </g>
+            <path
+              key={`leg-${i}`}
+              d={d}
+              stroke="url(#jj-arc)"
+              strokeWidth={1.5 * (isMobile ? 1.8 : 1)}
+              fill="none"
+              strokeLinecap="round"
+              style={{ filter: "url(#jj-glow)" }}
+            />
           );
         })}
 
@@ -282,12 +249,6 @@ const WorldMap = () => {
           const core = isNow ? "#6EE7B7" : c.era === "site" ? "rgba(255,255,255,0.75)" : "#FFFFFF";
           return (
             <g key={c.name} transform={`translate(${c.x.toFixed(1)},${c.y.toFixed(1)})`}>
-              {isNow && (
-                <circle r={4 * (isMobile ? 1.6 : 1)} fill="#6EE7B7" opacity={0.5}>
-                  <animate attributeName="r"       values={isMobile ? "6;26;6" : "4;17;4"} dur="2.8s" repeatCount="indefinite" />
-                  <animate attributeName="opacity" values="0.5;0;0.5"   dur="2.8s" repeatCount="indefinite" />
-                </circle>
-              )}
               <circle r={5 * (isMobile ? 1.6 : 1)} fill="none" stroke={core} strokeWidth={0.9 * LS} opacity={0.5} />
               <circle r={2.2 * (isMobile ? 1.6 : 1)} fill={core} stroke="#080808" strokeWidth={0.8 * LS} />
             </g>
@@ -349,6 +310,23 @@ const WorldMap = () => {
           );
         })}
       </svg>
+
+      {/* Pulse on the current city. An HTML overlay rather than an SVG circle
+          so the animation is compositor-only — see .jj-ping-dot in index.html.
+          The svg is width:100% with a meet viewBox, so its box maps 1:1 onto
+          the viewBox and percentage positioning lands exactly on the pin. */}
+      {ready && projected.filter(c => c.era === "now").map(c => (
+        <div
+          key={`ping-${c.name}`}
+          className="jj-ping-dot"
+          style={{
+            left: `${((c.x / VB.w) * 100).toFixed(3)}%`,
+            top: `${((c.y / VB.h) * 100).toFixed(3)}%`,
+            width: isMobile ? "1.6%" : "1%",
+          }}
+          aria-hidden
+        />
+      ))}
     </div>
   );
 };
