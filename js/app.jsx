@@ -1,13 +1,17 @@
-/* App shell — view router with simple fade transitions, persists view + auth. */
+/* App shell — view router with simple fade transitions, persists view + auth.
 
-const VIEWS = ["landing", "public", "login", "cv"];
+   Signing in lands straight on the personal profile. There used to be a
+   Landing screen in between that did nothing but offer a choice of two
+   pages; the CV is now reachable from the profile's top bar instead. */
+
+const VIEWS = ["public", "login", "cv"];
 
 const App = () => {
   const [view, setView] = React.useState(() => {
     const isAuthed = localStorage.getItem("jj-authed") === "1";
     if (isAuthed) {
       const saved = localStorage.getItem("jj-view");
-      return VIEWS.includes(saved) ? saved : "landing";
+      return VIEWS.includes(saved) ? saved : "public";
     }
     return "login";
   });
@@ -32,7 +36,7 @@ const App = () => {
     localStorage.setItem("jj-authed", "1");
     setFade(true);
     setTimeout(() => {
-      setView("landing");
+      setView("public");
       requestAnimationFrame(() => setFade(false));
     }, 180);
   };
@@ -44,8 +48,7 @@ const App = () => {
   };
 
   let screen;
-  if (view === "landing") screen = <Landing go={go} />;
-  else if (view === "public") screen = <PublicView go={go} />;
+  if (view === "public") screen = <PublicView go={go} />;
   else if (view === "login") screen = <LoginScreen go={go} onSuccess={onLoginSuccess} />;
   else if (view === "cv") screen = <PrivateCV go={go} signOut={signOut} />;
 

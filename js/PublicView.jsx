@@ -19,10 +19,7 @@ const PublicView = ({ go }) => {
 
         <Topbar
           right={
-            <div style={{ display: "flex", gap: 8 }}>
-              <Pill onClick={() => go("landing")}>← Back</Pill>
-              <Pill tone="filled" onClick={() => go("cv")}>The CV</Pill>
-            </div>
+            <Pill tone="filled" onClick={() => go("cv")}>The CV →</Pill>
           }
         />
 
@@ -80,6 +77,7 @@ const PublicView = ({ go }) => {
               Seven of those abroad, in <strong>Denmark, the Netherlands and Switzerland</strong>:
               Siemens Wind, then Neste. Based in Espoo since 2020, CFO at TVO since 2025.
               Long-horizon capital programmes, green finance, and transformation measured in years.
+              Outside the role: a seat on a school board, and most sports with a finish line.
             </p>
 
             <div style={{
@@ -350,6 +348,57 @@ const PublicView = ({ go }) => {
 
         </section>
 
+        {/* ============ OUTSIDE WORK ============ */}
+        <section style={{ background: "var(--jj-paper-2)", borderRadius: 18, padding: isMobile ? "24px 20px 28px" : "28px 40px 32px", marginBottom: 6 }}>
+          <SectionHead num="05" />
+          <H2 soft="the role.">Outside</H2>
+          <Lede style={{ marginTop: 4, marginBottom: 22 }}>
+            Two things take the time the job does not.
+          </Lede>
+
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 28 : 40, alignItems: "start" }}>
+            <div>
+              <Eyebrow muted style={{ display: "block", marginBottom: 10 }}>Next generation</Eyebrow>
+              <div style={{ fontSize: isMobile ? 15 : 14, fontWeight: 600, letterSpacing: "-0.015em", marginBottom: 8 }}>
+                School board
+              </div>
+              <p style={{ fontSize: isMobile ? 13.5 : 14, lineHeight: 1.55, color: "var(--jj-ink-2)", margin: 0 }}>
+                I serve on a school board, where I work to bring positive psychology
+                into how children are taught rather than only how they are measured.
+                I took the coaching certification for it in 2023. Few investments
+                compound like getting this right early.
+              </p>
+            </div>
+
+            <div>
+              <Eyebrow muted style={{ display: "block", marginBottom: 10 }}>Sport</Eyebrow>
+              <div style={{ fontSize: isMobile ? 15 : 14, fontWeight: 600, letterSpacing: "-0.015em", marginBottom: 8 }}>
+                Most things with a finish line
+              </div>
+              <p style={{ fontSize: isMobile ? 13.5 : 14, lineHeight: 1.55, color: "var(--jj-ink-2)", margin: 0 }}>
+                Training is the other constant, and almost all of it is shared with
+                family and friends. That is most of the point. The discipline
+                carries back into the working week.
+              </p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 14 }}>
+                {["HYROX", "Spinning", "Cycling", "Gym", "Tennis"].map(sport => (
+                  <span key={sport} style={{
+                    border: "1px solid var(--jj-ink)",
+                    borderRadius: 999,
+                    padding: "5px 12px",
+                    fontSize: 9.5,
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                    fontWeight: 500,
+                  }}>
+                    {sport}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ============ GET IN TOUCH ============ */}
         <div id="jj-touch"><GetInTouch open={touchOpen} onToggle={() => setTouchOpen(v => !v)} /></div>
 
@@ -361,12 +410,27 @@ const PublicView = ({ go }) => {
           padding: isMobile ? "24px 20px 28px" : "30px 40px 32px",
           marginBottom: 6,
         }}>
-          <SectionHead num="06" dark />
+          <SectionHead num="07" dark />
           <H2 dark soft="touch.">Get in</H2>
           <p style={{ fontSize: 14, color: "var(--jj-paper-2)", margin: "16px 0 22px", maxWidth: "56ch", lineHeight: 1.5 }}>
             Boards, recruiters, former colleagues and founders in energy.
             Every message is read. Replies within a week.
           </p>
+
+          <div style={{
+            display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center",
+            marginBottom: 24,
+          }}>
+            <Button variant="onDark" onClick={() => go("cv")}>
+              Read the full CV
+            </Button>
+            <span style={{
+              fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase",
+              color: "rgba(255,255,255,0.5)",
+            }}>
+              Roles, mandates, figures
+            </span>
+          </div>
 
           <div style={{
             display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 12,

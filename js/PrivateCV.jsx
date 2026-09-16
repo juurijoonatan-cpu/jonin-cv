@@ -155,7 +155,7 @@ const PrivateCV = ({ go, signOut }) => {
             <Pill as="a" href="assets/Joni_Juuri_CV.pdf" download="Joni_Juuri_CV.pdf" style={{ whiteSpace: "nowrap" }}>
               {isMobile ? "PDF" : "Download CV (PDF)"}
             </Pill>
-            <Pill onClick={() => go("landing")} style={{ whiteSpace: "nowrap" }}>← Back</Pill>
+            <Pill onClick={() => go("public")} style={{ whiteSpace: "nowrap" }}>← Back</Pill>
           </div>
         </div>
 

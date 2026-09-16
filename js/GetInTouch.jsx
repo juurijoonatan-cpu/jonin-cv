@@ -60,7 +60,7 @@ const GetInTouch = ({ open, onToggle }) => {
     }}>
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
         <Eyebrow muted>Get in touch</Eyebrow>
-        <div style={{ fontFamily: "var(--jj-display)", fontWeight: 700, fontSize: "clamp(22px, 2.8vw, 32px)", letterSpacing: "-0.04em", lineHeight: 0.9 }}>05</div>
+        <div style={{ fontFamily: "var(--jj-display)", fontWeight: 700, fontSize: "clamp(22px, 2.8vw, 32px)", letterSpacing: "-0.04em", lineHeight: 0.9 }}>06</div>
       </div>
       <H2 soft="a message.">Send</H2>
       <Lede style={{ marginTop: 6, marginBottom: 18 }}>
