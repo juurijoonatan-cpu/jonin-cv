@@ -6,10 +6,13 @@ const Toast = ({ delay = 1400 }) => {
   const [visible, setVisible] = React.useState(false);
   const [dismissed, setDismissed] = React.useState(() => sessionStorage.getItem("jj-toast-dismissed") === "1");
 
+  /* Shows briefly, then retires itself. It is a note in passing, not a banner
+     to live with, and the CV states availability properly at the bottom. */
   React.useEffect(() => {
     if (dismissed) return;
-    const t = setTimeout(() => setVisible(true), delay);
-    return () => clearTimeout(t);
+    const show = setTimeout(() => setVisible(true), delay);
+    const hide = setTimeout(() => setVisible(false), delay + 7000);
+    return () => { clearTimeout(show); clearTimeout(hide); };
   }, [delay, dismissed]);
 
   const dismiss = () => {
@@ -75,9 +78,6 @@ const Toast = ({ delay = 1400 }) => {
           fontWeight: 500,
         }}>
           Open to senior international roles.
-          <span style={{ color: "rgba(255,255,255,0.65)", fontWeight: 400 }}>
-            {" "}Three months' notice.
-          </span>
         </div>
       </div>
       <button

@@ -199,3 +199,4 @@ const LoginScreen = ({ go, onSuccess }) => {
 };
 
 window.LoginScreen = LoginScreen;
+window.notifyLogin = notifyLogin;

@@ -125,6 +125,22 @@
     .jj-ping-dot { animation: none; opacity: 0.4; }
   }
 
+  /* Availability badge. It is a one-line flourish, not a standing claim, so it
+     shows on arrival and then collapses away rather than sitting on the CV
+     header for the whole visit. Resting state before the animation is visible,
+     so if it never runs the badge simply stays — the safe direction. */
+  @keyframes jj-notice-out {
+    0%, 70%  { opacity: 1; max-height: 52px; margin-top: 12px; transform: none; }
+    100%     { opacity: 0; max-height: 0;    margin-top: 0;    transform: translateY(-6px); }
+  }
+  .jj-notice {
+    overflow: hidden;
+    animation: jj-notice-out 7.5s var(--jj-ease) forwards;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .jj-notice { animation: none; }
+  }
+
   /* Collapsible section (Send a message) — animates open/closed height
      without measuring content, so it stays correct as content changes. */
   .jj-collapse {
@@ -164,20 +180,20 @@
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
 
   <!-- Primitives first -->
-  <script type="text/babel" src="js/components.jsx?v=20"></script>
-  <script type="text/babel" src="js/BackgroundPaths.jsx?v=20"></script>
-  <script type="text/babel" src="js/Toast.jsx?v=20"></script>
-  <script type="text/babel" src="js/CloudFace.jsx?v=20"></script>
-  <script type="text/babel" src="js/WorldMap.jsx?v=20"></script>
-  <script type="text/babel" src="js/CompanyStrip.jsx?v=20"></script>
-  <script type="text/babel" src="js/GetInTouch.jsx?v=20"></script>
+  <script type="text/babel" src="js/components.jsx?v=21"></script>
+  <script type="text/babel" src="js/BackgroundPaths.jsx?v=21"></script>
+  <script type="text/babel" src="js/Toast.jsx?v=21"></script>
+  <script type="text/babel" src="js/CloudFace.jsx?v=21"></script>
+  <script type="text/babel" src="js/WorldMap.jsx?v=21"></script>
+  <script type="text/babel" src="js/CompanyStrip.jsx?v=21"></script>
+  <script type="text/babel" src="js/GetInTouch.jsx?v=21"></script>
 
   <!-- Screens -->
-  <script type="text/babel" src="js/PublicView.jsx?v=20"></script>
-  <script type="text/babel" src="js/LoginScreen.jsx?v=20"></script>
-  <script type="text/babel" src="js/PrivateCV.jsx?v=20"></script>
+  <script type="text/babel" src="js/PublicView.jsx?v=21"></script>
+  <script type="text/babel" src="js/LoginScreen.jsx?v=21"></script>
+  <script type="text/babel" src="js/PrivateCV.jsx?v=21"></script>
 
   <!-- App last -->
-  <script type="text/babel" src="js/app.jsx?v=20"></script>
+  <script type="text/babel" src="js/app.jsx?v=21"></script>
 </body>
 </html>

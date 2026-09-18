@@ -191,15 +191,16 @@ const PrivateCV = ({ go, signOut }) => {
           <p style={{ fontSize: 11.5, color: "var(--jj-ink-2)", marginBottom: 1, letterSpacing: "-0.005em" }}>Energy &amp; Critical Infrastructure.</p>
           <p style={{ fontSize: 11.5, color: "var(--jj-ink-2)", marginBottom: 1, letterSpacing: "-0.005em" }}>Transformation &amp; Sustainable Business Cases.</p>
 
-          <div style={{
-            marginTop: 12,
-            display: "inline-flex", alignItems: "center", gap: 16,
-            background: "var(--jj-ink)", color: "var(--jj-paper-2)",
-            borderRadius: 999, padding: "7px 18px 7px 14px",
-            fontSize: 11.5, fontWeight: 500, letterSpacing: "-0.005em",
-          }}>
-            <span className="jj-pulse-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--jj-status-go)" }} />
-            <span><strong style={{ fontWeight: 600 }}>Open to senior international roles.</strong> &nbsp;·&nbsp; Three months' notice.</span>
+          <div className="jj-notice" style={{ marginTop: 12 }}>
+            <div style={{
+              display: "inline-flex", alignItems: "center", gap: 14,
+              background: "var(--jj-ink)", color: "var(--jj-paper-2)",
+              borderRadius: 999, padding: "7px 18px 7px 14px",
+              fontSize: 11.5, fontWeight: 500, letterSpacing: "-0.005em",
+            }}>
+              <span className="jj-pulse-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--jj-status-go)" }} />
+              <span><strong style={{ fontWeight: 600 }}>Open to senior international roles.</strong></span>
+            </div>
           </div>
 
           <div style={{
@@ -241,7 +242,7 @@ const PrivateCV = ({ go, signOut }) => {
             <div>
               <H2 soft="summary.">Executive</H2>
               <Lede style={{ marginTop: 6 }}>
-                CFO with fifteen years of senior finance leadership in the global energy sector.
+                CFO with fifteen years of senior finance leadership in the energy sector.
                 Currently responsible for finance, strategy and transformation at Finland's
                 largest nuclear power producer, generating approximately 30% of national electricity.
               </Lede>
@@ -268,7 +269,7 @@ const PrivateCV = ({ go, signOut }) => {
               "Sustainable Business Case Development",
               "Capital Planning & Project Finance",
               "Finance & Digital Transformation",
-              "Strategic Finance & Corporate Growth",
+              "Corporate Finance & Growth",
               "P&L Management & Forecasting",
               "Board, Investor & Stakeholder Relations",
               "IFRS, Compliance & Public-Company Readiness",
@@ -304,12 +305,12 @@ const PrivateCV = ({ go, signOut }) => {
             company="TVO, Teollisuuden Voima Oyj. Finland."
             stat={{
               label: "Signature accountability",
-              value: "€130M+",
-              desc: "Created and now hold full accountability for an enterprise transformation programme delivering €130M+ in recurring annual value across operations, finance, and IT.",
+              value: "€130M",
+              desc: "Created and now hold full accountability for an enterprise transformation programme delivering roughly €130M in recurring annual value across operations, finance and IT.",
             }}
             bullets={[
               "Lead financial strategy, operations, finance transformation, and IT for one of Finland's largest power producers, generating ~30% of national electricity. Full P&L responsibility, anchored in long-horizon energy-asset economics.",
-              "Drive capital planning and infrastructure project-finance for multi-billion-euro programmes, building sustainable business cases that align operational, regulatory, and corporate-growth horizons.",
+              "Drive capital planning and infrastructure project-finance for programmes in the billions, building business cases that align operational, regulatory and corporate-growth horizons.",
               "Hold CFO accountability for TVO's Green Finance programme: in 2025, TVO became the sector's first issuer of a European Green Bond Standard-aligned bond (€500M), with 99.8% of group turnover and 100% of taxonomy-relevant CapEx and OpEx aligned. The 2026 framework update extended sustainable financing to green bank loans. Serve as primary financial liaison to Board, owners, and key stakeholders.",
             ]}
           />
@@ -324,20 +325,20 @@ const PrivateCV = ({ go, signOut }) => {
               desc: "Senior finance leadership role in the group-wide Neste NEXT transformation, reshaping operating model, capital allocation discipline, and performance frameworks across business units.",
             }}
             bullets={[
-              "Led financial operations and strategic planning for a global leader in renewable fuels and circular solutions through nine years of accelerated international growth.",
+              "Led financial operations and planning for Neste, in renewable fuels and circular solutions, through nine years of international growth.",
               "Built and led a finance organisation of approximately 80 Business Controllers and Finance Directors across multiple countries, partnering with the business to construct sustainable business cases for renewable-fuel growth investments.",
-              "Led finance transformation across business units (advanced FP&A platform, redesigned management reporting, performance frameworks, decision-support tooling) and ensured statutory and IFRS compliance through significant international expansion. Owned Board and Executive Committee communications.",
+              "Led finance transformation across business units: FP&A platform, redesigned management reporting, performance frameworks, decision-support tooling. Ensured statutory and IFRS compliance through international expansion. Owned Board and Executive Committee communications.",
             ]}
           />
           <Role
             dates="2015–2016"
             sub="Offshore wind"
             title="Head of Performance Control & Business Partner"
-            company="Siemens Wind Power A/S. Denmark."
+            company="Siemens Wind. Denmark."
             stat={{
               label: "Signature accountability",
               value: "Profit recovery",
-              desc: "Senior finance leader in the Siemens Wind Power profit recovery programme, restoring margins across offshore project portfolios valued at €500M to €1.3B.",
+              desc: "Senior finance leader in the Siemens Wind profit recovery programme, restoring margins across offshore project portfolios valued at €500M to €1.3B.",
             }}
             bullets={[
               "Directed cross-regional teams in performance control, cost management, and business-case validation for large-scale offshore wind projects valued at €500M to €1.3B.",
@@ -350,8 +351,8 @@ const PrivateCV = ({ go, signOut }) => {
             title="Head of Planning & Reporting"
             company="Fortum Power and Heat Oy. Finland."
             bullets={[
-              "Led the integration of advanced BI tools and the standardisation of financial reporting across multiple jurisdictions in the clean and low-carbon energy sector.",
-              "Designed and implemented financial systems and processes, materially improving data governance and management reporting for a €7B group. Partnered with regional Finance Directors and executive leadership on strategic finance initiatives.",
+              "Led the integration of BI tools and the standardisation of financial reporting across multiple jurisdictions in the clean and low-carbon energy sector.",
+              "Designed and implemented financial systems and processes, materially improving data governance and management reporting for a €7B group. Partnered with regional Finance Directors and executive leadership on finance initiatives.",
             ]}
           />
           <Role
@@ -438,7 +439,7 @@ const PrivateCV = ({ go, signOut }) => {
         <Card dark>
           <SectionHead num="07" dark />
           <H2 dark style={{ fontSize: 16, lineHeight: 1.15, marginBottom: 0 }}>
-            Available with three months' notice.{" "}
+            Three months' notice.{" "}
             <span style={{ color: "rgba(255,255,255,0.45)" }}>Open to international relocation.</span>
           </H2>
           <div style={{

@@ -1,9 +1,14 @@
-/* GetInTouch — minimal form, in the same understated underline-only style. */
+/* GetInTouch — the message form only.
+
+   It used to carry its own section chrome (eyebrow, heading, number) and sit
+   above a second, near-identical contact section. Those were the same section
+   twice, so the chrome now lives with the merged contact section in
+   PublicView and this file is just the form. */
 
 /* Same Web3Forms key used for the login-notification email in LoginScreen. */
 const WEB3FORMS_KEY_TOUCH = "02d289c3-66d9-4b55-9f91-5dd2b00b7f1e";
 
-const GetInTouch = ({ open, onToggle }) => {
+const GetInTouch = ({ open, onToggle, dark }) => {
   const isMobile = useIsMobile();
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -19,6 +24,10 @@ const GetInTouch = ({ open, onToggle }) => {
     { id: "board",     label: "Board or advisory"   },
     { id: "press",     label: "Press"               },
   ];
+
+  const line  = dark ? "rgba(255,255,255,0.45)" : "var(--jj-ink)";
+  const label = dark ? "rgba(255,255,255,0.55)" : "var(--jj-muted)";
+  const ink   = dark ? "var(--jj-paper-2)" : "var(--jj-ink)";
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -52,34 +61,20 @@ const GetInTouch = ({ open, onToggle }) => {
   };
 
   return (
-    <section style={{
-      background: "var(--jj-paper-2)",
-      borderRadius: 18,
-      padding: isMobile ? "24px 20px 28px" : "28px 40px 32px",
-      marginBottom: 6,
-    }}>
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
-        <Eyebrow muted>Get in touch</Eyebrow>
-        <div style={{ fontFamily: "var(--jj-display)", fontWeight: 700, fontSize: "clamp(22px, 2.8vw, 32px)", letterSpacing: "-0.04em", lineHeight: 0.9 }}>06</div>
-      </div>
-      <H2 soft="a message.">Send</H2>
-      <Lede style={{ marginTop: 6, marginBottom: 18 }}>
-        Direct email: <strong>joni@juuri.me</strong>. Replies within a week.
-      </Lede>
-
+    <div>
       <button
         type="button"
         onClick={onToggle}
         aria-expanded={open}
         style={{
           display: "inline-flex", alignItems: "center", gap: 8,
-          background: "transparent", border: "1px solid var(--jj-ink)",
+          background: "transparent", border: `1px solid ${dark ? "var(--jj-paper-2)" : "var(--jj-ink)"}`,
           borderRadius: 999, padding: "8px 16px",
           fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase",
-          color: "var(--jj-ink)", cursor: "pointer", fontFamily: "inherit",
+          color: ink, cursor: "pointer", fontFamily: "inherit",
         }}
       >
-        {open ? "Hide form" : "Show form"}
+        {open ? "Hide form" : "Write a message"}
         <span style={{ display: "inline-flex", transform: `rotate(${open ? 180 : 0}deg)`, transition: "transform 220ms var(--jj-ease)" }}>
           <ArrowGlyph direction="down" />
         </span>
@@ -89,13 +84,13 @@ const GetInTouch = ({ open, onToggle }) => {
       <div>
       <form onSubmit={onSubmit} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 22 : 28, paddingTop: 22 }}>
         <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
-          <Field label="Your name" value={name} onChange={e => setName(e.target.value)} />
-          <Field label="Email" type="email" value={email} onChange={e => setEmail(e.target.value)} />
+          <Field dark={dark} label="Your name" value={name} onChange={e => setName(e.target.value)} />
+          <Field dark={dark} label="Email" type="email" value={email} onChange={e => setEmail(e.target.value)} />
 
           <div>
             <div style={{
               fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase",
-              color: "var(--jj-muted)", marginBottom: 10,
+              color: label, marginBottom: 10,
             }}>
               Topic
             </div>
@@ -108,9 +103,9 @@ const GetInTouch = ({ open, onToggle }) => {
                     type="button"
                     onClick={() => setReason(r.id)}
                     style={{
-                      border: "1px solid var(--jj-ink)",
-                      background: active ? "var(--jj-ink)" : "transparent",
-                      color: active ? "var(--jj-paper-2)" : "var(--jj-ink)",
+                      border: `1px solid ${dark ? "var(--jj-paper-2)" : "var(--jj-ink)"}`,
+                      background: active ? (dark ? "var(--jj-paper-2)" : "var(--jj-ink)") : "transparent",
+                      color: active ? (dark ? "var(--jj-ink)" : "var(--jj-paper-2)") : ink,
                       padding: "6px 12px",
                       borderRadius: 999,
                       fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase",
@@ -129,7 +124,7 @@ const GetInTouch = ({ open, onToggle }) => {
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{
             fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase",
-            color: "var(--jj-muted)", marginBottom: 10,
+            color: label, marginBottom: 10,
           }}>
             Message
           </div>
@@ -140,28 +135,28 @@ const GetInTouch = ({ open, onToggle }) => {
             placeholder="Brief is fine."
             style={{
               border: 0,
-              borderBottom: "1px solid var(--jj-ink)",
+              borderBottom: `1px solid ${line}`,
               background: "transparent",
               padding: "8px 0",
               fontSize: 14,
               fontFamily: "var(--jj-body)",
-              color: "var(--jj-ink)",
+              color: ink,
               outline: "none",
               resize: "vertical",
               lineHeight: 1.5,
             }}
           />
 
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 18 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 18, gap: 12 }}>
             <span style={{
               fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase",
-              color: error ? "#C84343" : sent ? "#1F8A5B" : "var(--jj-muted)",
+              color: error ? "#E08585" : sent ? "#6EE7B7" : label,
               transition: "color 240ms var(--jj-ease)",
               maxWidth: "60%",
             }}>
-              {error ? error : sent ? "Sent. Reply within a week." : "Encrypted in transit"}
+              {error ? error : sent ? "Sent." : "Encrypted in transit"}
             </span>
-            <Button type="submit" disabled={sending || !name || !email || !msg}>
+            <Button type="submit" variant={dark ? "onDark" : "primary"} disabled={sending || !name || !email || !msg}>
               {sending ? "Sending…" : "Send"}
             </Button>
           </div>
@@ -169,7 +164,7 @@ const GetInTouch = ({ open, onToggle }) => {
       </form>
       </div>
       </div>
-    </section>
+    </div>
   );
 };
 

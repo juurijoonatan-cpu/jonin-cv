@@ -225,13 +225,13 @@ const Button = ({ children, onClick, variant = "primary", disabled, type = "butt
   );
 };
 
-const Field = ({ label, type = "text", value, onChange, placeholder, autoFocus, autoComplete, error, hint }) => (
+const Field = ({ label, type = "text", value, onChange, placeholder, autoFocus, autoComplete, error, hint, dark }) => (
   <label style={{ display: "block" }}>
     <div style={{
       fontSize: 9,
       letterSpacing: "0.22em",
       textTransform: "uppercase",
-      color: "var(--jj-muted)",
+      color: dark ? "rgba(255,255,255,0.55)" : "var(--jj-muted)",
       marginBottom: 8,
     }}>
       {label}
@@ -247,17 +247,19 @@ const Field = ({ label, type = "text", value, onChange, placeholder, autoFocus, 
         width: "100%",
         background: "transparent",
         border: 0,
-        borderBottom: error ? "1px solid #C84343" : "1px solid var(--jj-ink)",
+        borderBottom: error
+          ? "1px solid #C84343"
+          : `1px solid ${dark ? "rgba(255,255,255,0.45)" : "var(--jj-ink)"}`,
         padding: "8px 0 10px",
         fontFamily: "var(--jj-body)",
         fontSize: 16,
-        color: "var(--jj-ink)",
+        color: dark ? "var(--jj-paper-2)" : "var(--jj-ink)",
         outline: "none",
         letterSpacing: "-0.005em",
       }}
     />
     {hint && (
-      <div style={{ fontSize: 10, color: "var(--jj-muted)", marginTop: 8, letterSpacing: "0.04em" }}>
+      <div style={{ fontSize: 10, color: dark ? "rgba(255,255,255,0.55)" : "var(--jj-muted)", marginTop: 8, letterSpacing: "0.04em" }}>
         {hint}
       </div>
     )}

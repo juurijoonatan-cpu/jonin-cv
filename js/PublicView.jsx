@@ -73,11 +73,9 @@ const PublicView = ({ go }) => {
               maxWidth: "52ch", marginTop: 26,
               animation: "jj-fade 800ms var(--jj-ease) both", animationDelay: "700ms",
             }}>
-              Fifteen years of senior finance leadership across power, renewables and clean technology.
-              Seven of those abroad, in <strong>Denmark, the Netherlands and Switzerland</strong>:
-              Siemens Wind, then Neste. Based in Espoo since 2020, CFO at TVO since 2025.
-              Long-horizon capital programmes, green finance, and transformation measured in years.
-              Outside the role: a seat on a school board, and most sports with a finish line.
+              Fifteen years in senior finance across power, renewables and clean
+              technology. Seven of those were abroad, at <strong>Siemens Wind</strong>{" "}
+              and <strong>Neste</strong>. I have been CFO at TVO since 2025.
             </p>
 
             <div style={{
@@ -164,11 +162,10 @@ const PublicView = ({ go }) => {
 
             <div>
               <p style={{ fontSize: 14, lineHeight: 1.55, margin: 0 }}>
-                As Chief Financial Officer, I hold full P&L responsibility for finance,
-                strategy and transformation at Finland's largest nuclear power producer,
-                generating roughly{" "}
-                <strong style={{ fontWeight: 600 }}>30% of the country's electricity</strong>,
-                and report directly to the Board and ownership.
+                I hold full P&L responsibility for finance, strategy and transformation
+                at Finland's largest nuclear power producer. TVO generates roughly{" "}
+                <strong style={{ fontWeight: 600 }}>30% of the country's electricity</strong>.
+                I report directly to the Board and ownership.
               </p>
               <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--jj-ink-2)", marginTop: 14 }}>
                 The work is long-horizon: capital programmes in the billions, payback
@@ -260,9 +257,9 @@ const PublicView = ({ go }) => {
 
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: 16 }}>
             {[
-              { num: "01", title: "Green finance",            body: "TVO's European Green Bond programme. The sector's first EUGBS-aligned bond, €500M in 2025. The 2026 framework extends this to green bank loans.", photo: "assets/photos/green-finance.jpg", photoPos: "center 35%" },
-              { num: "02", title: "Enterprise transformation", body: "An operations, finance and IT programme built to deliver €130M+ in recurring annual value.",                                                                                  photo: "assets/photos/transformation.jpg", photoPos: "center center" },
-              { num: "03", title: "Capital planning",          body: "Multi-billion-euro capital programmes, and business cases built to survive long-horizon energy-asset economics.",                                                                            photo: "assets/photos/capital.jpg",        photoPos: "center 40%" },
+              { num: "01", title: "Green finance",            body: "TVO's European Green Bond programme. The sector's first EUGBS-aligned bond, €500M in 2025. The 2026 framework extends it to green bank loans.", photo: "assets/photos/green-finance.jpg", photoPos: "center 35%" },
+              { num: "02", title: "Enterprise transformation", body: "An operations, finance and IT programme. Built to deliver roughly €130M in recurring annual value.",                                                                                  photo: "assets/photos/transformation.jpg", photoPos: "center center" },
+              { num: "03", title: "Capital planning",          body: "Capital programmes in the billions. Business cases built to survive long-horizon energy-asset economics.",                                                                            photo: "assets/photos/capital.jpg",        photoPos: "center 40%" },
             ].map(c => (
               <div key={c.num} style={{
                 borderRadius: 24,
@@ -312,9 +309,6 @@ const PublicView = ({ go }) => {
         <section style={{ background: "var(--jj-paper-2)", borderRadius: 18, padding: isMobile ? "24px 20px 28px" : "28px 40px 32px", marginBottom: 6 }}>
           <SectionHead num="04" />
           <H2 soft="record.">Track</H2>
-          <Lede style={{ marginTop: 4, marginBottom: 22 }}>
-            Fifteen years of senior finance leadership across power, renewables and clean technology.
-          </Lede>
 
           <div>
             {[
@@ -363,10 +357,8 @@ const PublicView = ({ go }) => {
                 School board
               </div>
               <p style={{ fontSize: isMobile ? 13.5 : 14, lineHeight: 1.55, color: "var(--jj-ink-2)", margin: 0 }}>
-                I serve on a school board, where I work to bring positive psychology
-                into how children are taught rather than only how they are measured.
-                I took the coaching certification for it in 2023. Few investments
-                compound like getting this right early.
+                Bringing positive psychology into how children are taught, not only
+                how they are measured. Certified coach since 2023.
               </p>
             </div>
 
@@ -376,9 +368,8 @@ const PublicView = ({ go }) => {
                 Most things with a finish line
               </div>
               <p style={{ fontSize: isMobile ? 13.5 : 14, lineHeight: 1.55, color: "var(--jj-ink-2)", margin: 0 }}>
-                Training is the other constant, and almost all of it is shared with
-                family and friends. That is most of the point. The discipline
-                carries back into the working week.
+                Training is constant through the winter. Almost all of it is shared
+                with family and friends.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 14 }}>
                 {["HYROX", "Spinning", "Cycling", "Gym", "Tennis"].map(sport => (
@@ -399,22 +390,21 @@ const PublicView = ({ go }) => {
           </div>
         </section>
 
-        {/* ============ GET IN TOUCH ============ */}
-        <div id="jj-touch"><GetInTouch open={touchOpen} onToggle={() => setTouchOpen(v => !v)} /></div>
-
-        {/* ============ CLOSING ============ */}
-        <section style={{
+        {/* ============ GET IN TOUCH (06) ============
+             One contact section. This and the old closing card were the same
+             section twice, down to "Replies within a week" appearing in both. */}
+        <section id="jj-touch" style={{
           background: "var(--jj-ink)",
           color: "var(--jj-paper-2)",
           borderRadius: 18,
           padding: isMobile ? "24px 20px 28px" : "30px 40px 32px",
           marginBottom: 6,
         }}>
-          <SectionHead num="07" dark />
+          <SectionHead num="06" dark />
           <H2 dark soft="touch.">Get in</H2>
           <p style={{ fontSize: 14, color: "var(--jj-paper-2)", margin: "16px 0 22px", maxWidth: "56ch", lineHeight: 1.5 }}>
             Boards, recruiters, former colleagues and founders in energy.
-            Every message is read. Replies within a week.
+            Replies within a week.
           </p>
 
           <div style={{
@@ -430,6 +420,10 @@ const PublicView = ({ go }) => {
             }}>
               Roles, mandates, figures
             </span>
+          </div>
+
+          <div style={{ marginBottom: 26 }}>
+            <GetInTouch dark open={touchOpen} onToggle={() => setTouchOpen(v => !v)} />
           </div>
 
           <div style={{

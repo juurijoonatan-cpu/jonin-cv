@@ -6,6 +6,33 @@
 
 const VIEWS = ["public", "login", "cv"];
 
+/* Share link. Opening juuri.me/?k=<INVITE_KEY> signs the visitor straight in,
+   so Joni can send the link on its own without also passing the password
+   around. The token is then dropped from the address bar and the session is
+   remembered like any other, which keeps it out of screenshots and browser
+   history entries people might paste somewhere.
+
+   This is convenience, not security: anyone holding the link is in. That is
+   the intent, and it is the same trust assumption as sharing the password. */
+const INVITE_KEY = "SDR0oTrk5jD7";
+
+const consumeInviteLink = () => {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("k") !== INVITE_KEY) return false;
+    localStorage.setItem("jj-authed", "1");
+    params.delete("k");
+    const qs = params.toString();
+    window.history.replaceState({}, "", window.location.pathname + (qs ? "?" + qs : ""));
+    return true;
+  } catch (_) {
+    return false;
+  }
+};
+
+/* Checked once, before the first render, so an invited visitor never sees the gate. */
+const ARRIVED_BY_INVITE = consumeInviteLink();
+
 const App = () => {
   const [view, setView] = React.useState(() => {
     const isAuthed = localStorage.getItem("jj-authed") === "1";
@@ -16,6 +43,11 @@ const App = () => {
     return "login";
   });
   const [authed, setAuthed] = React.useState(() => localStorage.getItem("jj-authed") === "1");
+
+  /* Tell Joni someone opened a shared link, the same way a password sign-in does. */
+  React.useEffect(() => {
+    if (ARRIVED_BY_INVITE && window.notifyLogin) window.notifyLogin("Shared link");
+  }, []);
   const [fade, setFade] = React.useState(false);
 
   React.useEffect(() => {
