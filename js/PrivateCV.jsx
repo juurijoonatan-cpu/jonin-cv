@@ -242,7 +242,7 @@ const PrivateCV = ({ go, signOut }) => {
             <div>
               <H2 soft="summary.">Executive</H2>
               <Lede style={{ marginTop: 6 }}>
-                CFO with fifteen years of senior finance leadership in the energy sector.
+                CFO with twenty years of senior finance leadership in the energy sector.
                 Currently responsible for finance, strategy and transformation at Finland's
                 largest nuclear power producer, generating approximately 30% of national electricity.
               </Lede>
@@ -295,7 +295,7 @@ const PrivateCV = ({ go, signOut }) => {
           <SectionHead num="03" />
           <H2 soft="experience.">Professional</H2>
           <Lede style={{ marginTop: 10, marginBottom: 24 }}>
-            Fifteen years of senior finance leadership across power generation, renewables and clean technology.
+            Twenty years of senior finance leadership across power generation, renewables and clean technology.
           </Lede>
 
           <Role

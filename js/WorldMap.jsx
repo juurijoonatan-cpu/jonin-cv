@@ -38,7 +38,7 @@ const JOURNEY = [
 const ELSEWHERE = [
   { name: "Helsinki",  country: "Finland",       label: "M.Sc. Economics, University of Helsinki" },
   { name: "Kijkduin",  country: "Netherlands",   label: "Family home during the Rotterdam years" },
-  { name: "Lausanne",  country: "Switzerland",   label: "IMD, one-week executive intensive" },
+  { name: "Lausanne",  country: "Switzerland",   label: "IMD, executive programme" },
   { name: "Valencia",  country: "Spain",         label: "Universidad de Valencia, one-year programme" },
   { name: "Boston",    country: "United States", label: "Harvard Business School, CFO Program" },
   { name: "Barcelona", country: "Spain",         label: "Harvard Business School, Effective Boards" },

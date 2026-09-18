@@ -73,7 +73,7 @@ const PublicView = ({ go }) => {
               maxWidth: "52ch", marginTop: 26,
               animation: "jj-fade 800ms var(--jj-ease) both", animationDelay: "700ms",
             }}>
-              Fifteen years in senior finance across power, renewables and clean
+              Twenty years in senior finance across power, renewables and clean
               technology. Seven of those were abroad, at <strong>Siemens Wind</strong>{" "}
               and <strong>Neste</strong>. I have been CFO at TVO since 2025.
             </p>
@@ -347,10 +347,32 @@ const PublicView = ({ go }) => {
           <SectionHead num="05" />
           <H2 soft="the role.">Outside</H2>
           <Lede style={{ marginTop: 4, marginBottom: 22 }}>
-            Two things take the time the job does not.
+            Where the rest of the time goes.
           </Lede>
 
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 28 : 40, alignItems: "start" }}>
+            <div>
+              <Eyebrow muted style={{ display: "block", marginBottom: 10 }}>Family</Eyebrow>
+              <div style={{ fontSize: isMobile ? 15 : 14, fontWeight: 600, letterSpacing: "-0.015em", marginBottom: 8 }}>
+                Where most of it goes
+              </div>
+              <p style={{ fontSize: isMobile ? 13.5 : 14, lineHeight: 1.55, color: "var(--jj-ink-2)", margin: 0 }}>
+                Home is Espoo. The sailing and most of the training happen with them.
+              </p>
+            </div>
+
+            <div>
+              <Eyebrow muted style={{ display: "block", marginBottom: 10 }}>Sailing</Eyebrow>
+              <div style={{ fontSize: isMobile ? 15 : 14, fontWeight: 600, letterSpacing: "-0.015em", marginBottom: 8 }}>
+                49er, then a catamaran
+              </div>
+              <p style={{ fontSize: isMobile ? 13.5 : 14, lineHeight: 1.55, color: "var(--jj-ink-2)", margin: 0 }}>
+                I raced the 49er class as a young man, as far as the Olympic
+                qualifiers. The boat now is a custom-built catamaran, fast and made
+                for distance. The photo at the top of this page is from it.
+              </p>
+            </div>
+
             <div>
               <Eyebrow muted style={{ display: "block", marginBottom: 10 }}>Next generation</Eyebrow>
               <div style={{ fontSize: isMobile ? 15 : 14, fontWeight: 600, letterSpacing: "-0.015em", marginBottom: 8 }}>
@@ -368,8 +390,7 @@ const PublicView = ({ go }) => {
                 Most things with a finish line
               </div>
               <p style={{ fontSize: isMobile ? 13.5 : 14, lineHeight: 1.55, color: "var(--jj-ink-2)", margin: 0 }}>
-                Training is constant through the winter. Almost all of it is shared
-                with family and friends.
+                Training is constant through the winter.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 14 }}>
                 {["HYROX", "Spinning", "Cycling", "Gym", "Tennis"].map(sport => (
