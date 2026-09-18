@@ -113,6 +113,58 @@ const ListRow = ({ year, title, meta, dark }) => {
   );
 };
 
+const ShareLinkButton = () => {
+  const [copied, setCopied] = React.useState(false);
+  const link = (typeof window !== "undefined" && window.JJ_SHARE_LINK) || "";
+
+  const copy = async () => {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(link);
+      } else {
+        /* Older browsers, and any page not served over https. */
+        const ta = document.createElement("textarea");
+        ta.value = link;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2400);
+    } catch (_) {
+      /* If copying is refused, show the link so it can be selected by hand. */
+      window.prompt("Share link", link);
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={copy}
+      style={{
+        background: "transparent",
+        border: "1px solid rgba(255,255,255,0.45)",
+        borderRadius: 999,
+        padding: "7px 14px",
+        fontSize: 9.5,
+        fontWeight: 500,
+        letterSpacing: "0.16em",
+        textTransform: "uppercase",
+        color: copied ? "var(--jj-status-go)" : "var(--jj-paper-2)",
+        cursor: "pointer",
+        fontFamily: "inherit",
+        whiteSpace: "nowrap",
+      }}
+    >
+      {copied ? "Link copied" : "Copy share link"}
+    </button>
+  );
+};
+
 const PrivateCV = ({ go, signOut }) => {
   const isMobile = useIsMobile();
   return (
@@ -169,11 +221,7 @@ const PrivateCV = ({ go, signOut }) => {
           marginBottom: 5,
         }}>
 
-          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10, fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, fontWeight: 600 }}>
-              <Asterisk />
-              <span>Joni Juuri</span>
-            </div>
+          <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 10, fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase" }}>
             <div style={{ border: "1px solid var(--jj-ink)", padding: "6px 14px", borderRadius: 999 }}>2026</div>
           </div>
 
@@ -191,17 +239,6 @@ const PrivateCV = ({ go, signOut }) => {
           <p style={{ fontSize: 11.5, color: "var(--jj-ink-2)", marginBottom: 1, letterSpacing: "-0.005em" }}>Energy &amp; Critical Infrastructure.</p>
           <p style={{ fontSize: 11.5, color: "var(--jj-ink-2)", marginBottom: 1, letterSpacing: "-0.005em" }}>Transformation &amp; Sustainable Business Cases.</p>
 
-          <div className="jj-notice" style={{ marginTop: 12 }}>
-            <div style={{
-              display: "inline-flex", alignItems: "center", gap: 14,
-              background: "var(--jj-ink)", color: "var(--jj-paper-2)",
-              borderRadius: 999, padding: "7px 18px 7px 14px",
-              fontSize: 11.5, fontWeight: 500, letterSpacing: "-0.005em",
-            }}>
-              <span className="jj-pulse-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--jj-status-go)" }} />
-              <span><strong style={{ fontWeight: 600 }}>Open to senior international roles.</strong></span>
-            </div>
-          </div>
 
           <div style={{
             display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: 10,
@@ -439,10 +476,16 @@ const PrivateCV = ({ go, signOut }) => {
         {/* 07 — Closing dark */}
         <Card dark>
           <SectionHead num="07" dark />
-          <H2 dark style={{ fontSize: 16, lineHeight: 1.15, marginBottom: 0 }}>
-            Three months' notice.{" "}
-            <span style={{ color: "rgba(255,255,255,0.45)" }}>Open to international relocation.</span>
-          </H2>
+          <div style={{
+            display: "flex", justifyContent: "space-between", alignItems: "center",
+            gap: 14, flexWrap: "wrap",
+          }}>
+            <H2 dark style={{ fontSize: 16, lineHeight: 1.15, marginBottom: 0 }}>
+              Three months' notice.{" "}
+              <span style={{ color: "rgba(255,255,255,0.45)" }}>Open to international relocation.</span>
+            </H2>
+            <ShareLinkButton />
+          </div>
           <div style={{
             display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: 12,
             marginTop: 14, paddingTop: 10, borderTop: "1px solid rgba(255,255,255,0.18)",

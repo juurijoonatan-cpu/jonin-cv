@@ -16,18 +16,31 @@ const VIEWS = ["public", "login", "cv"];
    the intent, and it is the same trust assumption as sharing the password. */
 const INVITE_KEY = "SDR0oTrk5jD7";
 
+/* localStorage throws in some privacy modes. Nothing here may depend on it
+   working, or a shared link would dead-end on exactly the browsers people tend
+   to have when they open a link out of a message. */
+const storage = {
+  get(key) { try { return localStorage.getItem(key); } catch (_) { return null; } },
+  set(key, value) { try { localStorage.setItem(key, value); } catch (_) {} },
+  remove(key) { try { localStorage.removeItem(key); } catch (_) {} },
+};
+
 const consumeInviteLink = () => {
+  let matched = false;
   try {
     const params = new URLSearchParams(window.location.search);
-    if (params.get("k") !== INVITE_KEY) return false;
-    localStorage.setItem("jj-authed", "1");
+    matched = params.get("k") === INVITE_KEY;
+    if (!matched) return false;
     params.delete("k");
     const qs = params.toString();
     window.history.replaceState({}, "", window.location.pathname + (qs ? "?" + qs : ""));
-    return true;
   } catch (_) {
-    return false;
+    /* URL or history API misbehaving must not cost the visitor their access. */
   }
+  /* Remembering the visit is a convenience. Access for this page load is not
+     conditional on it, so a blocked store still lets the link through. */
+  if (matched) storage.set("jj-authed", "1");
+  return matched;
 };
 
 /* Checked once, before the first render, so an invited visitor never sees the gate. */
@@ -35,14 +48,14 @@ const ARRIVED_BY_INVITE = consumeInviteLink();
 
 const App = () => {
   const [view, setView] = React.useState(() => {
-    const isAuthed = localStorage.getItem("jj-authed") === "1";
-    if (isAuthed) {
-      const saved = localStorage.getItem("jj-view");
+    if (ARRIVED_BY_INVITE) return "public";
+    if (storage.get("jj-authed") === "1") {
+      const saved = storage.get("jj-view");
       return VIEWS.includes(saved) ? saved : "public";
     }
     return "login";
   });
-  const [authed, setAuthed] = React.useState(() => localStorage.getItem("jj-authed") === "1");
+  const [authed, setAuthed] = React.useState(() => ARRIVED_BY_INVITE || storage.get("jj-authed") === "1");
 
   /* Tell Joni someone opened a shared link, the same way a password sign-in does. */
   React.useEffect(() => {
@@ -51,7 +64,7 @@ const App = () => {
   const [fade, setFade] = React.useState(false);
 
   React.useEffect(() => {
-    localStorage.setItem("jj-view", view);
+    storage.set("jj-view", view);
   }, [view]);
 
   const go = (next) => {
@@ -65,7 +78,7 @@ const App = () => {
 
   const onLoginSuccess = () => {
     setAuthed(true);
-    localStorage.setItem("jj-authed", "1");
+    storage.set("jj-authed", "1");
     setFade(true);
     setTimeout(() => {
       setView("public");
@@ -75,7 +88,7 @@ const App = () => {
 
   const signOut = () => {
     setAuthed(false);
-    localStorage.removeItem("jj-authed");
+    storage.remove("jj-authed");
     go("login");
   };
 
@@ -97,5 +110,14 @@ const App = () => {
     </div>
   );
 };
+
+/* One place builds the link, so the token can never drift between files. */
+window.JJ_SHARE_LINK = (() => {
+  try {
+    return window.location.origin + window.location.pathname + "?k=" + INVITE_KEY;
+  } catch (_) {
+    return "https://juuri.me/?k=" + INVITE_KEY;
+  }
+})();
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);

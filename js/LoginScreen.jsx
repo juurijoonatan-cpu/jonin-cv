@@ -70,9 +70,7 @@ const LoginScreen = ({ go, onSuccess }) => {
             overflow: "hidden",
           }}>
             <div style={{ position: "relative", zIndex: 2, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-              <Eyebrow tone="on-dark">
-                <Asterisk size={14} /> &nbsp;Restricted access
-              </Eyebrow>
+              <Eyebrow tone="on-dark">Restricted access</Eyebrow>
               <div style={{
                 width: 26, height: 26, border: "1px solid var(--jj-paper-2)",
                 borderRadius: "50%", display: "grid", placeItems: "center",

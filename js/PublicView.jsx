@@ -13,8 +13,6 @@ const PublicView = ({ go }) => {
   };
   return (
     <div style={{ minHeight: "100vh", padding: "0 18px 24px", position: "relative" }}>
-      <Toast />
-
       <div style={{ maxWidth: 1180, margin: "0 auto", width: "100%" }}>
 
         <Topbar
@@ -36,9 +34,7 @@ const PublicView = ({ go }) => {
           {/* Hero copy block — constrained to ~70% so the photo on the right has room */}
           <div style={{ position: "relative", zIndex: 2, maxWidth: isMobile ? "100%" : "70%" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 28 }}>
-              <Eyebrow style={{ fontWeight: 600 }}>
-                <Asterisk size={14} /> &nbsp;Profile
-              </Eyebrow>
+              <Eyebrow style={{ fontWeight: 600 }}>Profile</Eyebrow>
             </div>
 
             <h1 style={{
@@ -75,7 +71,7 @@ const PublicView = ({ go }) => {
             }}>
               Twenty years in senior finance across power, renewables and clean
               technology. Seven of those were abroad, at <strong>Siemens Wind</strong>{" "}
-              and <strong>Neste</strong>. I have been CFO at TVO since 2025.
+              and <strong>Neste</strong>.
             </p>
 
             <div style={{
@@ -223,10 +219,10 @@ const PublicView = ({ go }) => {
             ))}
           </div>
 
-          {/* Elsewhere — short stints off-map */}
+          {/* Places studied, off-map */}
           <div style={{ marginTop: 26 }}>
             <Eyebrow tone="on-dark" style={{ display: "block", marginBottom: 12 }}>
-              Elsewhere
+              Places I have studied
             </Eyebrow>
             <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(3, 1fr)", gap: 12 }}>
               {window.JJ_ELSEWHERE.map((e, i) => (
@@ -354,11 +350,11 @@ const PublicView = ({ go }) => {
             <div>
               <Eyebrow muted style={{ display: "block", marginBottom: 10 }}>Family</Eyebrow>
               <div style={{ fontSize: isMobile ? 15 : 14, fontWeight: 600, letterSpacing: "-0.015em", marginBottom: 8 }}>
-                Home in Suvisaaristo
+                Suvisaaristo, Espoo
               </div>
               <p style={{ fontSize: isMobile ? 13.5 : 14, lineHeight: 1.55, color: "var(--jj-ink-2)", margin: 0 }}>
-                I live in Suvisaaristo in Espoo with my family. Most of what I do
-                outside work, I do with them.
+                My family and I live out in the Espoo archipelago. Most of what I do
+                outside work is with them.
               </p>
             </div>
 
