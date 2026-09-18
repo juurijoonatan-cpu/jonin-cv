@@ -376,6 +376,7 @@ const PrivateCV = ({ go, signOut }) => {
               <p style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 14 }}>Education</p>
               <ListRow dark year="M.Sc." title={<>Master of Social Sciences,<br/>Economics</>} meta={<>University of Helsinki<br/>Finland</>} />
               <ListRow dark year="P.G." title={<>Postgraduate Certificate in<br/>Distribution Logistics</>} meta={<>Universidad de Valencia<br/>Spain</>} />
+              <ListRow dark year="Exch." title={<>Economics,<br/>Erasmus exchange</>} meta={<>University of Essex<br/>United Kingdom</>} />
             </div>
             <div>
               <p style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 14 }}>Executive Education &amp; Certifications</p>

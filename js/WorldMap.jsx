@@ -34,14 +34,15 @@ const JOURNEY = [
   { from: "Geneva",    to: "Espoo",     years: "2020" },
 ];
 
-/* Stops that sit too close to a pin to label, plus the non-European ones. */
+/* Stops that sit too close to a pin to label, plus the non-European ones.
+   All six are places he studied, listed in roughly the order he got to them. */
 const ELSEWHERE = [
-  { name: "Helsinki",  country: "Finland",       label: "M.Sc. Economics, University of Helsinki" },
-  { name: "Kijkduin",  country: "Netherlands",   label: "Family home during the Rotterdam years" },
-  { name: "Lausanne",  country: "Switzerland",   label: "IMD, executive programme" },
-  { name: "Valencia",  country: "Spain",         label: "Universidad de Valencia, one-year programme" },
-  { name: "Boston",    country: "United States", label: "Harvard Business School, CFO Program" },
-  { name: "Barcelona", country: "Spain",         label: "Harvard Business School, Effective Boards" },
+  { name: "Helsinki",  country: "Finland",        label: "M.Sc. Economics, University of Helsinki" },
+  { name: "Essex",     country: "United Kingdom", label: "University of Essex, Economics, Erasmus exchange" },
+  { name: "Valencia",  country: "Spain",          label: "Universidad de Valencia, one-year programme" },
+  { name: "Lausanne",  country: "Switzerland",    label: "IMD, executive programme" },
+  { name: "Boston",    country: "United States",  label: "Harvard Business School, CFO Program" },
+  { name: "Barcelona", country: "Spain",          label: "Harvard Business School, Effective Boards" },
 ];
 
 const WorldMap = () => {

@@ -354,22 +354,24 @@ const PublicView = ({ go }) => {
             <div>
               <Eyebrow muted style={{ display: "block", marginBottom: 10 }}>Family</Eyebrow>
               <div style={{ fontSize: isMobile ? 15 : 14, fontWeight: 600, letterSpacing: "-0.015em", marginBottom: 8 }}>
-                Where most of it goes
+                Home in Suvisaaristo
               </div>
               <p style={{ fontSize: isMobile ? 13.5 : 14, lineHeight: 1.55, color: "var(--jj-ink-2)", margin: 0 }}>
-                Home is Espoo. The sailing and most of the training happen with them.
+                I live in Suvisaaristo in Espoo with my family. Most of what I do
+                outside work, I do with them.
               </p>
             </div>
 
             <div>
               <Eyebrow muted style={{ display: "block", marginBottom: 10 }}>Sailing</Eyebrow>
               <div style={{ fontSize: isMobile ? 15 : 14, fontWeight: 600, letterSpacing: "-0.015em", marginBottom: 8 }}>
-                49er, then a catamaran
+                From the 49er to a catamaran
               </div>
               <p style={{ fontSize: isMobile ? 13.5 : 14, lineHeight: 1.55, color: "var(--jj-ink-2)", margin: 0 }}>
-                I raced the 49er class as a young man, as far as the Olympic
-                qualifiers. The boat now is a custom-built catamaran, fast and made
-                for distance. The photo at the top of this page is from it.
+                I sailed competitively when I was younger, in the 49er class, and was
+                part of the Olympic qualifiers group. These days I sail with the family
+                on our custom-built racing and adventure catamaran, mostly over the
+                summer holidays. The photo at the top of this page was taken on it.
               </p>
             </div>
 
@@ -379,18 +381,19 @@ const PublicView = ({ go }) => {
                 School board
               </div>
               <p style={{ fontSize: isMobile ? 13.5 : 14, lineHeight: 1.55, color: "var(--jj-ink-2)", margin: 0 }}>
-                Bringing positive psychology into how children are taught, not only
-                how they are measured. Certified coach since 2023.
+                I sit on a school board, and I am a certified positive psychology
+                coach. I have been working to bring that thinking into how children
+                are taught, not only into how they are measured.
               </p>
             </div>
 
             <div>
               <Eyebrow muted style={{ display: "block", marginBottom: 10 }}>Sport</Eyebrow>
               <div style={{ fontSize: isMobile ? 15 : 14, fontWeight: 600, letterSpacing: "-0.015em", marginBottom: 8 }}>
-                Most things with a finish line
+                Sport is a big part of the week
               </div>
               <p style={{ fontSize: isMobile ? 13.5 : 14, lineHeight: 1.55, color: "var(--jj-ink-2)", margin: 0 }}>
-                Training is constant through the winter.
+                I train most days, and more of it through the winter.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 14 }}>
                 {["HYROX", "Spinning", "Cycling", "Gym", "Tennis"].map(sport => (
