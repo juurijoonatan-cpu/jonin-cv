@@ -74,15 +74,6 @@ const PublicView = ({ go }) => {
               and <strong>Neste</strong>.
             </p>
 
-            <div style={{
-              marginTop: 30,
-              display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center",
-              animation: "jj-fade 800ms var(--jj-ease) both", animationDelay: "900ms",
-            }}>
-              <Button onClick={() => scrollToOpen("jj-touch", setTouchOpen)}>
-                Send a message
-              </Button>
-            </div>
           </div>
 
           {/* Photo, bottom-right corner, with a handwritten margin note.
@@ -346,7 +337,12 @@ const PublicView = ({ go }) => {
             Where the rest of the time goes.
           </Lede>
 
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 28 : 40, alignItems: "start" }}>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(230px, 1fr))",
+            gap: isMobile ? 28 : 32,
+            alignItems: "start",
+          }}>
             <div>
               <Eyebrow muted style={{ display: "block", marginBottom: 10 }}>Family</Eyebrow>
               <div style={{ fontSize: isMobile ? 15 : 14, fontWeight: 600, letterSpacing: "-0.015em", marginBottom: 8 }}>
@@ -422,28 +418,44 @@ const PublicView = ({ go }) => {
         }}>
           <SectionHead num="06" dark />
           <H2 dark soft="touch.">Get in</H2>
-          <p style={{ fontSize: 14, color: "var(--jj-paper-2)", margin: "16px 0 22px", maxWidth: "56ch", lineHeight: 1.5 }}>
-            Boards, recruiters, former colleagues and founders in energy.
-            Replies within a week.
-          </p>
-
+          {/* Heading left, actions right, so the row uses the width instead of
+              leaving two thirds of a dark card empty on a laptop. */}
           <div style={{
-            display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center",
-            marginBottom: 24,
+            display: "flex", flexWrap: "wrap", gap: 18,
+            justifyContent: "space-between", alignItems: "flex-end",
+            marginTop: 14,
           }}>
-            <Button variant="onDark" onClick={() => go("cv")}>
-              Read the full CV
-            </Button>
-            <span style={{
-              fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase",
-              color: "rgba(255,255,255,0.5)",
-            }}>
-              Roles, mandates, figures
-            </span>
+            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.75)", margin: 0, lineHeight: 1.5 }}>
+              Replies within a week.
+            </p>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
+              <Button variant="onDark" onClick={() => go("cv")}>
+                Read the full CV
+              </Button>
+              <button
+                type="button"
+                onClick={() => setTouchOpen(v => !v)}
+                aria-expanded={touchOpen}
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 8,
+                  background: "transparent", border: "1px solid var(--jj-paper-2)",
+                  borderRadius: 999, padding: "8px 16px",
+                  fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase",
+                  color: "var(--jj-paper-2)", cursor: "pointer", fontFamily: "inherit",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {touchOpen ? "Hide form" : "Write a message"}
+                <span style={{ display: "inline-flex", transform: `rotate(${touchOpen ? 180 : 0}deg)`, transition: "transform 220ms var(--jj-ease)" }}>
+                  <ArrowGlyph direction="down" />
+                </span>
+              </button>
+            </div>
           </div>
 
           <div style={{ marginBottom: 26 }}>
-            <GetInTouch dark open={touchOpen} onToggle={() => setTouchOpen(v => !v)} />
+            <GetInTouch dark open={touchOpen} />
           </div>
 
           <div style={{

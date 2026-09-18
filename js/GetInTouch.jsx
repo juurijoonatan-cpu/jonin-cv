@@ -1,14 +1,13 @@
-/* GetInTouch — the message form only.
+/* GetInTouch — the collapsible message form.
 
-   It used to carry its own section chrome (eyebrow, heading, number) and sit
-   above a second, near-identical contact section. Those were the same section
-   twice, so the chrome now lives with the merged contact section in
-   PublicView and this file is just the form. */
+   No chrome and no toggle button of its own: both live with the contact
+   section in PublicView, so the toggle can sit on the same row as the other
+   action instead of being pushed onto its own line by this wrapper. */
 
 /* Same Web3Forms key used for the login-notification email in LoginScreen. */
 const WEB3FORMS_KEY_TOUCH = "02d289c3-66d9-4b55-9f91-5dd2b00b7f1e";
 
-const GetInTouch = ({ open, onToggle, dark }) => {
+const GetInTouch = ({ open, dark }) => {
   const isMobile = useIsMobile();
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -61,25 +60,6 @@ const GetInTouch = ({ open, onToggle, dark }) => {
   };
 
   return (
-    <div>
-      <button
-        type="button"
-        onClick={onToggle}
-        aria-expanded={open}
-        style={{
-          display: "inline-flex", alignItems: "center", gap: 8,
-          background: "transparent", border: `1px solid ${dark ? "var(--jj-paper-2)" : "var(--jj-ink)"}`,
-          borderRadius: 999, padding: "8px 16px",
-          fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase",
-          color: ink, cursor: "pointer", fontFamily: "inherit",
-        }}
-      >
-        {open ? "Hide form" : "Write a message"}
-        <span style={{ display: "inline-flex", transform: `rotate(${open ? 180 : 0}deg)`, transition: "transform 220ms var(--jj-ease)" }}>
-          <ArrowGlyph direction="down" />
-        </span>
-      </button>
-
       <div className={`jj-collapse${open ? " jj-collapse--open" : ""}`}>
       <div>
       <form onSubmit={onSubmit} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 22 : 28, paddingTop: 22 }}>
@@ -164,7 +144,6 @@ const GetInTouch = ({ open, onToggle, dark }) => {
       </form>
       </div>
       </div>
-    </div>
   );
 };
 

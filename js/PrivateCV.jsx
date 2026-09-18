@@ -186,22 +186,6 @@ const PrivateCV = ({ go, signOut }) => {
           }}>
             <Asterisk />
             <span>Joni Juuri</span>
-            {/* The "signed in" badge is the first thing to go on a narrow bar —
-                it is reassurance, not navigation. */}
-            {!isMobile && (
-              <span style={{
-                marginLeft: 8,
-                fontSize: 9,
-                padding: "3px 8px",
-                border: "1px solid var(--jj-status-go)",
-                color: "#1F8A5B",
-                borderRadius: 999,
-                letterSpacing: "0.18em",
-                fontWeight: 500,
-              }}>
-                Signed in
-              </span>
-            )}
           </div>
           <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
             <Pill as="a" href="assets/Joni_Juuri_CV.pdf" download="Joni_Juuri_CV.pdf" style={{ whiteSpace: "nowrap" }}>
@@ -221,23 +205,40 @@ const PrivateCV = ({ go, signOut }) => {
           marginBottom: 5,
         }}>
 
-          <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 10, fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase" }}>
-            <div style={{ border: "1px solid var(--jj-ink)", padding: "6px 14px", borderRadius: 999 }}>2026</div>
+          <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 24 }}>
+            <div>
+              <h1 style={{
+                fontFamily: "var(--jj-display)",
+                fontWeight: 700,
+                fontSize: "clamp(30px, 4.6vw, 44px)",
+                lineHeight: 0.92,
+                letterSpacing: "-0.04em",
+                margin: "0 0 10px",
+              }}>
+                Chief<br />Financial<br />Officer.
+              </h1>
+
+              <p style={{ fontSize: 11.5, color: "var(--jj-ink-2)", marginBottom: 1, letterSpacing: "-0.005em" }}>Energy &amp; Critical Infrastructure.</p>
+              <p style={{ fontSize: 11.5, color: "var(--jj-ink-2)", marginBottom: 1, letterSpacing: "-0.005em" }}>Transformation &amp; Sustainable Business Cases.</p>
+            </div>
+
+            <div style={{
+              width: isMobile ? 92 : 124,
+              height: isMobile ? 92 : 124,
+              flexShrink: 0,
+              borderRadius: "50%",
+              border: "1px solid var(--jj-ink)",
+              background: "var(--jj-warm)",
+              overflow: "hidden",
+              marginTop: 4,
+            }}>
+              <img
+                src="assets/joni-headshot.png"
+                alt="Joni Juuri"
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
+              />
+            </div>
           </div>
-
-          <h1 style={{
-            fontFamily: "var(--jj-display)",
-            fontWeight: 700,
-            fontSize: "clamp(30px, 4.6vw, 44px)",
-            lineHeight: 0.92,
-            letterSpacing: "-0.04em",
-            margin: "0 0 10px",
-          }}>
-            Chief<br />Financial<br />Officer.
-          </h1>
-
-          <p style={{ fontSize: 11.5, color: "var(--jj-ink-2)", marginBottom: 1, letterSpacing: "-0.005em" }}>Energy &amp; Critical Infrastructure.</p>
-          <p style={{ fontSize: 11.5, color: "var(--jj-ink-2)", marginBottom: 1, letterSpacing: "-0.005em" }}>Transformation &amp; Sustainable Business Cases.</p>
 
 
           <div style={{
@@ -258,32 +259,25 @@ const PrivateCV = ({ go, signOut }) => {
           </div>
         </section>
 
-        {/* 01 — Executive Summary */}
+        {/* Executive Summary */}
         <Card>
-          <SectionHead num="01" />
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "0.32fr 0.68fr", gap: 18, alignItems: "start" }}>
+          <H2 soft="summary.">Executive</H2>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+            gap: isMobile ? 0 : 36,
+            marginTop: 8,
+            alignItems: "start",
+          }}>
             <div>
-              <div style={{
-                width: 96, height: 96, borderRadius: "50%",
-                border: "1px solid var(--jj-ink)",
-                background: "var(--jj-warm)",
-                overflow: "hidden",
-              }}>
-                <img
-                  src="assets/joni-headshot.png"
-                  alt="Joni Juuri"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
-                />
-              </div>
-            </div>
-            <div>
-              <H2 soft="summary.">Executive</H2>
-              <Lede style={{ marginTop: 6 }}>
+              <Lede style={{ marginTop: 0, maxWidth: "none" }}>
                 CFO with twenty years of senior finance leadership in the energy sector.
                 Currently responsible for finance, strategy and transformation at Finland's
                 largest nuclear power producer, generating approximately 30% of national electricity.
               </Lede>
-              <Lede style={{ marginTop: 4 }}>
+            </div>
+            <div>
+              <Lede style={{ marginTop: isMobile ? 6 : 0, maxWidth: "none" }}>
                 Energy infrastructure and large-scale capital assets, multi-jurisdictional finance
                 transformation, and decision-ready business cases for multi-billion-euro capital
                 programmes. Board, owner and investor counterpart in IFRS, public-company readiness,
@@ -293,9 +287,8 @@ const PrivateCV = ({ go, signOut }) => {
           </div>
         </Card>
 
-        {/* 02 — Competencies */}
+        {/* Competencies */}
         <Card>
-          <SectionHead num="02" />
           <H2 soft="expertise.">Areas of</H2>
           <Lede style={{ marginTop: 3, marginBottom: 8 }}>
             Ten areas of concentration across finance, capital and governance.
@@ -327,9 +320,8 @@ const PrivateCV = ({ go, signOut }) => {
           </div>
         </Card>
 
-        {/* 03 — Experience */}
+        {/* Experience */}
         <Card>
-          <SectionHead num="03" />
           <H2 soft="experience.">Professional</H2>
           <Lede style={{ marginTop: 10, marginBottom: 24 }}>
             Twenty years of senior finance leadership across power generation, renewables and clean technology.
@@ -400,9 +392,8 @@ const PrivateCV = ({ go, signOut }) => {
           />
         </Card>
 
-        {/* 04 — Education (dark) */}
+        {/* Education (dark) */}
         <Card dark>
-          <SectionHead num="04" dark />
           <H2 dark soft="programs.">Education &amp;</H2>
           <Lede dark style={{ marginTop: 10, marginBottom: 24 }}>
             Formal education and continuing executive development.
@@ -425,9 +416,8 @@ const PrivateCV = ({ go, signOut }) => {
           </div>
         </Card>
 
-        {/* 05 — Boards */}
+        {/* Boards */}
         <Card>
-          <SectionHead num="05" />
           <H2 soft="affiliations.">Board &amp;</H2>
           <Lede style={{ marginTop: 10, marginBottom: 18 }}>
             Governance roles across energy, clean technology, and bilateral commerce.
@@ -446,9 +436,8 @@ const PrivateCV = ({ go, signOut }) => {
           <Role dates="2017–2018" sub="Treasurer" title="Board Member & Treasurer" company="Finnish-Dutch Chamber of Commerce." />
         </Card>
 
-        {/* 06 — Tools & Languages */}
+        {/* Tools & Languages */}
         <Card>
-          <SectionHead num="06" />
           <H2 soft="languages.">Tools &amp;</H2>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 20 : 40, marginTop: 6, alignItems: "start" }}>
             <div>
@@ -473,9 +462,8 @@ const PrivateCV = ({ go, signOut }) => {
           </div>
         </Card>
 
-        {/* 07 — Closing dark */}
+        {/* Closing dark */}
         <Card dark>
-          <SectionHead num="07" dark />
           <div style={{
             display: "flex", justifyContent: "space-between", alignItems: "center",
             gap: 14, flexWrap: "wrap",
