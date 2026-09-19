@@ -145,6 +145,27 @@
   .jj-marquee:hover { animation-play-state: running; }
   .jj-marquee--locked { animation-play-state: running !important; pointer-events: none; }
 
+  /* A quiet nudge on the two ways into the CV, which are the point of the
+     page and were easy to scan past. Mostly at rest: one short double-bounce
+     every seven seconds, on transform only, so it stays on the compositor and
+     costs no main-thread work. Hover drops the animation entirely rather than
+     pausing it, because a running animation outranks the hover rule and would
+     otherwise swallow it. */
+  @keyframes jj-nudge {
+    0%, 84%, 100% { transform: translate3d(0, 0, 0); }
+    88%           { transform: translate3d(0, -3px, 0); }
+    92%           { transform: translate3d(0, 0, 0); }
+    96%           { transform: translate3d(0, -1.5px, 0); }
+  }
+  .jj-nudge {
+    animation: jj-nudge 7s var(--jj-ease-out) infinite;
+    will-change: transform;
+  }
+  .jj-nudge:hover, .jj-nudge:focus-visible { animation: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .jj-nudge { animation: none; }
+  }
+
   /* Carried by the CV, shown only on paper — see the print block below. */
   .jj-print-name { display: none; }
 
@@ -171,6 +192,8 @@
        edge. On paper the page margin does that job, so drop it and let the
        text block sit squarely on the margin. */
     .jj-sheet { padding: 0 !important; }
+
+    .jj-nudge { animation: none !important; }
 
     /* Site chrome has no place in the document. */
     .jj-chrome, .jj-pill, button, .jj-paths, .jj-marquee { display: none !important; }
