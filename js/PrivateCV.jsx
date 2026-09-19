@@ -74,7 +74,7 @@ const Role = ({ dates, sub, title, company, stat, bullets, dark }) => {
 const ListRow = ({ year, title, meta, dark }) => {
   const isMobile = useIsMobile();
   return (
-  <div style={{
+  <div className="jj-row" style={{
     display: "grid",
     gridTemplateColumns: isMobile ? "48px 1fr" : "48px 1fr auto",
     gap: 12,
@@ -168,7 +168,7 @@ const ShareLinkButton = () => {
 const PrivateCV = ({ go, signOut }) => {
   const isMobile = useIsMobile();
   return (
-    <div style={{ padding: "0 18px 24px" }}>
+    <div className="jj-sheet" style={{ padding: "0 18px 24px" }}>
       <div style={{ maxWidth: 1180, margin: "0 auto", width: "100%" }}>
 
         {/* Signed-in chrome */}
@@ -204,6 +204,8 @@ const PrivateCV = ({ go, signOut }) => {
           overflow: "hidden",
           marginBottom: 5,
         }}>
+
+          <p className="jj-print-name">Joni Juuri</p>
 
           <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 24 }}>
             <div>
@@ -492,13 +494,13 @@ const PrivateCV = ({ go, signOut }) => {
           </div>
         </Card>
 
-        <div style={{
+        <div className="jj-colophon" style={{
           textAlign: "center", marginTop: 12, fontSize: 9,
           letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--jj-muted)",
         }}>
           Joni Juuri · The CV · 2026 · All Rights Reserved
         </div>
-        <div style={{ textAlign: "center", marginTop: 6, fontSize: 8.5, letterSpacing: "0.12em", color: "var(--jj-muted)", opacity: 0.7 }}>
+        <div className="jj-colophon" style={{ textAlign: "center", marginTop: 6, fontSize: 8.5, letterSpacing: "0.12em", color: "var(--jj-muted)", opacity: 0.7 }}>
           Made with{" "}
           <a href="https://puuhapatet.fi/it" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 3 }}>
             Puuhapatet.fi/it

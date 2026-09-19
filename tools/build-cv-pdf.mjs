@@ -69,4 +69,21 @@ await page.pdf({ path: OUT, format: 'A4', printBackground: true, preferCSSPageSi
 await browser.close();
 server.close();
 
-console.log('wrote', path.relative(ROOT, OUT), fs.statSync(OUT).size, 'bytes');
+/* The text has to be text. When Chromium cannot embed a face it falls back to
+   drawing every glyph as an outline, which still looks right and still passes
+   a visual check, but the result is a PDF nobody can select, search or paste
+   into an applicant-tracking system — and roughly three times the size. A
+   healthy file carries embedded font programs; an outlined one carries none
+   and is full of /Type3 fonts instead. */
+const bytes = fs.readFileSync(OUT);
+const embedded = (bytes.toString('latin1').match(/\/FontFile[23]?\b/g) || []).length;
+if (!embedded) {
+  throw new Error(
+    'the PDF has no embedded fonts: its text was drawn as outlines, so it is ' +
+    'not selectable. Check that the page\'s web fonts actually loaded during ' +
+    'the render.'
+  );
+}
+
+console.log('wrote', path.relative(ROOT, OUT), fs.statSync(OUT).size, 'bytes,',
+  embedded, 'embedded font subsets');

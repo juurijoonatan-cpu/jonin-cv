@@ -145,11 +145,14 @@
   .jj-marquee:hover { animation-play-state: running; }
   .jj-marquee--locked { animation-play-state: running !important; pointer-events: none; }
 
+  /* Carried by the CV, shown only on paper — see the print block below. */
+  .jj-print-name { display: none; }
+
   /* Print / PDF. The downloadable CV is produced from this page, so this block
      is what turns a screen layout into a document: no site chrome, no cream
      ground, no rounded cards, and the dark panels inverted so a CV does not
      arrive as pages of solid black. */
-  @page { size: A4; margin: 14mm 13mm; }
+  @page { size: A4; margin: 16mm 15mm; }
 
   @media print {
     html, body {
@@ -158,8 +161,32 @@
       print-color-adjust: exact;
     }
 
+    /* The cream ground is a screen surface. Left on, it prints as two bands
+       down the page edges and a slab under the last card, because the white
+       cards cover the middle and nothing else does — which is what made the
+       margins look like a mistake rather than a margin. */
+    .jj { background: #fff !important; }
+
+    /* The sheet's own side padding is there to keep the cards off a phone's
+       edge. On paper the page margin does that job, so drop it and let the
+       text block sit squarely on the margin. */
+    .jj-sheet { padding: 0 !important; }
+
     /* Site chrome has no place in the document. */
     .jj-chrome, .jj-pill, button, .jj-paths, .jj-marquee { display: none !important; }
+
+    /* Whose CV this is. On screen the name sits in the top bar above; that bar
+       is chrome and prints away, so the document states it here instead. */
+    .jj .jj-print-name {
+      display: block !important;
+      font-family: var(--jj-display);
+      font-weight: 700;
+      font-size: 15pt;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin: 0 0 10px;
+      color: #111;
+    }
 
     /* Cards become plain blocks separated by rules. */
     .jj-card, section {
@@ -171,7 +198,15 @@
       padding-right: 0 !important;
       break-inside: auto;
     }
-    .jj-card { border-top: 1px solid #111; padding-top: 14px !important; margin-top: 16px !important; }
+    /* On screen a card is a floating panel, so its padding is generous and
+       bottom-heavy. In the document the rule above it does the separating, and
+       the padding only has to breathe evenly on both sides of that rule. */
+    .jj-card {
+      border-top: 1px solid #111;
+      margin-top: 12px !important;
+      padding-top: 12px !important;
+      padding-bottom: 12px !important;
+    }
 
     /* Dark panels print as normal text, not as ink-heavy blocks. */
     .jj-card--dark, .jj-card--dark * {
@@ -190,9 +225,28 @@
     .jj-stat * { color: #111 !important; }
     .jj-stat-desc { color: #333 !important; }
 
-    /* Keep a role and its bullets together where the page allows. */
+    /* Two small lines under the last rule. On screen they sit clear of the
+       card above; on paper that stacked space was enough to tip them onto a
+       page of their own. */
+    .jj-colophon { margin-top: 4px !important; }
+
+    /* Where a break falls. A long role may run over a page — that is ordinary
+       in a document — but the blocks that read as one unit must not be cut:
+       a qualification away from its school, a signature figure from its box,
+       a bullet from its own second line. */
     h1, h2, h3 { break-after: avoid; }
     li { break-inside: avoid; }
+    .jj-row, .jj-stat { break-inside: avoid; }
+
+    /* Education and the closing block are short and tabular. Split, they leave
+       a heading and one row at the foot of a page and an unlabelled fragment
+       at the head of the next, so they move whole instead. */
+    .jj-card--dark { break-inside: avoid; }
+
+    /* A section rule is a heading's rule: it travels with what it introduces,
+       so it can never strand itself at the foot or the head of a page. */
+    .jj-card { break-after: auto; }
+    .jj-card > h2 { break-after: avoid; }
   }
 </style>
 </head>
