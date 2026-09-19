@@ -17,7 +17,7 @@ const PublicView = ({ go }) => {
 
         <Topbar
           right={
-            <Pill tone="filled" onClick={() => go("cv")}>The CV →</Pill>
+            <Pill tone="filled" className="jj-nudge" onClick={() => go("cv")}>The CV →</Pill>
           }
         />
 
@@ -430,7 +430,7 @@ const PublicView = ({ go }) => {
             </p>
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
-              <Button variant="onDark" onClick={() => go("cv")}>
+              <Button variant="onDark" className="jj-nudge" onClick={() => go("cv")}>
                 Read the full CV
               </Button>
               <button
@@ -475,12 +475,15 @@ const PublicView = ({ go }) => {
           </div>
         </section>
 
-        <div style={{ textAlign: "center", marginTop: 12, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--jj-muted)" }}>
-          <Asterisk size={12} /> &nbsp; Joni Juuri · 2026
-        </div>
-        <div style={{ textAlign: "center", marginTop: 6, fontSize: 8.5, letterSpacing: "0.12em", color: "var(--jj-muted)", opacity: 0.7 }}>
-          Made with{" "}
-          <a href="https://puuhapatet.fi/it" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 3 }}>
+        {/* One line, not two. Joni's name sat in both of them, in tracked caps
+            at that, which is what made the foot of the page look busy. */}
+        <div style={{
+          textAlign: "center", marginTop: 14,
+          fontSize: 8.5, letterSpacing: "0.1em", lineHeight: 1.7,
+          color: "var(--jj-muted)", opacity: 0.55,
+        }}>
+          <Asterisk size={9} />{" "}Joni Juuri · 2026 · Made with{" "}
+          <a href="https://puuhapatet.fi/it" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 2 }}>
             Puuhapatet.fi/it
           </a>
           {" "}· Joonatan Juuri

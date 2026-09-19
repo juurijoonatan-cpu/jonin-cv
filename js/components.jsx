@@ -33,14 +33,14 @@ const Eyebrow = ({ children, muted, tone, style, className }) => (
   </span>
 );
 
-const Pill = ({ children, tone = "ink", as = "div", onClick, style, ...rest }) => {
+const Pill = ({ children, tone = "ink", as = "div", onClick, style, className = "", ...rest }) => {
   const Tag = as;
   const isInk = tone === "ink";
   const isFilled = tone === "filled";
   return (
     <Tag
       onClick={onClick}
-      className="jj-pill"
+      className={("jj-pill " + className).trim()}
       style={{
         border: isFilled ? "1px solid var(--jj-ink)" : `1px solid ${isInk ? "var(--jj-ink)" : "var(--jj-paper-2)"}`,
         background: isFilled ? "var(--jj-ink)" : "transparent",

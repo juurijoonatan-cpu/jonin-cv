@@ -188,7 +188,7 @@ const PrivateCV = ({ go, signOut }) => {
             <span>Joni Juuri</span>
           </div>
           <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
-            <Pill as="a" href="assets/Joni_Juuri_CV.pdf" download="Joni_Juuri_CV.pdf" style={{ whiteSpace: "nowrap" }}>
+            <Pill as="a" className="jj-nudge" href="assets/Joni_Juuri_CV.pdf" download="Joni_Juuri_CV.pdf" style={{ whiteSpace: "nowrap" }}>
               {isMobile ? "PDF" : "Download CV (PDF)"}
             </Pill>
             <Pill onClick={() => go("public")} style={{ whiteSpace: "nowrap" }}>← Back</Pill>
@@ -494,18 +494,14 @@ const PrivateCV = ({ go, signOut }) => {
           </div>
         </Card>
 
+        {/* The CV is a document people send on. It carries Joni's line and
+            nothing else — the maker's credit belongs on the site, not inside
+            someone's CV. */}
         <div className="jj-colophon" style={{
           textAlign: "center", marginTop: 12, fontSize: 9,
           letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--jj-muted)",
         }}>
           Joni Juuri · The CV · 2026 · All Rights Reserved
-        </div>
-        <div className="jj-colophon" style={{ textAlign: "center", marginTop: 6, fontSize: 8.5, letterSpacing: "0.12em", color: "var(--jj-muted)", opacity: 0.7 }}>
-          Made with{" "}
-          <a href="https://puuhapatet.fi/it" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 3 }}>
-            Puuhapatet.fi/it
-          </a>
-          {" "}· Joonatan Juuri
         </div>
       </div>
     </div>
