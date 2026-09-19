@@ -172,7 +172,7 @@ const PrivateCV = ({ go, signOut }) => {
       <div style={{ maxWidth: 1180, margin: "0 auto", width: "100%" }}>
 
         {/* Signed-in chrome */}
-        <div style={{
+        <div className="jj-chrome" style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",

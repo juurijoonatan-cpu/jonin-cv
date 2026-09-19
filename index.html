@@ -145,11 +145,54 @@
   .jj-marquee:hover { animation-play-state: running; }
   .jj-marquee--locked { animation-play-state: running !important; pointer-events: none; }
 
-  /* Print: only the CV section */
-  @page { size: A4; margin: 8mm; }
+  /* Print / PDF. The downloadable CV is produced from this page, so this block
+     is what turns a screen layout into a document: no site chrome, no cream
+     ground, no rounded cards, and the dark panels inverted so a CV does not
+     arrive as pages of solid black. */
+  @page { size: A4; margin: 14mm 13mm; }
+
   @media print {
-    html, body { background: white; }
-    .jj-pill, button { display: none !important; }
+    html, body {
+      background: #fff !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* Site chrome has no place in the document. */
+    .jj-chrome, .jj-pill, button, .jj-paths, .jj-marquee { display: none !important; }
+
+    /* Cards become plain blocks separated by rules. */
+    .jj-card, section {
+      background: #fff !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      margin-bottom: 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      break-inside: auto;
+    }
+    .jj-card { border-top: 1px solid #111; padding-top: 14px !important; margin-top: 16px !important; }
+
+    /* Dark panels print as normal text, not as ink-heavy blocks. */
+    .jj-card--dark, .jj-card--dark * {
+      background: transparent !important;
+      color: #111 !important;
+      border-color: rgba(0, 0, 0, 0.22) !important;
+    }
+
+    /* Signature figures stay emphasised, but outlined rather than filled. */
+    .jj-stat {
+      background: #fff !important;
+      color: #111 !important;
+      border: 1px solid #111;
+      border-radius: 4px !important;
+    }
+    .jj-stat * { color: #111 !important; }
+    .jj-stat-desc { color: #333 !important; }
+
+    /* Keep a role and its bullets together where the page allows. */
+    h1, h2, h3 { break-after: avoid; }
+    li { break-inside: avoid; }
   }
 </style>
 </head>
@@ -165,19 +208,19 @@
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
 
   <!-- Primitives first -->
-  <script type="text/babel" src="js/components.jsx?v=25"></script>
-  <script type="text/babel" src="js/BackgroundPaths.jsx?v=25"></script>
-  <script type="text/babel" src="js/CloudFace.jsx?v=25"></script>
-  <script type="text/babel" src="js/WorldMap.jsx?v=25"></script>
-  <script type="text/babel" src="js/CompanyStrip.jsx?v=25"></script>
-  <script type="text/babel" src="js/GetInTouch.jsx?v=25"></script>
+  <script type="text/babel" src="js/components.jsx?v=26"></script>
+  <script type="text/babel" src="js/BackgroundPaths.jsx?v=26"></script>
+  <script type="text/babel" src="js/CloudFace.jsx?v=26"></script>
+  <script type="text/babel" src="js/WorldMap.jsx?v=26"></script>
+  <script type="text/babel" src="js/CompanyStrip.jsx?v=26"></script>
+  <script type="text/babel" src="js/GetInTouch.jsx?v=26"></script>
 
   <!-- Screens -->
-  <script type="text/babel" src="js/PublicView.jsx?v=25"></script>
-  <script type="text/babel" src="js/LoginScreen.jsx?v=25"></script>
-  <script type="text/babel" src="js/PrivateCV.jsx?v=25"></script>
+  <script type="text/babel" src="js/PublicView.jsx?v=26"></script>
+  <script type="text/babel" src="js/LoginScreen.jsx?v=26"></script>
+  <script type="text/babel" src="js/PrivateCV.jsx?v=26"></script>
 
   <!-- App last -->
-  <script type="text/babel" src="js/app.jsx?v=25"></script>
+  <script type="text/babel" src="js/app.jsx?v=26"></script>
 </body>
 </html>

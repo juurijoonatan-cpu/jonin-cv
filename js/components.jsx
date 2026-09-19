@@ -71,7 +71,7 @@ const Card = ({ dark, children, style, className = "", id }) => {
   return (
     <section
       id={id}
-      className={"jj-card " + className}
+      className={"jj-card " + (dark ? "jj-card--dark " : "") + className}
       style={{
         background: dark ? "var(--jj-ink)" : "var(--jj-paper-2)",
         color: dark ? "var(--jj-paper-2)" : "var(--jj-ink)",
@@ -145,6 +145,7 @@ const Lede = ({ children, dark, style }) => {
 
 const MarqueeStat = ({ value, desc }) => (
   <div
+    className="jj-stat"
     style={{
       background: "var(--jj-ink)",
       color: "var(--jj-paper-2)",
@@ -163,7 +164,7 @@ const MarqueeStat = ({ value, desc }) => (
     }}>
       {value}
     </div>
-    <div style={{ fontSize: 10, color: "rgba(255,255,255,0.85)", lineHeight: 1.38 }}>
+    <div className="jj-stat-desc" style={{ fontSize: 10, color: "rgba(255,255,255,0.85)", lineHeight: 1.38 }}>
       {desc}
     </div>
   </div>
