@@ -1,15 +1,15 @@
-/* Regenerates assets/Joni_Juuri_CV.pdf from the live CV page.
+/* Prints the CV page to a PDF, for checking how the page comes out on paper.
  *
- * The download button serves a static file, so the PDF does NOT update when the
- * CV changes. It silently went a long way out of date once already. Run this
- * after any edit to js/PrivateCV.jsx or to the print styles in index.html.
+ * This does NOT produce the file the Download button serves.
+ * assets/Joni_Juuri_CV.pdf is a designed document, typeset separately, and
+ * js/PrivateCV.jsx is its on-screen twin. Overwriting it from the page would
+ * throw that typesetting away, so this script writes alongside it instead.
  *
  *   npm i -D puppeteer            # or point EXECUTABLE_PATH at a local Chrome
- *   node tools/build-cv-pdf.mjs   # serves the repo, prints, writes the asset
+ *   node tools/build-cv-pdf.mjs   # serves the repo, prints, writes the proof
  *
  * What it relies on:
- *   - the @media print block in index.html, which strips the site chrome and
- *     inverts the dark panels so the document is not pages of solid black
+ *   - the @media print block in index.html, which strips the site furniture
  *   - localStorage seeded so the app opens on the CV rather than the gate
  */
 import http from 'node:http';
@@ -18,7 +18,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const OUT = path.join(ROOT, 'assets', 'Joni_Juuri_CV.pdf');
+const OUT = path.join(ROOT, 'assets', 'Joni_Juuri_CV_page_proof.pdf');
 const PORT = Number(process.env.PORT || 8977);
 
 const TYPES = {

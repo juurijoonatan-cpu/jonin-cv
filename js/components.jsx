@@ -33,15 +33,21 @@ const Eyebrow = ({ children, muted, tone, style, className }) => (
   </span>
 );
 
-const Pill = ({ children, tone = "ink", as = "div", onClick, style, className = "", ...rest }) => {
-  const Tag = as;
+/* A pill is a link, a button, or a label, in that order. One that does
+   something was a <div> with an onClick: it worked with a mouse and with
+   nothing else, so it could not be tabbed to or pressed with a keyboard. */
+const Pill = ({ children, tone = "ink", as, onClick, style, className = "", ...rest }) => {
+  const Tag = as || (onClick ? "button" : "div");
   const isInk = tone === "ink";
   const isFilled = tone === "filled";
   return (
     <Tag
       onClick={onClick}
+      type={Tag === "button" ? "button" : undefined}
       className={("jj-pill " + className).trim()}
       style={{
+        font: "inherit",
+        fontFamily: "var(--jj-body)",
         border: isFilled ? "1px solid var(--jj-ink)" : `1px solid ${isInk ? "var(--jj-ink)" : "var(--jj-paper-2)"}`,
         background: isFilled ? "var(--jj-ink)" : "transparent",
         color: isFilled ? "var(--jj-paper-2)" : (isInk ? "var(--jj-ink)" : "var(--jj-paper-2)"),

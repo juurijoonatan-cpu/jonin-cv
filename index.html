@@ -166,14 +166,11 @@
     .jj-nudge { animation: none; }
   }
 
-  /* Carried by the CV, shown only on paper — see the print block below. */
-  .jj-print-name { display: none; }
-
-  /* Print / PDF. The downloadable CV is produced from this page, so this block
-     is what turns a screen layout into a document: no site chrome, no cream
-     ground, no rounded cards, and the dark panels inverted so a CV does not
-     arrive as pages of solid black. */
-  @page { size: A4; margin: 16mm 15mm; }
+  /* Print / PDF. The polished download is assets/Joni_Juuri_CV.pdf, but the
+     page still has to behave when someone hits Ctrl+P on it. The CV is already
+     set as a document, so this block only has to strip the site furniture and
+     flatten the sheet onto the paper. */
+  @page { size: A4; margin: 14mm 13mm; }
 
   @media print {
     html, body {
@@ -183,93 +180,42 @@
     }
 
     /* The cream ground is a screen surface. Left on, it prints as two bands
-       down the page edges and a slab under the last card, because the white
-       cards cover the middle and nothing else does — which is what made the
-       margins look like a mistake rather than a margin. */
+       down the page edges, which reads as a mistake rather than a margin. */
     .jj { background: #fff !important; }
 
-    /* The sheet's own side padding is there to keep the cards off a phone's
-       edge. On paper the page margin does that job, so drop it and let the
-       text block sit squarely on the margin. */
+    /* Side padding keeps the sheet off a phone's edge. On paper the page
+       margin does that job. */
     .jj-sheet { padding: 0 !important; }
 
     .jj-nudge { animation: none !important; }
 
-    /* Site chrome has no place in the document. */
+    /* Site furniture has no place in the document. */
     .jj-chrome, .jj-pill, button, .jj-paths, .jj-marquee { display: none !important; }
 
-    /* Whose CV this is. On screen the name sits in the top bar above; that bar
-       is chrome and prints away, so the document states it here instead. */
-    .jj .jj-print-name {
-      display: block !important;
-      font-family: var(--jj-display);
-      font-weight: 700;
-      font-size: 15pt;
-      letter-spacing: -0.02em;
-      line-height: 1;
-      margin: 0 0 10px;
-      color: #111;
-    }
-
-    /* Cards become plain blocks separated by rules. */
-    .jj-card, section {
+    /* The sheet becomes the page. */
+    .jj-doc {
       background: #fff !important;
       border-radius: 0 !important;
-      box-shadow: none !important;
-      margin-bottom: 0 !important;
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-      break-inside: auto;
-    }
-    /* On screen a card is a floating panel, so its padding is generous and
-       bottom-heavy. In the document the rule above it does the separating, and
-       the padding only has to breathe evenly on both sides of that rule. */
-    .jj-card {
-      border-top: 1px solid #111;
-      margin-top: 12px !important;
-      padding-top: 12px !important;
-      padding-bottom: 12px !important;
+      padding: 0 !important;
     }
 
-    /* Dark panels print as normal text, not as ink-heavy blocks. */
-    .jj-card--dark, .jj-card--dark * {
-      background: transparent !important;
-      color: #111 !important;
-      border-color: rgba(0, 0, 0, 0.22) !important;
-    }
-
-    /* Signature figures stay emphasised, but outlined rather than filled. */
-    .jj-stat {
-      background: #fff !important;
-      color: #111 !important;
-      border: 1px solid #111;
-      border-radius: 4px !important;
-    }
-    .jj-stat * { color: #111 !important; }
-    .jj-stat-desc { color: #333 !important; }
-
-    /* Two small lines under the last rule. On screen they sit clear of the
-       card above; on paper that stacked space was enough to tip them onto a
-       page of their own. */
-    .jj-colophon { margin-top: 4px !important; }
-
-    /* Where a break falls. A long role may run over a page — that is ordinary
-       in a document — but the blocks that read as one unit must not be cut:
-       a qualification away from its school, a signature figure from its box,
-       a bullet from its own second line. */
+    /* Where a break may fall. A long role running over a page is ordinary in
+       a document, but the blocks that read as one unit must not be cut: a
+       qualification away from its school, a figure away from its box, a
+       project card away from its label. */
     h1, h2, h3 { break-after: avoid; }
     li { break-inside: avoid; }
-    .jj-row, .jj-stat { break-inside: avoid; }
+    .jj-row, .jj-stat, .jj-proj { break-inside: avoid; }
 
-    /* Education and the closing block are short and tabular. Split, they leave
-       a heading and one row at the foot of a page and an unlabelled fragment
-       at the head of the next, so they move whole instead. */
-    .jj-card--dark { break-inside: avoid; }
+    /* A section rule belongs to the heading under it, so it can never strand
+       itself at the foot of a page. */
+    .jj-sec > h2 { break-after: avoid; }
 
-    /* A section rule is a heading's rule: it travels with what it introduces,
-       so it can never strand itself at the foot or the head of a page. */
-    .jj-card { break-after: auto; }
-    .jj-card > h2 { break-after: avoid; }
+    /* The short, tabular sections move whole. Split, they leave a heading and
+       one row at the foot of a page and an unlabelled two-line fragment at the
+       head of the next, which is how the document grew a near-empty last
+       page. Only the long run of roles is allowed to flow over a break. */
+    .jj-sec--whole { break-inside: avoid; }
   }
 </style>
 </head>
@@ -285,19 +231,19 @@
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
 
   <!-- Primitives first -->
-  <script type="text/babel" src="js/components.jsx?v=26"></script>
-  <script type="text/babel" src="js/BackgroundPaths.jsx?v=26"></script>
-  <script type="text/babel" src="js/CloudFace.jsx?v=26"></script>
-  <script type="text/babel" src="js/WorldMap.jsx?v=26"></script>
-  <script type="text/babel" src="js/CompanyStrip.jsx?v=26"></script>
-  <script type="text/babel" src="js/GetInTouch.jsx?v=26"></script>
+  <script type="text/babel" src="js/components.jsx?v=28"></script>
+  <script type="text/babel" src="js/BackgroundPaths.jsx?v=28"></script>
+  <script type="text/babel" src="js/CloudFace.jsx?v=28"></script>
+  <script type="text/babel" src="js/WorldMap.jsx?v=28"></script>
+  <script type="text/babel" src="js/CompanyStrip.jsx?v=28"></script>
+  <script type="text/babel" src="js/GetInTouch.jsx?v=28"></script>
 
   <!-- Screens -->
-  <script type="text/babel" src="js/PublicView.jsx?v=26"></script>
-  <script type="text/babel" src="js/LoginScreen.jsx?v=26"></script>
-  <script type="text/babel" src="js/PrivateCV.jsx?v=26"></script>
+  <script type="text/babel" src="js/PublicView.jsx?v=28"></script>
+  <script type="text/babel" src="js/LoginScreen.jsx?v=28"></script>
+  <script type="text/babel" src="js/PrivateCV.jsx?v=28"></script>
 
   <!-- App last -->
-  <script type="text/babel" src="js/app.jsx?v=26"></script>
+  <script type="text/babel" src="js/app.jsx?v=28"></script>
 </body>
 </html>

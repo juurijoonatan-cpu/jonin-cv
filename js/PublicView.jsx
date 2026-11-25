@@ -57,11 +57,11 @@ const PublicView = ({ go }) => {
               letterSpacing: "-0.03em",
               color: "var(--jj-muted)",
               marginTop: 10,
-              maxWidth: "20ch",
+              maxWidth: "34ch",
               animation: "jj-fade 1000ms var(--jj-ease) both",
               animationDelay: "400ms",
             }}>
-              Chief Financial Officer.<br />Energy and infrastructure.
+              Chief Financial Officer.<br />Nuclear energy and infrastructure.
             </p>
 
             <p style={{
@@ -69,9 +69,10 @@ const PublicView = ({ go }) => {
               maxWidth: "52ch", marginTop: 26,
               animation: "jj-fade 800ms var(--jj-ease) both", animationDelay: "700ms",
             }}>
-              Twenty years in senior finance across power, renewables and clean
-              technology. Seven of those were abroad, at <strong>Siemens Wind</strong>{" "}
-              and <strong>Neste</strong>.
+              Twenty years financing and running large assets and projects, from
+              offshore wind and renewable refineries to nuclear. Seven of those
+              years were abroad, at <strong>Siemens Wind</strong> and{" "}
+              <strong>Neste</strong>.
             </p>
 
           </div>
@@ -149,15 +150,16 @@ const PublicView = ({ go }) => {
 
             <div>
               <p style={{ fontSize: 14, lineHeight: 1.55, margin: 0 }}>
-                I hold full P&L responsibility for finance, strategy and transformation
-                at Finland's largest nuclear power producer. TVO generates roughly{" "}
-                <strong style={{ fontWeight: 600 }}>30% of the country's electricity</strong>.
-                I report directly to the Board and ownership.
+                I am responsible for finance, treasury, risk, commercial and procurement,
+                and data and digital at Finland's largest nuclear power producer. I work
+                as a close partner to the CEO, and report to the Board, the owners and
+                the lenders.
               </p>
               <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--jj-ink-2)", marginTop: 14 }}>
-                The work is long-horizon: capital programmes in the billions, payback
-                across decades, and business cases that must hold through successive
-                regulatory and political cycles.
+                The work is long-horizon. A{" "}
+                <strong style={{ fontWeight: 600 }}>€5.5B debt portfolio</strong> behind the
+                nuclear fleet, capital programmes that pay back across decades, and the
+                Mankala cost-price model, where the owners take the electricity at cost.
               </p>
             </div>
           </div>
@@ -245,8 +247,8 @@ const PublicView = ({ go }) => {
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: 16 }}>
             {[
               { num: "01", title: "Green finance",            body: "TVO's European Green Bond programme. The sector's first EUGBS-aligned bond, €500M in 2025. The 2026 framework extends it to green bank loans.", photo: "assets/photos/green-finance.jpg", photoPos: "center 35%" },
-              { num: "02", title: "Enterprise transformation", body: "An operations, finance and IT programme. Built to deliver roughly €130M in recurring annual value.",                                                                                  photo: "assets/photos/transformation.jpg", photoPos: "center center" },
-              { num: "03", title: "Capital planning",          body: "Capital programmes in the billions. Business cases built to survive long-horizon energy-asset economics.",                                                                            photo: "assets/photos/capital.jpg",        photoPos: "center 40%" },
+              { num: "02", title: "Enterprise transformation", body: "An operations, finance and IT programme. Built to deliver roughly €130M in additional recurring owner value per year.",                                                                       photo: "assets/photos/transformation.jpg", photoPos: "center center" },
+              { num: "03", title: "Capital planning",          body: "Stage-gated investment decisions and business cases for the lifetime extension of OL1 and OL2, generator modernisation and uprates.",                                                 photo: "assets/photos/capital.jpg",        photoPos: "center 40%" },
             ].map(c => (
               <div key={c.num} style={{
                 borderRadius: 24,
@@ -300,9 +302,9 @@ const PublicView = ({ go }) => {
           <div>
             {[
               ["2025–present", "Chief Financial Officer",                          "TVO. Finland."],
-              ["2020–2025",    "VP Business Finance",                              "Neste. Finland."],
-              ["2016–2020",    "VP Business Finance / General Manager",            "Neste. Switzerland, Netherlands."],
-              ["2015–2016",    "Head of Performance Control & Business Partner",   "Siemens Wind Power. Denmark."],
+              ["2020–2025",    "Vice President, Business Finance",                 "Neste. Finland."],
+              ["2016–2020",    "General Manager / Managing Director",              "Neste Switzerland and Netherlands."],
+              ["2015–2016",    "Head of Performance Control & Business Partner",   "Siemens Wind. Denmark."],
               ["2010–2014",    "Head of Planning & Reporting",                     "Fortum Power and Heat. Finland."],
               ["Pre-2010",     "Controller and analyst roles",              "WinWind. Nokia / NSN."],
             ].map(([when, what, where], i) => (
